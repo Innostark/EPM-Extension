@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Practices.Unity;
 
 namespace EPM.Extension.Services
 {
@@ -12,9 +11,9 @@ namespace EPM.Extension.Services
         /// <summary>
         /// Register Types for Implementation
         /// </summary>
-        public static void RegisterType(IUnityContainer unityContainer)
-        {
-           
-        }
+        //public static void RegisterType(IUnityContainer unityContainer)
+        //{
+
+        //}
     }
 }
