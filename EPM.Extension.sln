@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.Extension.Web", "EPM.Extension.Web\EPM.Extension.Web.csproj", "{7D849CFE-02B2-428B-A1B6-B448B68F6263}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.Extension.Interfaces", "EPM.Extension.Interfaces\EPM.Extension.Interfaces.csproj", "{0DD007C2-1052-4F82-B4BA-3556D431C059}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.Extension.Services", "EPM.Extension.Services\EPM.Extension.Services.csproj", "{893D8C3B-5AE1-424E-92FC-B5821321DD81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPM.Extension.Model", "EPM.Extension.Model\EPM.Extension.Model.csproj", "{709C9C79-5FD6-4897-B2B1-584D7FA5D461}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +21,23 @@ Global
 		{7D849CFE-02B2-428B-A1B6-B448B68F6263}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D849CFE-02B2-428B-A1B6-B448B68F6263}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D849CFE-02B2-428B-A1B6-B448B68F6263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DD007C2-1052-4F82-B4BA-3556D431C059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DD007C2-1052-4F82-B4BA-3556D431C059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DD007C2-1052-4F82-B4BA-3556D431C059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DD007C2-1052-4F82-B4BA-3556D431C059}.Release|Any CPU.Build.0 = Release|Any CPU
+		{893D8C3B-5AE1-424E-92FC-B5821321DD81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{893D8C3B-5AE1-424E-92FC-B5821321DD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{893D8C3B-5AE1-424E-92FC-B5821321DD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{893D8C3B-5AE1-424E-92FC-B5821321DD81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{709C9C79-5FD6-4897-B2B1-584D7FA5D461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{709C9C79-5FD6-4897-B2B1-584D7FA5D461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{709C9C79-5FD6-4897-B2B1-584D7FA5D461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{709C9C79-5FD6-4897-B2B1-584D7FA5D461}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Data.6.0.1304.0\lib\NET45
 	EndGlobalSection
 EndGlobal
