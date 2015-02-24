@@ -10,5 +10,7 @@ namespace EPM.Extension.Interfaces
     public interface ICustomerService
     {
         IEnumerable<Customer> GetAllCustomers();
+        Customer GetCustomerById(int id);
+        void UpdateCustomer(Customer customer);
     }
 }
