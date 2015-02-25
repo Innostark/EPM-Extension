@@ -27,6 +27,10 @@ namespace EPM.Extension.Web
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/Bundle/BaseLibs")
+                .Include("~/Scripts/jquery-ui-1.11.3.js")
+                .Include("~/Scripts/jquery.dataTables.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

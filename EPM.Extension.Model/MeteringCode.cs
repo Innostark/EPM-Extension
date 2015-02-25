@@ -19,5 +19,7 @@ namespace EPM.Extension.Model
         public string Messung { get; set; }
         public string Entnahme { get; set; }
         public string Kundenrückmeldung { get; set; }
+        public int CustomerId { get; set; }
+
     }
 }

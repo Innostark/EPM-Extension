@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CustomerResponse.cs" />
+    <Compile Include="Common\CustomerColumnBy.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="MeteringCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModels\CustomerSearchRequest.cs" />
+    <Compile Include="RequestModels\GetPagedListRequest.cs" />
     <Compile Include="Resources\CustomerResource.de.Designer.cs">
       <DependentUpon>CustomerResource.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -1,11 +1,12 @@
-﻿@model IEnumerable<EPM.Extension.Model.Customer>
+﻿@model EPM.Extension.Web.Models.CustomerViewModel
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>@EPM.Extension.Web.Resources.Customer.Title</h2>
 
-
+<hr />
+<input type="hidden" id="SearchCustomerString" value=@Model.SearchRequest.Search />
 <table id="CustomerList" class="table table-striped table-responsive">
     <thead>
         <tr>
@@ -19,24 +20,91 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name </td>
-                <td>@item.Number</td>
-                <td>@item.Address</td>
-                <td>@item.ZipCode</td>
-                <td>@item.City</td>
-                <td>@Html.ActionLink("Edit", "Edit", new { id = item.Id}) </td>
-            </tr>
-        }
     </tbody>
 </table>
 
+<hr/>
+
+
 <script type="text/javascript">
         $(document).ready(function() {
-            $("#CustomerList").dataTable();
+            var start = ('@Model.SearchRequest.PageNo' - 1) * '@Model.SearchRequest.PageSize';
+            var isAsc = '@Model.SearchRequest.IsAsc' == "True" || '@Model.SearchRequest.IsAsc' == "true";
+            var sortBy = ['@Model.SearchRequest.SortBy', isAsc ? 'asc' : 'desc'];
+
+            var oTable = $("#CustomerList").dataTable({
+                "iDisplayLength": 5,
+                "displayStart": start || 0,
+                "bFilter": true,
+                "bLengthChange": false,
+                "aaSorting": [sortBy],
+                "aoColumnDefs": [
+                    { 'bSortable': false, 'aTargets': [0] },
+                    {
+                        "targets": [0],
+                        "visible": false,
+                        "searchable": false
+                    }
+                ],
+                "columns": [
+                            { "data": "Id" },
+                            { "data": "Name" },
+                            { "data": "Number" },
+                            { "data": "Address" },
+                            { "data": "ZipCode" },
+                            { "data": "City" },
+                            {
+                                "orderable": false,
+                                "data": null,
+                                "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
+                                "class": "textAlignRight"
+                            }
+                ],
+                "processing": true,
+                "serverSide": true,
+                "ajax": {
+                    url: "/Customer/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: function (params) {
+                        params.PageNo = Math.ceil(params.start / params.length) + 1;
+                        if (params.PageNo === 0) {
+                            params.PageNo = 1;
+                        }
+                        params.PageSize = params.length;
+                        params.SortBy = params.order[0].column;
+                        if (params.SortBy === 0) {
+                            params.SortBy = 1;
+                        }
+                        params.IsAsc = params.order[0].dir === "asc";
+                        params.Param = $('#SearchCustomerString').val();
+                        //params.Name = $('#txtName').val();
+                        //params.PerformedDate = $('#txtDate').val();
+                    }
+                }
+
+            });
+            $(".dataTables_filter input").unbind()
+            .bind("input", function (e) {
+                // Bind our desired behavior
+                if (this.value.length >= 3 || e.keyCode == 13) {
+                    $("#SearchCustomerString").val(this.value);
+                    oTable.fnDraw();
+                }
+                if (this.value == "") {
+                    $("#SearchCustomerString").val(this.value);
+                    oTable.fnDraw();
+                }
+                return;
+            });
+            $('#CustomerList').on('click', '.edit', function (e) {
+                e.preventDefault();
+
+                
+                var nRow = $(this).parents('tr')[0];
+                var aData = oTable.fnGetData(nRow);
+                window.location.href = "/Customer/Edit/" + aData.Id;
+            });
         });
 </script>
 
