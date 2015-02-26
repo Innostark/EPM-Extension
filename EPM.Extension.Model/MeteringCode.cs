@@ -8,6 +8,7 @@ namespace EPM.Extension.Model
 {
     public class MeteringCode
     {
+        public int Id { get; set; }
         public string Zählpunktbezeichner { get; set; }
         public string Kurzbezeichnung { get; set; }
         public string Anlagentyp { get; set; }

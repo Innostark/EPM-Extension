@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using EPM.Extension.Interfaces;
 using EPM.Extension.Model;
+using EPM.Extension.Model.RequestModels;
+using EPM.Extension.Web.Models;
 
 namespace EPM.Extension.Web.Controllers
 {
@@ -19,10 +21,15 @@ namespace EPM.Extension.Web.Controllers
         }
 
         // GET: Customer
-        public ActionResult Index()
+        [HttpPost]
+        public ActionResult Index(MeteringCodeSearchRequest request)
         {
-            
-            return View(_customerService.GetAllCustomers());
+            var result = _meteringCodeService.GetMeteringCodesByCustomerId(request);
+            MeteringCodeViewModel viewModel = new MeteringCodeViewModel();
+            viewModel.data = result.MeteringCodes;
+            viewModel.recordsFiltered = result.TotalCount;
+            viewModel.recordsTotal = result.TotalCount;
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
     }
 }

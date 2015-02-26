@@ -22,14 +22,14 @@ namespace EPM.Extension.Web.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Customer {
+    public class MeteringCode {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Customer() {
+        internal MeteringCode() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace EPM.Extension.Web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EPM.Extension.Web.Resources.Customer", typeof(Customer).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("EPM.Extension.Web.Resources.MeteringCode", typeof(MeteringCode).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,101 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address.
+        ///   Looks up a localized string similar to Zählpunktbezeichner.
         /// </summary>
-        public static string Address {
+        public static string Col1 {
             get {
-                return ResourceManager.GetString("Address", resourceCulture);
+                return ResourceManager.GetString("Col1", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to City.
+        ///   Looks up a localized string similar to Entnahme.
         /// </summary>
-        public static string City {
+        public static string Col10 {
             get {
-                return ResourceManager.GetString("City", resourceCulture);
+                return ResourceManager.GetString("Col10", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Edit .
+        ///   Looks up a localized string similar to Kundenrückmeldung.
         /// </summary>
-        public static string EditTitle {
+        public static string Col11 {
             get {
-                return ResourceManager.GetString("EditTitle", resourceCulture);
+                return ResourceManager.GetString("Col11", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Name.
+        ///   Looks up a localized string similar to Kurzbezeichnung.
         /// </summary>
-        public static string Name {
+        public static string Col2 {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Col2", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number.
+        ///   Looks up a localized string similar to Anlagentyp.
         /// </summary>
-        public static string Number {
+        public static string Col3 {
             get {
-                return ResourceManager.GetString("Number", resourceCulture);
+                return ResourceManager.GetString("Col3", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Metering Codes.
+        ///   Looks up a localized string similar to Strasse.
         /// </summary>
-        public static string SubTitle {
+        public static string Col4 {
             get {
-                return ResourceManager.GetString("SubTitle", resourceCulture);
+                return ResourceManager.GetString("Col4", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Customer.
+        ///   Looks up a localized string similar to PLZ.
         /// </summary>
-        public static string Title {
+        public static string Col5 {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("Col5", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ZipCode.
+        ///   Looks up a localized string similar to Ort.
         /// </summary>
-        public static string ZipCode {
+        public static string Col6 {
             get {
-                return ResourceManager.GetString("ZipCode", resourceCulture);
+                return ResourceManager.GetString("Col6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datenversand.
+        /// </summary>
+        public static string Col7 {
+            get {
+                return ResourceManager.GetString("Col7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Zählverfahren.
+        /// </summary>
+        public static string Col8 {
+            get {
+                return ResourceManager.GetString("Col8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Messung.
+        /// </summary>
+        public static string Col9 {
+            get {
+                return ResourceManager.GetString("Col9", resourceCulture);
             }
         }
     }

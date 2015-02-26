@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EPM.Extension.Model.Common;
+using EPM.Extension.Model.RequestModels;
 
 namespace EPM.Extension.Interfaces
 {
@@ -10,6 +12,6 @@ namespace EPM.Extension.Interfaces
 
     public interface IMeteringCodeService
     {
-        IList<MeteringCode> GetMeteringCodesByCustomerId();
+        MeteringCodeResponse GetMeteringCodesByCustomerId(MeteringCodeSearchRequest request);
     }
 }

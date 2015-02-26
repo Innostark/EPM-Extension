@@ -5,13 +5,11 @@ using EPM.Extension.Model.RequestModels;
 
 namespace EPM.Extension.Web.Models
 {
-    public class CustomerViewModel
+    public class CustomerDetailViewModel
     {
-        public IEnumerable<Customer> data { get; set; }
-        public IEnumerable<MeteringCode> MeteringdCodes { get; set; }
-        public CustomerSearchRequest SearchRequest { get; set; }
-        public MeteringCodeSearchRequest MeteringCodeSearchRequest { get; set; }
-
+        public Customer Customer { get; set; }
+        public MeteringCodeSearchRequest SearchRequest { get; set; }
+        
         /// <summary>
         /// Total Records in DB
         /// </summary>

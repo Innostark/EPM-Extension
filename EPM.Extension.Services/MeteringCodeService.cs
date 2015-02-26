@@ -3,17 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EPM.Extension.Model.RequestModels;
 
 namespace EPM.Extension.Services
 {
+    using EPM.Extension.Model;
+    using EPM.Extension.Model.Common;
     using Interfaces;
 
     public class MeteringCodeService : IMeteringCodeService
     {
-
-        public IList<Model.MeteringCode> GetMeteringCodesByCustomerId()
+        private static List<MeteringCode> meteringCodes;
+        private readonly Dictionary<MeteringCodeColumnBy, Func<MeteringCode, object>> userActivityClause =
+                  new Dictionary<MeteringCodeColumnBy, Func<MeteringCode, object>>
+                    {
+                        {MeteringCodeColumnBy.Zählpunktbezeichner, c => c.Zählpunktbezeichner},
+                        {MeteringCodeColumnBy.Kurzbezeichnung, c => c.Kurzbezeichnung},
+                        {MeteringCodeColumnBy.Anlagentyp, c => c.Anlagentyp},
+                        {MeteringCodeColumnBy.Strasse, c => c.Strasse},
+                        {MeteringCodeColumnBy.PLZ, c => c.PLZ},
+                        {MeteringCodeColumnBy.Ort, c => c.Ort},
+                        {MeteringCodeColumnBy.Datenversand, c => c.Datenversand},
+                        {MeteringCodeColumnBy.Zählverfahren, c => c.Zählverfahren},
+                        {MeteringCodeColumnBy.Messung, c => c.Messung}
+                    };
+        static MeteringCodeService()
         {
-            throw new NotImplementedException();
+            meteringCodes = new List<MeteringCode>();
+            for (int i = 1; i <= 15; i++ )
+                meteringCodes.Add(new MeteringCode
+                {
+                    CustomerId = (i % 5) + 1,
+                    Anlagentyp = i + "Test Anlagentyp",
+                    Datenversand = i + " Test Datenversand",
+                    Entnahme = i + "Test Entnahme",
+                    Id = i,
+                    Kundenrückmeldung = i + "Test Kundenrückmeldung",
+                    Kurzbezeichnung = i + "Test Kurzbezeichnung",
+                    Messung = i + "Test Messung",
+                    Ort = i + "TEST ORT",
+                    PLZ = i + "TEST PLZ",
+                    Strasse = i + "TEST Strasse",
+                    Zählpunktbezeichner = i + "Test Zählpunktbezeichner",
+                    Zählverfahren = i + "Test Zählverfahren"
+                });
+        }
+
+        public MeteringCodeResponse GetMeteringCodesByCustomerId(MeteringCodeSearchRequest searchRequest)
+        {
+            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            int toRow = searchRequest.PageSize;
+
+            Func<MeteringCode, bool> expression =
+                s => (s.CustomerId == searchRequest.CustomerId && (string.IsNullOrEmpty(searchRequest.Param) || s.Anlagentyp.Contains(searchRequest.Param) || s.Kundenrückmeldung.Contains(searchRequest.Param) || s.Kurzbezeichnung.Contains(searchRequest.Param) || s.Messung.Contains(searchRequest.Param)));
+
+            IEnumerable<MeteringCode> oList =
+            searchRequest.IsAsc ?
+            meteringCodes.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            meteringCodes.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+            return new MeteringCodeResponse { MeteringCodes= oList, TotalCount = meteringCodes.Where(expression).ToList().Count };
+   
         }
     }
 }

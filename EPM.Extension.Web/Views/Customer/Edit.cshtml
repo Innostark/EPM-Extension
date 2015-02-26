@@ -1,4 +1,4 @@
-﻿@model EPM.Extension.Model.Customer
+﻿@model EPM.Extension.Web.Models.CustomerDetailViewModel
 
 @{
     ViewBag.Title = EPM.Extension.Web.Resources.Customer.EditTitle;
@@ -13,48 +13,72 @@
         <h4>@EPM.Extension.Web.Resources.Customer.EditTitle</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
-
+        @Html.HiddenFor(model => model.Customer.Id)
+        <input type="hidden" id="SearchMeteringCodeString" />
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Customer.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Customer.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Customer.Name, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Number, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Customer.Number, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Number, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Customer.Number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Customer.Number, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Customer.Address, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Customer.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Customer.Address, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Customer.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Customer.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Customer.ZipCode, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Customer.City, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Customer.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Customer.City, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div>
+            <h2>@EPM.Extension.Web.Resources.Customer.SubTitle</h2>
 
+            <table id="MeteringCodeList" class="table display table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col1</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col2</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col3</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col4</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col5</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col6</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col7</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col8</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col9</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col10</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCode.Col11</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -66,3 +90,89 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var startMeteringCode = ('@Model.SearchRequest.PageNo' - 1) * '@Model.SearchRequest.PageSize';
+        var isAscMeteringCode = '@Model.SearchRequest.IsAsc' == "True" || '@Model.SearchRequest.IsAsc' == "true";
+        var sortByMeteringCode = ['@Model.SearchRequest.SortBy', isAscMeteringCode ? 'asc' : 'desc'];
+
+        var mTable = $("#MeteringCodeList").dataTable({
+            "iDisplayLength": 5,
+            //"iDeferLoading": true,
+            "displayStart": startMeteringCode || 0,
+            "bFilter": true,
+            "bLengthChange": false,
+            "aaSorting": [sortByMeteringCode],
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [0] },
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            "columns": [
+                { "data": "Id" },
+                { "data": "Zählpunktbezeichner" },
+                { "data": "Kurzbezeichnung" },
+                { "data": "Anlagentyp" },
+                { "data": "Strasse" },
+                { "data": "PLZ" },
+                { "data": "Ort" },
+                { "data": "Datenversand" },
+                { "data": "Zählverfahren" },
+                { "data": "Messung" },
+                { "data": "Entnahme" },
+                { "data": "Kundenrückmeldung" },
+                {
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
+                    "class": "textAlignRight"
+                }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/MeteringCode/Index",
+                type: "POST",
+                dataType: "json",
+                data: function (params) {
+                    params.PageNo = Math.ceil(params.start / params.length) + 1;
+                    if (params.PageNo === 0) {
+                        params.PageNo = 1;
+                    }
+                    params.PageSize = params.length;
+                    params.SortBy = params.order[0].column;
+                    if (params.SortBy === 0) {
+                        params.SortBy = 1;
+                    }
+                    params.IsAsc = params.order[0].dir === "asc";
+                    params.CustomerId = $('#Customer_Id').val();
+                    params.Param = $('#SearchMeteringCodeString').val();
+                    //params.PerformedDate = $('#txtDate').val();
+                }
+            }
+
+
+        });
+        $("#MeteringCodeList_filter input").unbind()
+            .bind("input", function (e) {
+                // Bind our desired behavior
+                if (this.value.length >= 3 || e.keyCode == 13) {
+                    $("#SearchMeteringCodeString").val(this.value);
+                    mTable.fnDraw();
+                }
+                if (this.value == "") {
+                    $("#SearchMeteringCodeString").val(this.value);
+                    mTable.fnDraw();
+                }
+                return;
+            });
+    });
+   
+
+
+</script>

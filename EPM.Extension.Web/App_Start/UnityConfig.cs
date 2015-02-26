@@ -14,6 +14,7 @@ namespace EPM.Extension.Web
             // register all your components with the container here
             // it is NOT necessary to register your controllers
             container.RegisterType<ICustomerService, CustomerService>();
+            container.RegisterType<IMeteringCodeService, MeteringCodeService>();
             // e.g. container.RegisterType<ITestService, TestService>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
