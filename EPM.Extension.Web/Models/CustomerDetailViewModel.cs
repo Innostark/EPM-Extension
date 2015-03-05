@@ -7,7 +7,7 @@ namespace EPM.Extension.Web.Models
 {
     public class CustomerDetailViewModel
     {
-        public Customer Customer { get; set; }
+        public CrmAccount Customer { get; set; }
         public MeteringCodeSearchRequest SearchRequest { get; set; }
         
         /// <summary>

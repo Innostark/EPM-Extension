@@ -11,9 +11,9 @@ namespace EPM.Extension.Interfaces
 {
     public interface ICustomerService
     {
-        IEnumerable<Customer> GetAllCustomers();
+        IEnumerable<CrmAccount> GetAllCustomers();
         CustomerResponse FindCustomers(CustomerSearchRequest request);
-        Customer GetCustomerById(int id);
-        void UpdateCustomer(Customer customer);
+        CrmAccount GetCustomerById(Guid id);
+        void UpdateCustomer(CrmAccount customer);
     }
 }

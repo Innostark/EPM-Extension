@@ -13,14 +13,14 @@ namespace EPM.Extension.Model.Common
         /// </summary>
         public CustomerResponse()
         {
-            Customers = new List<Customer>();
+            Customers = new List<CrmAccount>();
             
         }
 
         /// <summary>
         /// Activities
         /// </summary>
-        public IEnumerable<Customer> Customers { get; set; }
+        public IEnumerable<CrmAccount> Customers { get; set; }
 
        
 

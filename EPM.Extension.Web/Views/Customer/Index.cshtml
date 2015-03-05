@@ -77,11 +77,11 @@
                 //},
                 "columns": [
                             { "data": "Id" },
-                            { "data": "Name" },
-                            { "data": "Number" },
-                            { "data": "Address" },
-                            { "data": "ZipCode" },
-                            { "data": "City" },
+                            { "data": "Kunde" },
+                            { "data": "Kundennummer" },
+                            { "data": "Strasse" },
+                            { "data": "Plz" },
+                            { "data": "Ort" },
                             {
                                 "orderable": false,
                                 "data": null,
@@ -141,6 +141,13 @@
                 var nRow = $(this).parents('tr')[0];
                 var aData = oTable.fnGetData(nRow);
                 window.location.href = "/Customer/Edit/" + aData.Id;
+            });
+
+            $('#MeteringCodeList').on('click', '.edit', function (e) {
+                e.preventDefault();
+                var nRow = $(this).parents('tr')[0];
+                var aData = mTable.fnGetData(nRow);
+                window.location.href = "/MeteringCode/Edit/" + aData.Id;
             });
 
 

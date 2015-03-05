@@ -37,9 +37,9 @@ namespace EPM.Extension.Web.Controllers
             viewModel.recordsFiltered = cList.TotalCount;
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            Customer customer = this.customerService.GetCustomerById(id);
+            CrmAccount customer = this.customerService.GetCustomerById(id);
             CustomerDetailViewModel model= new CustomerDetailViewModel
             {
                 Customer = customer,
@@ -49,7 +49,7 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Customer  customer)
+        public ActionResult Edit(CrmAccount  customer)
         {
             if (ModelState.IsValid)
             {

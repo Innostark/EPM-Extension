@@ -13,5 +13,6 @@ namespace EPM.Extension.Interfaces
     public interface IMeteringCodeService
     {
         MeteringCodeResponse GetMeteringCodesByCustomerId(MeteringCodeSearchRequest request);
+        MeteringCode GetMeteringCodeById(Guid id);
     }
 }

@@ -33,11 +33,11 @@ namespace EPM.Extension.Services
             for (int i = 1; i <= 15; i++ )
                 meteringCodes.Add(new MeteringCode
                 {
-                    CustomerId = (i % 5) + 1,
+                    CustomerId = CustomerService.customers[(i % 5) + 1].Id,
                     Anlagentyp = i + "Test Anlagentyp",
                     Datenversand = i + " Test Datenversand",
                     Entnahme = i + "Test Entnahme",
-                    Id = i,
+                    Id = Guid.NewGuid(),
                     Kundenrückmeldung = i + "Test Kundenrückmeldung",
                     Kurzbezeichnung = i + "Test Kurzbezeichnung",
                     Messung = i + "Test Messung",
@@ -45,7 +45,30 @@ namespace EPM.Extension.Services
                     PLZ = i + "TEST PLZ",
                     Strasse = i + "TEST Strasse",
                     Zählpunktbezeichner = i + "Test Zählpunktbezeichner",
-                    Zählverfahren = i + "Test Zählverfahren"
+                    Zählverfahren = i + "Test Zählverfahren",
+                    MeteringCodeThresholds = new List<MeteringCodeThreshold> { new MeteringCodeThreshold
+                    {
+                        GrenzwertBezeichner = "Test",
+                        GultingAb = DateTime.Now,
+                        Id = Guid.NewGuid(),
+                        MaximaGlobal = "0",
+                        MinimaGlobal = "0",
+                        MaximaSommer = "0",
+                        MinimaSommer = "0",
+                        MaximaWinter = "0",
+                        MinimaWinter = "0"
+                    }, new MeteringCodeThreshold
+                    {
+                        GrenzwertBezeichner = "Test",
+                        GultingAb = DateTime.Now,
+                        Id= Guid.NewGuid(),
+                        MaximaGlobal = "0",
+                        MinimaGlobal = "0",
+                        MaximaSommer = "0",
+                        MinimaSommer = "0",
+                        MaximaWinter = "0",
+                        MinimaWinter = "0"
+                    }}
                 });
         }
 
@@ -63,6 +86,11 @@ namespace EPM.Extension.Services
             meteringCodes.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
             return new MeteringCodeResponse { MeteringCodes= oList, TotalCount = meteringCodes.Where(expression).ToList().Count };
    
+        }
+
+        public MeteringCode GetMeteringCodeById(Guid id)
+        {
+            return meteringCodes.Find(x => x.Id == id);
         }
     }
 }

@@ -7,7 +7,7 @@ namespace EPM.Extension.Web.Models
 {
     public class CustomerViewModel
     {
-        public IEnumerable<Customer> data { get; set; }
+        public IEnumerable<CrmAccount> data { get; set; }
         public IEnumerable<MeteringCode> MeteringdCodes { get; set; }
         public CustomerSearchRequest SearchRequest { get; set; }
         public MeteringCodeSearchRequest MeteringCodeSearchRequest { get; set; }

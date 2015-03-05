@@ -31,5 +31,12 @@ namespace EPM.Extension.Web.Controllers
             viewModel.recordsTotal = result.TotalCount;
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult Edit(Guid id)
+        {
+            MeteringCode meteringCode = this._meteringCodeService.GetMeteringCodeById(id);
+            return View(meteringCode);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace EPM.Extension.Model.RequestModels
     public class MeteringCodeSearchRequest : GetPagedListRequest
     {
         public string Param { get; set; }
-        public int CustomerId { get; set; }
+        public Guid CustomerId { get; set; }
         /// <summary>
         /// Product Order By
         /// </summary>

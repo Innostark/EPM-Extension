@@ -1,0 +1,153 @@
+﻿@model EPM.Extension.Model.MeteringCode
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div>
+    <h4>MeteringCode</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Zählpunktbezeichner)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zählpunktbezeichner)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kurzbezeichnung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kurzbezeichnung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anlagentyp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anlagentyp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Strasse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Strasse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PLZ)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PLZ)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Datenversand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Datenversand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Zählverfahren)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Zählverfahren)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Messung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Messung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Entnahme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Entnahme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kundenrückmeldung)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kundenrückmeldung)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerId)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="row-fluid">
+<div class="span12">
+    <table id="CustomerList" class="table table-responsive">
+        <thead>
+            <tr>
+                <th></th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col1</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MeteringCodeThresholds.ToList())
+            {
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>@item.GrenzwertBezeichner</td>
+                    <td>@item.GultingAb </td>
+                    <td>@item.SaisonalitatAnwenden</td>
+                    <td>@item.MinimaGlobal</td>
+                    <td>@item.MaximaGlobal</td>
+                    <td>@item.MinimaSommer</td>
+                    <td>@item.MinimaSommer</td>
+                    <td>@item.MinimaWinter</td>
+                    <td>@item.MaximaWinter</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+    </div>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
