@@ -181,7 +181,7 @@
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Models\CustomerDetailViewModel.cs" />
-    <Compile Include="Models\MeteringCodeViewModel.cs" />
+    <Compile Include="Models\MeteringPointViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />

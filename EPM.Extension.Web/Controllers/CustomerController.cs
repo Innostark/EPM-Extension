@@ -23,7 +23,7 @@ namespace EPM.Extension.Web.Controllers
         {
             CustomerViewModel viewModel = new CustomerViewModel();
             viewModel.SearchRequest=new CustomerSearchRequest();
-            viewModel.MeteringCodeSearchRequest=new MeteringCodeSearchRequest();
+            viewModel.MeteringCodeSearchRequest=new MeteringPointSearchRequest();
             return View(viewModel);
         }
         [HttpPost]
@@ -43,7 +43,7 @@ namespace EPM.Extension.Web.Controllers
             CustomerDetailViewModel model= new CustomerDetailViewModel
             {
                 Customer = customer,
-                SearchRequest = new MeteringCodeSearchRequest()
+                SearchRequest = new MeteringPointSearchRequest()
             };
             return View(model);
         }

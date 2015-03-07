@@ -57,8 +57,10 @@
     <Compile Include="DynamicsCRM\DynamicsCrmService.cs" />
     <Compile Include="DynamicsCRM\EntityNames.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataAccount.cs" />
-    <Compile Include="DynamicsCRM\Metadata\MetadataKunderNumber.cs" />
-    <Compile Include="MeteringCodeService.cs" />
+    <Compile Include="DynamicsCRM\Metadata\MetadataDZählpunkt.cs" />
+    <Compile Include="DynamicsCRM\Metadata\MetadataOpSetSpannungsebene.cs" />
+    <Compile Include="DynamicsCRM\Metadata\MetadataGrenzwert.cs" />
+    <Compile Include="MeteringPointService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypeRegistrations.cs" />

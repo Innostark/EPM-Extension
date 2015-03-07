@@ -2,7 +2,8 @@
 {
     public class EntityNames
     {
-        public const string ACCOUNT = "account";
-        public const string ZAHLPUNKT = "new_zhlpunkt";
+        public const string Account = "account";
+        public const string D_Zählpunkt = "new_dzhlpunkt";
+        public const string Grenzwert = "new_grenzwerte";
     }
 }

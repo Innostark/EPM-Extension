@@ -25,7 +25,10 @@ namespace EPM.Extension.Services
                     };
          static CustomerService()
         {
-            customers = new List<CrmAccount>();
+            DynamicsCrmService crmService = new DynamicsCrmService();
+            customers = crmService.GetAccounts();
+            
+             //customers = new List<CrmAccount>();
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Lahore", Kunde = "Test 1", Strasse = "Johar Town", Kundennummer = "123", Plz = "54000" });
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Islamabad", Kunde = "Test 2", Strasse = "Johar Town", Kundennummer = "456", Plz = "64000" });
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Karachi", Kunde = "Test 3", Strasse = "Johar Town", Kundennummer = "123", Plz = "54000" });
@@ -38,10 +41,6 @@ namespace EPM.Extension.Services
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Faisalabad", Kunde = "Test 10", Strasse = "Johar Town", Kundennummer = "567", Plz = "44000" });
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Peshawar", Kunde = "Test 11", Strasse = "Johar Town", Kundennummer = "678", Plz = "64000" });
             //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Quetta", Kunde = "Test 12", Strasse = "Johar Town", Kundennummer = "789", Plz = "54000" });
-
-            DynamicsCrmService crmService = new DynamicsCrmService();
-            customers = crmService.GetAccounts();
-
         }
         public IEnumerable<CrmAccount> GetAllCustomers()
         {
