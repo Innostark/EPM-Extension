@@ -1,5 +1,4 @@
-﻿@model EPM.Extension.Web.Models.MeteringCodeViewModel
-
+﻿@model EPM.Extension.Web.Models.MeteringPointViewModel
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,7 +6,7 @@
 <h2>Edit</h2>
 
 <div>
-    <h4>MeteringCode</h4>
+    <h4>Metering Point</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -15,7 +14,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Zählpunktbezeichner)
+            @Html.DisplayFor(model => model.M.Zählpunktbezeichner)
         </dd>
 
         <dt>

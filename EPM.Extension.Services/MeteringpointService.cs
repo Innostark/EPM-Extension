@@ -79,10 +79,11 @@ namespace EPM.Extension.Services
         public MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest searchRequest)
         {
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
             int toRow = searchRequest.PageSize;
 
             Func<MeteringPoint, bool> expression =
-                s => (s.CrmAccountId == searchRequest.CustomerId && (string.IsNullOrEmpty(searchRequest.Param) || s.Anlagentyp.Contains(searchRequest.Param) || s.Kundenrückmeldung.Contains(searchRequest.Param) || s.Kurzbezeichnung.Contains(searchRequest.Param) || s.UMessungValue.Contains(searchRequest.Param)));
+                s => (!searchSpecified && s.CrmAccountId == searchRequest.CustomerId || (s.CrmAccountId == searchRequest.CustomerId && s.Kurzbezeichnung.IndexOf(searchRequest.Param,StringComparison.OrdinalIgnoreCase ) >=0 ));
 
             IEnumerable<MeteringPoint> oList =
             searchRequest.IsAsc ?

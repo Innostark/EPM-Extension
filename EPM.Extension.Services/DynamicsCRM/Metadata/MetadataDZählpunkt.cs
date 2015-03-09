@@ -24,6 +24,7 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string KUNDENRUCKMELDUNG  = "new_rckmeldungpe";
         public const string VNB = "new_vnb";
         public const string CODE = "new_anlagentyp";
+        public const string METERING_POINT_ID = "new_dzhlpunktid";
 
         public enum OpSetZählverfahren
         {

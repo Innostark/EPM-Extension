@@ -27,6 +27,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                         {
                             crmAccount.Kunde = account.GetAttributeValue<string>(MetadataAccount.NAME);
                         }
+                        if (account.Contains(MetadataAccount.CRM_ACCOUNT_ID))
+                        {
+                            crmAccount.Id = account.GetAttributeValue<Guid>(MetadataAccount.CRM_ACCOUNT_ID);
+                        }
                         if (account.Contains(MetadataAccount.KUNDENNUMMER))
                         {
                             crmAccount.Kundennummer = account.GetAttributeValue<string>(MetadataAccount.KUNDENNUMMER);
@@ -103,6 +107,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                     {
                         MeteringPoint meteringPoint = new MeteringPoint();
 
+                        if (zahplunkt.Contains(MetadataDZählpunkt.METERING_POINT_ID))
+                        {
+                            meteringPoint.Id = zahplunkt.GetAttributeValue<Guid>(MetadataDZählpunkt.METERING_POINT_ID);
+                        }
                         if (zahplunkt.Contains(MetadataDZählpunkt.NAME))
                         {
                             meteringPoint.Name = zahplunkt.GetAttributeValue<string>(MetadataDZählpunkt.NAME);

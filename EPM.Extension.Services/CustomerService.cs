@@ -66,9 +66,12 @@ namespace EPM.Extension.Services
         {
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
             int toRow = searchRequest.PageSize;
-
-            Func<CrmAccount, bool> expression =
-                s => (string.IsNullOrEmpty(searchRequest.Param) || s.Kunde.ToLower().Contains(searchRequest.Param.ToLower()) || s.Kundennummer.ToLower().Contains(searchRequest.Param.ToLower()) || s.Strasse.ToLower().Contains(searchRequest.Param.ToLower()) || s.Ort.ToLower().Contains(searchRequest.Param.ToLower()));
+            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+            Func<CrmAccount, bool>  expression =
+                s => (
+                    searchSpecified &&
+                    (!string.IsNullOrEmpty(s.Kunde) && s.Kunde.ToLower().Contains(searchRequest.Param.ToLower())) 
+                    || !searchSpecified);
             
                 IEnumerable<CrmAccount> oList =
                 searchRequest.IsAsc ?
