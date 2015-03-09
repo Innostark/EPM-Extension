@@ -1,6 +1,8 @@
-﻿@model EPM.Extension.Web.Models.MeteringPointViewModel
+﻿@model EPM.Extension.Model.MeteringPoint
 @{
     ViewBag.Title = "Edit";
+    string tag = "";
+    
 }
 
 <h2>Edit</h2>
@@ -8,111 +10,189 @@
 <div>
     <h4>Metering Point</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.M.Zählpunktbezeichner)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Kurzbezeichnung)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Zählpunktbezeichner, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Zählpunktbezeichner, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Zählpunktbezeichner, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Kurzbezeichnung)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kurzbezeichnung, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Kurzbezeichnung, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Kurzbezeichnung, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Anlagentyp)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anlagentyp, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Anlagentyp, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Anlagentyp, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Anlagentyp)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Strasse, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Strasse, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Strasse, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Strasse)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PLZ, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PLZ, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PLZ, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Strasse)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ort, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Ort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Ort, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PLZ)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.DatenversandAktiv, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DatenversandAktiv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DatenversandAktiv, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PLZ)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Kundenrückmeldung, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Ort)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ort)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CrmAccountId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CrmAccountId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CrmAccountId, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Datenversand)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CrmAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CrmAccountName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CrmAccountName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Datenversand)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BetreiberId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BetreiberId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BetreiberId, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Zählverfahren)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.BetreiberName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.BetreiberName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.BetreiberName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Zählverfahren)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.VNBId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VNBId, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VNBId, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Messung)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.VNBName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VNBName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.VNBName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Messung)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ZählverfahrenValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ZählverfahrenValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ZählverfahrenValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Entnahme)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ZählverfahrenCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ZählverfahrenCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ZählverfahrenCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Entnahme)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UMessungValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UMessungValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UMessungValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Kundenrückmeldung)
-        </dt>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UMessungCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UMessungCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UMessungCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Kundenrückmeldung)
-        </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UEntnahmeValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UEntnahmeValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UEntnahmeValue, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CustomerId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CustomerId)
-        </dd>
-
-    </dl>
+    <div class="form-group">
+        @Html.LabelFor(model => model.UEntnahmeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UEntnahmeCode, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UEntnahmeCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
 </div>
 
 
 <!-- Button trigger modal -->
-<button type="button" id="addMeteringCodeThreshold" class="btn btn-primary btn-sm" style="float: right;" data-toggle="modal" data-target="#myModal">
+@*<button type="button" id="addMeteringCodeThreshold" class="btn btn-primary btn-sm" style="float: right;" data-toggle="modal" data-target="#myModal">
     Add
-</button>
+</button>*@
 
 <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="edit-threshold-container" class="modal-dialog">
@@ -137,10 +217,11 @@
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.MeteringCodeThresholds.ToList())
+            @foreach (var item  in Model.MeteringCodeThresholds)
             {
                 <tr>
                     <td>&nbsp;</td>
@@ -153,12 +234,21 @@
                     <td>@item.MinimaSommer</td>
                     <td>@item.MinimaWinter</td>
                     <td>@item.MaximaWinter</td>
+                    <td>
+                        @{
+                        if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                        {
+                            tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                        }
+                        }
+                        @Html.Raw(tag)
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
     
-    <div role="tabpanel">
+    @*<div role="tabpanel">
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
@@ -184,13 +274,12 @@
             </div>
         </div>
 
-    </div>
+    </div>*@
 </div>
     </div>
 
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", "Customer")
     </p>
 @section scripts
 {
@@ -237,7 +326,7 @@
                 ]
             });
             $('#addMeteringCodeThreshold').click(function() {
-                var url = "/MeteringCodeThreshold/Create"; // the url to the controller
+                var url = "/MeteringCodeThreshold/Edit"; // the url to the controller
                 $.get(url, function(data) {
                     $('#form-content').html(data);
                     $('#edit-threshold').modal('show');

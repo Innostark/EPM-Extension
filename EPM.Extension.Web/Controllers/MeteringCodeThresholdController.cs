@@ -34,7 +34,7 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Edit(Guid? id)
         {
             MeteringPointThreshold model = new MeteringPointThreshold();
             return PartialView("_Create",model);

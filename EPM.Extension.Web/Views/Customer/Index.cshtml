@@ -58,7 +58,7 @@
         var sortBy = ['@Model.SearchRequest.SortBy', isAsc ? 'asc' : 'desc'];
 
             var oTable = $("#CustomerList").dataTable({
-                "iDisplayLength": 5,
+                "iDisplayLength": 10,
                 "displayStart": start || 0,
                 "bFilter": true,
                 "bLengthChange": false,
@@ -175,7 +175,7 @@
             var sortByMeteringCode = ['@Model.MeteringCodeSearchRequest.SortBy', isAscMeteringCode ? 'asc' : 'desc'];
 
             var mTable = $("#MeteringCodeList").dataTable({
-                "iDisplayLength": 5,
+                "iDisplayLength": 10,
                 "iDeferLoading": true,
                 "displayStart": startMeteringCode || 0,
                 "bFilter": true,

@@ -20,7 +20,7 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string DATENVERSANDAKTIV = "new_datenversandaktiv";
         public const string ZAHLVERFAHREN = "new_zhlverfahren";
         public const string UMESSUNG = "new_spannungsebenemess";
-        public const string UENTNAHME  = "new_spannungsebeneent";
+        public const string UENTNAHME = "new_spannungsebeneentn";
         public const string KUNDENRUCKMELDUNG  = "new_rckmeldungpe";
         public const string VNB = "new_vnb";
         public const string CODE = "new_anlagentyp";

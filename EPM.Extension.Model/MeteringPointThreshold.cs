@@ -18,6 +18,13 @@ namespace EPM.Extension.Model
         public string MaximaSommer { get; set; }
         public string MinimaWinter { get; set; }
         public string MaximaWinter { get; set; }
+        public MeteringPointThresholdType Type { get; set; }
 
+    }
+
+    public enum MeteringPointThresholdType
+    {
+        System =1,
+        User = 2
     }
 }
