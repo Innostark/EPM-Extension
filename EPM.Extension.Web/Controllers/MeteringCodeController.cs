@@ -13,8 +13,8 @@ namespace EPM.Extension.Web.Controllers
     public class MeteringCodeController : BaseController
     {
         private readonly ICustomerService _customerService;
-        private readonly IMeteringCodeService _meteringCodeService;
-        public MeteringCodeController(IMeteringCodeService service, ICustomerService customerService, IMeteringCodeService meteringCodeService)
+        private readonly IMeteringPointService _meteringCodeService;
+        public MeteringCodeController(IMeteringPointService service, ICustomerService customerService, IMeteringPointService meteringCodeService)
         {
             this._customerService = customerService;
             this._meteringCodeService = meteringCodeService;
@@ -22,11 +22,11 @@ namespace EPM.Extension.Web.Controllers
 
         // GET: Customer
         [HttpPost]
-        public ActionResult Index(MeteringCodeSearchRequest request)
+        public ActionResult Index(MeteringPointSearchRequest request)
         {
-            var result = _meteringCodeService.GetMeteringCodesByCustomerId(request);
-            MeteringCodeViewModel viewModel = new MeteringCodeViewModel();
-            viewModel.data = result.MeteringCodes;
+            var result = _meteringCodeService.GetMeteringPointsByCustomerId(request);
+            MeteringPointViewModel viewModel = new MeteringPointViewModel();
+            viewModel.data = result.MeteringPoints;
             viewModel.recordsFiltered = result.TotalCount;
             viewModel.recordsTotal = result.TotalCount;
             return Json(viewModel, JsonRequestBehavior.AllowGet);
@@ -35,7 +35,7 @@ namespace EPM.Extension.Web.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            MeteringCode meteringCode = this._meteringCodeService.GetMeteringCodeById(id);
+            MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
             return View(meteringCode);
         }
     }

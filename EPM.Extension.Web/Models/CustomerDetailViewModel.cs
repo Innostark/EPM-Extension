@@ -8,7 +8,7 @@ namespace EPM.Extension.Web.Models
     public class CustomerDetailViewModel
     {
         public CrmAccount Customer { get; set; }
-        public MeteringCodeSearchRequest SearchRequest { get; set; }
+        public MeteringPointSearchRequest SearchRequest { get; set; }
         
         /// <summary>
         /// Total Records in DB
