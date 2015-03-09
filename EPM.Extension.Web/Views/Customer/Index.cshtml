@@ -96,6 +96,7 @@
                     type: "POST",
                     dataType: "json",
                     data: function (params) {
+                        $("#CustomerList_filter input").val($('#SearchCustomerString').val());
                         params.PageNo = Math.ceil(params.start / params.length) + 1;
                         if (params.PageNo === 0) {
                             params.PageNo = 1;
@@ -114,7 +115,15 @@
                 }
 
             });
+            
+        $('#CustomerList_filter input').after($('<button id="searchCrmAccount" class="btn btn-primary btn-sm">Search</button>'));
+        $('#searchCrmAccount').click(function() {
+            oTable.fnDraw();
+        });
             function fnActivityComplete(data, e) {
+                $("#MeteringCodeList_filter input").val('');
+                $("#SearchMeteringCodeString").val('');
+
                 if (oTable.fnSettings().fnRecordsDisplay() > 0) {
                     //select first row
                     var nTop = $('#CustomerList tbody tr')[0];
@@ -122,18 +131,14 @@
                     mTable.fnDraw();
                 }
             }
-            
+
         $("#CustomerList_filter input").unbind()
             .bind("input", function (e) {
                 // Bind our desired behavior
-                if (this.value.length >= 3 || e.keyCode == 13) {
-                    $("#SearchCustomerString").val(this.value);
+                $("#SearchCustomerString").val(this.value);
+                if (e.keyCode == 13 || this.value == "") { 
                     oTable.fnDraw();
-                }
-                if (this.value == "") {
-                    $("#SearchCustomerString").val(this.value);
-                    oTable.fnDraw();
-                }
+                } 
                 return;
             });
             $('#CustomerList').on('click', '.edit', function (e) {
@@ -142,6 +147,7 @@
                 var aData = oTable.fnGetData(nRow);
                 window.location.href = "/Customer/Edit/" + aData.Id;
             });
+
 
             $('#MeteringCodeList').on('click', '.edit', function (e) {
                 e.preventDefault();
@@ -221,22 +227,26 @@
                         }
                         params.IsAsc = params.order[0].dir === "asc";
                         params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
+                        $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
+
                         params.Param = $('#SearchMeteringCodeString').val();
                         //params.PerformedDate = $('#txtDate').val();
                     }
                 }
 
             });
+            $('#MeteringCodeList_filter input').after($('<button id="searchMeteringCode" class="btn btn-primary btn-sm">Search</button>'));
+            $('#searchMeteringCode').click(function () {
+                //$("#SearchCustomerString").val(this.value);
+                mTable.fnDraw();
+            });
+
         $("#MeteringCodeList_filter input").unbind()
                 .bind("input", function (e) {
+                    $("#SearchMeteringCodeString").val(this.value);
                     // Bind our desired behavior
-                    if (this.value.length >= 3 || e.keyCode == 13) {
-                        $("#SearchMeteringCodeString").val(this.value);
-                        oTable.fnDraw();
-                    }
-                    if (this.value == "") {
-                        $("#SearchMeteringCodeString").val(this.value);
-                        oTable.fnDraw();
+                    if (this.value == "" || e.keyCode == 13) {
+                        mTable.fnDraw();
                     }
                     return;
                 });

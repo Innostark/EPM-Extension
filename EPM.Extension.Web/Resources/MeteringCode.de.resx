@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Analog" xml:space="preserve">
+    <value>Anlogen</value>
+  </data>
   <data name="Col1" xml:space="preserve">
     <value>Zählpunktbezeichner</value>
   </data>
@@ -149,5 +152,26 @@
   </data>
   <data name="Col9" xml:space="preserve">
     <value>Messung</value>
+  </data>
+  <data name="CoolingActive" xml:space="preserve">
+    <value>Klimatisierung aktiv</value>
+  </data>
+  <data name="Flat" xml:space="preserve">
+    <value>Flachen</value>
+  </data>
+  <data name="General" xml:space="preserve">
+    <value>Allgemeines</value>
+  </data>
+  <data name="OpeningHours" xml:space="preserve">
+    <value>Offnungszeiten</value>
+  </data>
+  <data name="Tab2CheckBoxLabel" xml:space="preserve">
+    <value>Allgemeines</value>
+  </data>
+  <data name="Tab3CheckBoxLabel" xml:space="preserve">
+    <value>Allgemeines</value>
+  </data>
+  <data name="Tab4CheckBoxLabel" xml:space="preserve">
+    <value>Allgemeines</value>
   </data>
 </root>

@@ -4,10 +4,6 @@
     ViewBag.Title = EPM.Extension.Web.Resources.Customer.EditTitle;
 }
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
     <div class="form-horizontal">
         <br />
         <h4>@EPM.Extension.Web.Resources.Customer.EditTitle</h4>
@@ -85,11 +81,11 @@
             </div>
         </div>
     </div>
-}
 
-<div>
+
+@*<div>
     @Html.ActionLink("Back to List", "Index")
-</div>
+</div>*@
 
 
 <script language="javascript" type="text/javascript">
@@ -151,22 +147,29 @@
                     }
                     params.IsAsc = params.order[0].dir === "asc";
                     params.CustomerId = $('#Customer_Id').val();
+                    $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
+
                     params.Param = $('#SearchMeteringCodeString').val();
                     //params.PerformedDate = $('#txtDate').val();
-                }
+                },
+                complete: fnActivityComplete
             }
 
 
         });
+
+        function fnActivityComplete() {
+            return false;
+        }
+        $('#MeteringCodeList_filter input').after($('<button id="searchMeteringCode" class="btn btn-primary btn-sm">Search</button>'));
+        $('#searchMeteringCode').click(function () {
+            //$("#SearchCustomerString").val(this.value);
+            mTable.fnDraw();
+        });
         $("#MeteringCodeList_filter input").unbind()
             .bind("input", function (e) {
-                // Bind our desired behavior
-                if (this.value.length >= 3 || e.keyCode == 13) {
-                    $("#SearchMeteringCodeString").val(this.value);
-                    mTable.fnDraw();
-                }
-                if (this.value == "") {
-                    $("#SearchMeteringCodeString").val(this.value);
+                $("#SearchMeteringCodeString").val(this.value);
+                if (this.value == "" || e.keyCode == 13) {
                     mTable.fnDraw();
                 }
                 return;

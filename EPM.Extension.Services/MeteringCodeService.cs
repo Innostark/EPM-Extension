@@ -78,7 +78,7 @@ namespace EPM.Extension.Services
             int toRow = searchRequest.PageSize;
 
             Func<MeteringCode, bool> expression =
-                s => (s.CustomerId == searchRequest.CustomerId && (string.IsNullOrEmpty(searchRequest.Param) || s.Anlagentyp.Contains(searchRequest.Param) || s.Kundenrückmeldung.Contains(searchRequest.Param) || s.Kurzbezeichnung.Contains(searchRequest.Param) || s.Messung.Contains(searchRequest.Param)));
+                s => (s.CustomerId == searchRequest.CustomerId && (string.IsNullOrEmpty(searchRequest.Param) || s.Anlagentyp.ToLower().Contains(searchRequest.Param.ToLower()) || s.Kundenrückmeldung.ToLower().Contains(searchRequest.Param.ToLower()) || s.Kurzbezeichnung.ToLower().Contains(searchRequest.Param.ToLower()) || s.Messung.ToLower().Contains(searchRequest.Param.ToLower())));
 
             IEnumerable<MeteringCode> oList =
             searchRequest.IsAsc ?

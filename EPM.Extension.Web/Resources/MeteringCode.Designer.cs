@@ -61,6 +61,15 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Analog.
+        /// </summary>
+        public static string Analog {
+            get {
+                return ResourceManager.GetString("Analog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Zählpunktbezeichner.
         /// </summary>
         public static string Col1 {
@@ -156,6 +165,69 @@ namespace EPM.Extension.Web.Resources {
         public static string Col9 {
             get {
                 return ResourceManager.GetString("Col9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Klimatisierung aktiv.
+        /// </summary>
+        public static string CoolingActive {
+            get {
+                return ResourceManager.GetString("CoolingActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flat.
+        /// </summary>
+        public static string Flat {
+            get {
+                return ResourceManager.GetString("Flat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string General {
+            get {
+                return ResourceManager.GetString("General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Opening Hours.
+        /// </summary>
+        public static string OpeningHours {
+            get {
+                return ResourceManager.GetString("OpeningHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Tab2CheckBoxLabel {
+            get {
+                return ResourceManager.GetString("Tab2CheckBoxLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Tab3CheckBoxLabel {
+            get {
+                return ResourceManager.GetString("Tab3CheckBoxLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General.
+        /// </summary>
+        public static string Tab4CheckBoxLabel {
+            get {
+                return ResourceManager.GetString("Tab4CheckBoxLabel", resourceCulture);
             }
         }
     }
