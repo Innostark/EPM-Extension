@@ -153,6 +153,7 @@
 </div>
 
 <div class="row-fluid">
+    <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
 <div class="span12">
     <table id="ThresholdTable" class="table display table-responsive">
         <thead>
@@ -227,7 +228,7 @@
     </div>
 
     <p>
-        @Html.ActionLink("Back to List", "Index", "Customer")
+        <a href="@Request.UrlReferrer">Back</a>
     </p>
 @section scripts
 {
