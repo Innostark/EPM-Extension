@@ -11,6 +11,7 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string GrenzwerteZPID = "new_grenzwertezpidid";
         public const string Grenze = "new_grenze";
         public const string GültigAb = "new_gltigab";
+        public const string GrenzwerteId = "new_grenzwerteid";
 
        #region System
 		public const string GrenzwertMaxSystem = "new_grenzwertmaxsystem";

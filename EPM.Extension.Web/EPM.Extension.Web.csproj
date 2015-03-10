@@ -223,6 +223,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\sort_asc.png" />
     <Content Include="Content\Images\sort_asc_disabled.png" />
     <Content Include="Content\Images\sort_both.png" />
@@ -328,6 +329,7 @@
     <Content Include="Views\MeteringCode\Edit.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\_Edit.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\_Create.cshtml" />
+    <Content Include="Views\MeteringCodeThreshold\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

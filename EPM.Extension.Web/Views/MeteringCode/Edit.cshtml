@@ -1,6 +1,6 @@
 ﻿@model EPM.Extension.Model.MeteringPoint
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Detail";
     string tag = "";
     
 }
@@ -12,10 +12,10 @@
     <hr />
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -35,13 +35,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Anlagentyp, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Anlagentyp, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Anlagentyp, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    
 
     <div class="form-group">
         @Html.LabelFor(model => model.Strasse, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,30 +69,10 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Kundenrückmeldung, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    
+    
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CrmAccountId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CrmAccountId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CrmAccountId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
+   
     <div class="form-group">
         @Html.LabelFor(model => model.CrmAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -107,14 +81,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.BetreiberId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BetreiberId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BetreiberId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
+    
     <div class="form-group">
         @Html.LabelFor(model => model.BetreiberName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -123,13 +90,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.VNBId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.VNBId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.VNBId, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    
 
     <div class="form-group">
         @Html.LabelFor(model => model.VNBName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -147,13 +108,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.ZählverfahrenCode, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ZählverfahrenCode, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ZählverfahrenCode, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    
 
     <div class="form-group">
         @Html.LabelFor(model => model.UMessungValue, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -163,13 +118,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.UMessungCode, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UMessungCode, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UMessungCode, "", new { @class = "text-danger" })
-        </div>
-    </div>
+   
 
     <div class="form-group">
         @Html.LabelFor(model => model.UEntnahmeValue, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -180,12 +129,13 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.UEntnahmeCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UEntnahmeCode, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UEntnahmeCode, "", new { @class = "text-danger" })
+            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @class = "form-control", @cols = 40, @rows = 3 })
+            @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
         </div>
     </div>
+
 </div>
 
 
@@ -208,7 +158,6 @@
         <thead>
             <tr>
                 <th></th>
-                <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col1</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
@@ -224,8 +173,7 @@
             @foreach (var item  in Model.MeteringCodeThresholds)
             {
                 <tr>
-                    <td>&nbsp;</td>
-                    <td>@item.GrenzwertBezeichner</td>
+                    <td>@item.Id</td>
                     <td>@item.GultingAb </td>
                     <td>@item.SaisonalitatAnwenden</td>
                     <td>@item.MinimaGlobal</td>
@@ -286,20 +234,35 @@
     <script type="text/javascript">
         function saveClicked() {
             var newModel = getFormValues();
-            alert(newModel);
-            var t = $('#ThresholdTable').DataTable();
-            var array = [
-                newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
-                newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
-            ];
-            t.rows.add([array]
-            ).draw();
-            $('#edit-threshold').modal('hide');
-        }
+           
+            var postUrl = "http://localhost:10294/MeteringCodeThreshold/Edit";
+            $.ajax({
+                type: "POST",
+                datatype: "json",
+                url: postUrl,
+                data: newModel,
+                success: function (data) {
+                    // Set values
+                    //alert('saved');
+                    var t = $('#ThresholdTable').DataTable();
+                    var array = [
+                        newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
+                        newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
+                    ];
 
+                    $('#edit-threshold').modal('hide');
+                },
+                error: callError
+            });
+           
+           
+        }
+        function callError() {
+            alert("Problem in Saving Changes.");
+        }
         function getFormValues() {
             return {
-                Id: null, //$('.edit-threshold #Id').val(),
+                Id: $('#edit-threshold #Id').val(),
                 GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
                 GultingAb: $('#edit-threshold #GultingAb').val(),
                 SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
@@ -325,8 +288,9 @@
                     }
                 ]
             });
-            $('#addMeteringCodeThreshold').click(function() {
-                var url = "/MeteringCodeThreshold/Edit"; // the url to the controller
+            $('#addMeteringCodeThreshold').click(function (e) {
+                var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
+                var url = "/MeteringCodeThreshold/Edit/"+data; // the url to the controller
                 $.get(url, function(data) {
                     $('#form-content').html(data);
                     $('#edit-threshold').modal('show');

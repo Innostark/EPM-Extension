@@ -13,31 +13,29 @@ namespace EPM.Extension.Web.Controllers
 {
     public class MeteringCodeThresholdController : BaseController
     {
-        private readonly ICustomerService _customerService;
-        private readonly IMeteringPointService _meteringCodeService;
-        public MeteringCodeThresholdController(ICustomerService customerService, IMeteringPointService meteringCodeService)
+        private readonly IMeteringPointThresholdService _meteringPointThresholdService;
+        public MeteringCodeThresholdController(IMeteringPointThresholdService meteringCodeService)
         {
-            this._customerService = customerService;
-            this._meteringCodeService = meteringCodeService;
+            this._meteringPointThresholdService = meteringCodeService;
         }
 
-        // GET: Customer
-        [HttpPost]
-        public ActionResult Index(MeteringPointSearchRequest request)
-        {
-            var result = _meteringCodeService.GetMeteringPointsByCustomerId(request);
-            MeteringPointViewModel viewModel = new MeteringPointViewModel();
-            viewModel.data = result.MeteringPoints;
-            viewModel.recordsFiltered = result.TotalCount;
-            viewModel.recordsTotal = result.TotalCount;
-            return Json(viewModel, JsonRequestBehavior.AllowGet);
-        }
 
         [HttpGet]
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(Guid id)
         {
-            MeteringPointThreshold model = new MeteringPointThreshold();
-            return PartialView("_Create",model);
+            MeteringPointThreshold model = _meteringPointThresholdService.GetMeteringPointThresholdById(id);
+            return PartialView("_Edit", model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(MeteringPointThreshold model)
+        {
+            if (ModelState.IsValid)
+            {
+                _meteringPointThresholdService.UpdateMeteringThreshold(model);
+                return Content("");
+            }
+            return PartialView("_Edit", model);
         }
     }
 }

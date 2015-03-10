@@ -60,6 +60,7 @@
     <Compile Include="DynamicsCRM\Metadata\MetadataDZählpunkt.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataOpSetSpannungsebene.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataGrenzwert.cs" />
+    <Compile Include="MeteringPointThresholdService.cs" />
     <Compile Include="MeteringPointService.cs" />
     <Compile Include="CustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -124,7 +124,7 @@
     <value>City</value>
   </data>
   <data name="EditTitle" xml:space="preserve">
-    <value>Edit </value>
+    <value>Detail</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

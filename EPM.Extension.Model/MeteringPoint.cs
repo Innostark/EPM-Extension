@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,14 +27,19 @@ namespace EPM.Extension.Model
         public Guid BetreiberId { get; set; }
         public string BetreiberName { get; set; }
         public Guid VNBId { get; set; }
+        [Display(Name = "VNB")]
         public string VNBName { get; set; }
         #endregion Links
 
         #region OptionSets
+        [Display(Name = "Zählverfahren")]
         public string ZählverfahrenValue { get; set; }
         public int ZählverfahrenCode { get; set; }
+        [Display(Name = "UMessung")]
         public string UMessungValue { get; set; }
         public int UMessungCode { get; set; }
+        [Display(Name = "UEntnahme")]
+
         public string UEntnahmeValue { get; set; }
         public int UEntnahmeCode { get; set; }
         #endregion OptionSets

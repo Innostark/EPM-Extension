@@ -317,6 +317,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                         {
                             meteringPointThreshlodSystem.GrenzwertBezeichner = String.Format("{0:F2}", grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.Grenze));
                         }
+                        if (grenzwert.Contains(MetadataGrenzwert.GrenzwerteId))
+                        {
+                            meteringPointThreshlodSystem.Id = grenzwert.GetAttributeValue<Guid>(MetadataGrenzwert.GrenzwerteId);
+                        }
                         if (grenzwert.Contains(MetadataGrenzwert.GültigAb))
                         {
                             meteringPointThreshlodSystem.GultingAb = grenzwert.GetAttributeValue<DateTime>(MetadataGrenzwert.GültigAb);
@@ -350,6 +354,10 @@ namespace EPM.Extension.Services.DynamicsCRM
 
                         #region "User Threshold Values"
                         MeteringPointThreshold meteringPointThreshlodUser = new MeteringPointThreshold { Type = MeteringPointThresholdType.User };
+                        if (grenzwert.Contains(MetadataGrenzwert.GrenzwerteId))
+                        {
+                            meteringPointThreshlodUser.Id = grenzwert.GetAttributeValue<Guid>(MetadataGrenzwert.GrenzwerteId);
+                        }
                         if (grenzwert.Contains(MetadataGrenzwert.Grenze))
                         {
                             meteringPointThreshlodUser.GrenzwertBezeichner = String.Format("{0:F2}", grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.Grenze));

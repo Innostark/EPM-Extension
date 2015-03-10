@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMeteringPointThresholdService.cs" />
     <Compile Include="IMeteringPointService.cs" />
     <Compile Include="ICustomerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
