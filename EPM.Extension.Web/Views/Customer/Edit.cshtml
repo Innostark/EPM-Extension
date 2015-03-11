@@ -11,6 +11,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Customer.Id)
         <input type="hidden" id="SearchMeteringCodeString" />
+        <input type="hidden" id="SearchBetriebeCodeString" />s
         <div class="form-group">
             @Html.LabelFor(model => model.Customer.Kunde, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -51,6 +52,25 @@
             </div>
         </div>
         <div>
+            <h2>@EPM.Extension.Web.Resources.Customer.BetriebeTitle</h2>
+            <table id="BetriebeList" class="table display table-responsive" style="width: 1535px;">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>@EPM.Extension.Web.Resources.Customer.Name</th>
+                        <th>@EPM.Extension.Web.Resources.Customer.Number</th>
+                        <th>@EPM.Extension.Web.Resources.Customer.Address</th>
+                        <th>@EPM.Extension.Web.Resources.Customer.ZipCode</th>
+                        <th>@EPM.Extension.Web.Resources.Customer.City</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+        <div>
             <h2>@EPM.Extension.Web.Resources.Customer.SubTitle</h2>
 
             <table id="MeteringCodeList" class="table display table-responsive">
@@ -89,14 +109,119 @@
 
 
 <script language="javascript" type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
+
+        //****************************************Betriebe Child Table*************+
+        var startBetriebe = ('@Model.BetriebeSearchRequest.PageNo' - 1) * '@Model.BetriebeSearchRequest.PageSize';
+        var isAscBetriebe = '@Model.BetriebeSearchRequest.IsAsc' == "True" || '@Model.BetriebeSearchRequest.IsAsc' == "true";
+        var sortByBetriebe = ['@Model.BetriebeSearchRequest.SortBy', isAscBetriebe ? 'asc' : 'desc'];
+
+        var bTable = $("#BetriebeList").dataTable({
+            "iDisplayLength": 10,
+            //"iDeferLoading": true,
+            "displayStart": startBetriebe || 0,
+            "bFilter": true,
+            "bLengthChange": false,
+            "aaSorting": [sortByBetriebe],
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [0] },
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
+                }
+            ],
+            //"tableTools": {
+            //    "sRowSelect": "multi",
+            //    "sSelectedClass": "row_selected"
+            //},
+            "columns": [
+                        { "data": "Id" },
+                        { "data": "Kunde" },
+                        { "data": "Kundennummer" },
+                        { "data": "Strasse" },
+                        { "data": "Plz" },
+                        { "data": "Ort" },
+                        {
+                            "orderable": false,
+                            "data": null,
+                            "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
+                            "class": "textAlignRight"
+                        }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/Betriebe/Index",
+                type: "POST",
+                dataType: "json",
+                data: function (params) {
+                    $("#BetriebeList_filter input").val($('#SearchBetriebeString').val());
+                    params.PageNo = Math.ceil(params.start / params.length) + 1;
+                    if (params.PageNo === 0) {
+                        params.PageNo = 1;
+                    }
+                    params.PageSize = params.length;
+                    params.SortBy = params.order[0].column;
+                    if (params.SortBy === 0) {
+                        params.SortBy = 1;
+                    }
+                    params.IsAsc = params.order[0].dir === "asc";
+                    params.Param = $('#SearchBetriebeString').val();
+                    params.CustomerId = $('#Customer_Id').val();
+                    $("#BetriebeList_filter input").val($('#SearchBetriebeString').val());
+                },
+                complete: fnBetriebeComplete
+            }
+
+        });
+
+        function fnBetriebeComplete(data, e) {
+            $("#BetriebeList_filter input").val('');
+            $("#SearchBetriebeString").val('');
+
+            if (bTable.fnSettings().fnRecordsDisplay() > 0) {
+                //select first row
+                var nTop = $('#BetriebeList tbody tr')[0];
+                $(nTop).addClass('selected');
+                mTable.fnDraw();
+            }
+        }
+        $('#BetriebeList_filter input').after($('<button id="searchBetriebeAccount" class="btn btn-primary btn-sm">Search</button>'));
+        $('#searchBetriebeAccount').click(function () {
+            bTable.fnDraw();
+        });
+        $("#BetriebeList_filter input").unbind()
+                .bind("input", function (e) {
+                    $("#SearchBetriebeString").val(this.value);
+                    // Bind our desired behavior
+                    if (this.value == "" || e.keyCode == 13) {
+                        bTable.fnDraw();
+                    }
+                    return;
+                });
+        $('#BetriebeList tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                bTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                mTable.fnDraw();
+            }
+        });
+
+
+
+
+        //*********************************Metering Code*******************************************************
         var startMeteringCode = ('@Model.SearchRequest.PageNo' - 1) * '@Model.SearchRequest.PageSize';
         var isAscMeteringCode = '@Model.SearchRequest.IsAsc' == "True" || '@Model.SearchRequest.IsAsc' == "true";
         var sortByMeteringCode = ['@Model.SearchRequest.SortBy', isAscMeteringCode ? 'asc' : 'desc'];
 
         var mTable = $("#MeteringCodeList").dataTable({
             "iDisplayLength": 10,
-            //"iDeferLoading": true,
+            "iDeferLoading": true,
             "displayStart": startMeteringCode || 0,
             "bFilter": true,
             "bLengthChange": false,
@@ -146,7 +271,8 @@
                         params.SortBy = 1;
                     }
                     params.IsAsc = params.order[0].dir === "asc";
-                    params.CustomerId = $('#Customer_Id').val();
+                    
+                        params.CustomerId = bTable.fnGetData($('#BetriebeList .selected')).Id;
                     $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
 
                     params.Param = $('#SearchMeteringCodeString').val();

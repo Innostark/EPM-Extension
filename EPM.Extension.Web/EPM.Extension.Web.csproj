@@ -172,6 +172,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BetriebeController.cs" />
     <Compile Include="Controllers\MeteringCodeThresholdController.cs" />
     <Compile Include="Controllers\MeteringCodeController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -334,6 +335,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Betriebe\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -13,6 +13,7 @@ namespace EPM.Extension.Interfaces
     {
         IEnumerable<CrmAccount> GetAllCustomers();
         CustomerResponse FindCustomers(CustomerSearchRequest request);
+        CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest);
         CrmAccount GetCustomerById(Guid id);
         void UpdateCustomer(CrmAccount customer);
     }

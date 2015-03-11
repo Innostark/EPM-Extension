@@ -9,6 +9,7 @@ namespace EPM.Extension.Web.Models
     {
         public CrmAccount Customer { get; set; }
         public MeteringPointSearchRequest SearchRequest { get; set; }
+        public CustomerSearchRequest BetriebeSearchRequest { get; set; }
         
         /// <summary>
         /// Total Records in DB

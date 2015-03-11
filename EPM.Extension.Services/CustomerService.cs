@@ -14,6 +14,7 @@ namespace EPM.Extension.Services
     public class CustomerService: ICustomerService
     {
         public static List<CrmAccount> customers;
+        DynamicsCrmService crmService = new DynamicsCrmService();
         private readonly Dictionary<CustomerColumnBy, Func<CrmAccount, object>> userActivityClause =
                   new Dictionary<CustomerColumnBy, Func<CrmAccount, object>>
                     {
@@ -27,20 +28,7 @@ namespace EPM.Extension.Services
         {
             DynamicsCrmService crmService = new DynamicsCrmService();
             customers = crmService.GetAccounts();
-            
-             //customers = new List<CrmAccount>();
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Lahore", Kunde = "Test 1", Strasse = "Johar Town", Kundennummer = "123", Plz = "54000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Islamabad", Kunde = "Test 2", Strasse = "Johar Town", Kundennummer = "456", Plz = "64000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Karachi", Kunde = "Test 3", Strasse = "Johar Town", Kundennummer = "123", Plz = "54000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Faisalabad", Kunde = "Test 4", Strasse = "Johar Town", Kundennummer = "789", Plz = "64000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Peshawar", Kunde = "Test 5", Strasse = "Johar Town", Kundennummer = "012", Plz = "64000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Quetta", Kunde = "Test 6", Strasse = "Johar Town", Kundennummer = "123", Plz = "74000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Lahore", Kunde = "Test 7", Strasse = "Johar Town", Kundennummer = "234", Plz = "74000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Islamabad", Kunde = "Test 8", Strasse = "Johar Town", Kundennummer = "345", Plz = "54000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Karachi", Kunde = "Test 9", Strasse = "Johar Town", Kundennummer = "456", Plz = "64000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Faisalabad", Kunde = "Test 10", Strasse = "Johar Town", Kundennummer = "567", Plz = "44000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Peshawar", Kunde = "Test 11", Strasse = "Johar Town", Kundennummer = "678", Plz = "64000" });
-            //customers.Add(new CrmAccount { Id = Guid.NewGuid(), Ort = "Quetta", Kunde = "Test 12", Strasse = "Johar Town", Kundennummer = "789", Plz = "54000" });
+          
         }
         public IEnumerable<CrmAccount> GetAllCustomers()
         {
@@ -78,6 +66,25 @@ namespace EPM.Extension.Services
                 customers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
                 customers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
                 return new  CustomerResponse{ Customers = oList, TotalCount = customers.Where(expression).ToList().Count };
+        }
+
+        public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest)
+        {
+            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            int toRow = searchRequest.PageSize;
+            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+            List<CrmAccount> betriebers = crmService.GetBeitreibersByAccountId(searchRequest.CustomerId);
+            Func<CrmAccount, bool> expression =
+                s => (
+                    searchSpecified && 
+                    (!string.IsNullOrEmpty(s.Kunde) && s.Kunde.ToLower().Contains(searchRequest.Param.ToLower()))
+                    || !searchSpecified);
+
+            IEnumerable<CrmAccount> oList =
+            searchRequest.IsAsc ?
+            betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+            return new CustomerResponse { Customers = oList, TotalCount = betriebers.Where(expression).ToList().Count };
         }
     }
 }

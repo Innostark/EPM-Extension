@@ -10,6 +10,7 @@ namespace EPM.Extension.Web.Models
         public IEnumerable<CrmAccount> data { get; set; }
         public IEnumerable<MeteringPoint> MeteringdCodes { get; set; }
         public CustomerSearchRequest SearchRequest { get; set; }
+        public CustomerSearchRequest BetriebeSearchRequest { get; set; }
         public MeteringPointSearchRequest MeteringCodeSearchRequest { get; set; }
 
         /// <summary>

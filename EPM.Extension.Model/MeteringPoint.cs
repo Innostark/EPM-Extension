@@ -23,8 +23,10 @@ namespace EPM.Extension.Model
         
         #region Links
         public Guid CrmAccountId { get; set; }
+        [Display(Name = "Account")]
         public string CrmAccountName { get; set; }
         public Guid BetreiberId { get; set; }
+        [Display(Name = "Betreiber")]
         public string BetreiberName { get; set; }
         public Guid VNBId { get; set; }
         [Display(Name = "VNB")]

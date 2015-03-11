@@ -220,6 +220,12 @@ namespace EPM.Extension.Services.DynamicsCRM
                     meteringPoint.CrmAccountName = linkedAccount.Name;
 
                     //GetBeitreibersByAccountId(linkedAccount.Id);
+                }                
+                if(zahplunkt.Contains(MetadataDZählpunkt.BETREIBER))
+                {
+                    EntityReference linkedBetreiber = zahplunkt.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER);
+                    meteringPoint.BetreiberId = linkedBetreiber.Id;
+                    meteringPoint.BetreiberName = linkedBetreiber.Name;
                 }
                 if (zahplunkt.Contains(MetadataDZählpunkt.ZAHLPUNKTBEZEICHNER))
                 {
@@ -437,6 +443,98 @@ namespace EPM.Extension.Services.DynamicsCRM
         }
         #endregion "MeteringPoint"
 
+        #region "Threshold"
+
+        public MeteringPointThreshold GetThresholdById(Guid thresholdId)
+        {
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    IQueryable<Entity> grenzwerts = serviceContext.CreateQuery(EntityNames.Grenzwert).Where(g => g.Id == thresholdId);
+                    if(grenzwerts != null && grenzwerts.Count() >= 1)
+                    {
+                        Entity grenzwert = grenzwerts.ToArray().FirstOrDefault();
+
+                        if(grenzwert != null)
+                        {
+                            MeteringPointThreshold meteringPointThreshlodUser = new MeteringPointThreshold { Type = MeteringPointThresholdType.User };
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwerteId))
+                            {
+                                meteringPointThreshlodUser.Id = grenzwert.GetAttributeValue<Guid>(MetadataGrenzwert.GrenzwerteId);
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.Grenze))
+                            {
+                                meteringPointThreshlodUser.GrenzwertBezeichner = String.Format("{0:F2}", grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.Grenze));
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GültigAb))
+                            {
+                                meteringPointThreshlodUser.GultingAb = grenzwert.GetAttributeValue<DateTime>(MetadataGrenzwert.GültigAb);
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMaxUser))
+                            {
+                                meteringPointThreshlodUser.MaximaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser)).ToString();
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMinUser))
+                            {
+                                meteringPointThreshlodUser.MinimaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser)).ToString();
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMaxUser))
+                            {
+                                meteringPointThreshlodUser.MaximaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser)).ToString();
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMinUser))
+                            {
+                                meteringPointThreshlodUser.MinimaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser)).ToString();
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMaxUser))
+                            {
+                                meteringPointThreshlodUser.MaximaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser)).ToString();
+                            }
+                            if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinUser))
+                            {
+                                meteringPointThreshlodUser.MinimaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser)).ToString();
+                            }
+
+                            return meteringPointThreshlodUser;
+                        }
+                    }                   
+
+                }
+            }
+
+            return null;
+        }
+
+        internal void UpdateMeteringPointThreshold(MeteringPointThreshold threshold)
+        {
+            if (threshold.Id != null && threshold.Id != Guid.Empty)
+            {
+                using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+                {
+                    using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                    {
+                        Entity crmThreshold = new Entity(EntityNames.Grenzwert);
+                        crmThreshold.Id = threshold.Id;
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMaxUser, (Object)threshold.MaximaGlobal));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMinUser, (Object)threshold.MinimaGlobal));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMaxUser, (Object)threshold.MaximaSommer));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMinUser, (Object)threshold.MinimaSommer));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMaxUser, (Object)threshold.MaximaWinter));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMinUser, (Object)threshold.MinimaWinter));
+                        if (!serviceContext.IsAttached(crmThreshold))
+                        {
+                            serviceContext.Attach(crmThreshold);
+                        }
+                        serviceContext.UpdateObject(crmThreshold);
+                        serviceContext.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        #endregion "Threshold"
+
         #region Dynamics CRM Connection
         private static OrganizationServiceProxy GetProxyService()
         {
@@ -581,6 +679,6 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         //    return (TProxy)classType.GetConstructor(new Type[] { typeof(IServiceManagement<TService>), typeof(ClientCredentials) }).Invoke(new object[] { serviceManagement, authCredentials.ClientCredentials });
         //} 
-        #endregion
+        #endregion        
     }
 }

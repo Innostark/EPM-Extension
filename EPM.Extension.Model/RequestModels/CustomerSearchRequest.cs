@@ -10,7 +10,7 @@ namespace EPM.Extension.Model.RequestModels
     public class CustomerSearchRequest:GetPagedListRequest
     {
         public string Param { get; set; }
-
+        public Guid CustomerId { get; set; }
         /// <summary>
         /// Product Order By
         /// </summary>

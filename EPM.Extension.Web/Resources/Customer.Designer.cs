@@ -70,6 +70,15 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Betriebe.
+        /// </summary>
+        public static string BetriebeTitle {
+            get {
+                return ResourceManager.GetString("BetriebeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         public static string City {

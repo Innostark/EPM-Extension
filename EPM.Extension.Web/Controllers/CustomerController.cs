@@ -23,6 +23,7 @@ namespace EPM.Extension.Web.Controllers
         {
             CustomerViewModel viewModel = new CustomerViewModel();
             viewModel.SearchRequest=new CustomerSearchRequest();
+            viewModel.BetriebeSearchRequest = new CustomerSearchRequest();
             viewModel.MeteringCodeSearchRequest=new MeteringPointSearchRequest();
             return View(viewModel);
         }
@@ -43,7 +44,8 @@ namespace EPM.Extension.Web.Controllers
             CustomerDetailViewModel model= new CustomerDetailViewModel
             {
                 Customer = customer,
-                SearchRequest = new MeteringPointSearchRequest()
+                SearchRequest = new MeteringPointSearchRequest(),
+                BetriebeSearchRequest = new CustomerSearchRequest()
             };
             return View(model);
         }
