@@ -61,6 +61,15 @@ namespace EPM.Extension.Model.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid login attempt..
+        /// </summary>
+        public static string AccountController_Login_Invalid_login_attempt_ {
+            get {
+                return ResourceManager.GetString("AccountController_Login_Invalid_login_attempt_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {

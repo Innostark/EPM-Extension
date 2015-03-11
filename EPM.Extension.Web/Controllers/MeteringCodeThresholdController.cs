@@ -11,6 +11,7 @@ using EPM.Extension.Web.Models;
 
 namespace EPM.Extension.Web.Controllers
 {
+    [Authorize]
     public class MeteringCodeThresholdController : BaseController
     {
         private readonly IMeteringPointThresholdService _meteringPointThresholdService;

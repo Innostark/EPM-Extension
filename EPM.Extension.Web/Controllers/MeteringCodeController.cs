@@ -10,6 +10,7 @@ using EPM.Extension.Web.Models;
 
 namespace EPM.Extension.Web.Controllers
 {
+    [Authorize]
     public class MeteringCodeController : BaseController
     {
         private readonly ICustomerService _customerService;

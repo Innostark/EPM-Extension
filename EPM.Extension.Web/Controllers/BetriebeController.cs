@@ -10,6 +10,8 @@ namespace EPM.Extension.Web.Controllers
     using Model;
     using Model.RequestModels;
     using Models;
+
+    [Authorize]
     public class BetriebeController : BaseController
     {
         private readonly ICustomerService _customerService;

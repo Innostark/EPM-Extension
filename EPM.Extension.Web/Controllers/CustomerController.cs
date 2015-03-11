@@ -10,6 +10,7 @@ using EPM.Extension.Web.Models;
 
 namespace EPM.Extension.Web.Controllers
 {
+    [Authorize]
     public class CustomerController : BaseController
     {
         private readonly ICustomerService customerService;

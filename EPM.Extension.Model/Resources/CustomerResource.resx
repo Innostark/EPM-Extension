@@ -132,4 +132,7 @@
   <data name="ZipCode" xml:space="preserve">
     <value>ZipCode</value>
   </data>
+  <data name="AccountController_Login_Invalid_login_attempt_" xml:space="preserve">
+    <value>Invalid login attempt.</value>
+  </data>
 </root>

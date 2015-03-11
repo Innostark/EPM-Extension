@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using EPM.Extension.Interfaces;
+using EPM.Extension.Web.Controllers;
 using Microsoft.Practices.Unity;
 using Unity.Mvc5;
 using EPM.Extension.Services;
@@ -15,6 +16,7 @@ namespace EPM.Extension.Web
             // it is NOT necessary to register your controllers
             container.RegisterType<ICustomerService, CustomerService>();
             container.RegisterType<IMeteringPointService, MeteringPointService>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
             container.RegisterType<IMeteringPointThresholdService, MeteringPointThresholdService>();
             // e.g. container.RegisterType<ITestService, TestService>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
