@@ -95,6 +95,9 @@ namespace EPM.Extension.Services.DynamicsCRM
             return null;
         }
 
+        #endregion "Account"
+
+        #region "Beitreibers"
         public List<CrmAccount> GetBeitreibersByAccountId(Guid crmAccountId)
         {
             List<CrmAccount> Beitreibers = new List<CrmAccount>();
@@ -112,8 +115,8 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         public List<CrmAccount> GetBeitreibersByAccountId(OrganizationServiceContext serviceContext, Guid crmAccountId)
         {
-            
-            List<MeteringPoint> meteringPoints = this.GetMeteringPointsForAccountId(crmAccountId);
+
+            List<MeteringPoint> meteringPoints = this.GetMeteringPointsByAccountId(crmAccountId);
             List<MeteringPoint> uniqueBeitreiberMeteringPoints = meteringPoints.GroupBy(mp => mp.BetreiberId)
                                                                                .Select(grp => grp.First())
                                                                                .ToList<MeteringPoint>();
@@ -129,9 +132,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
             return Beitreibers;
         }
-
-
-        #endregion "Account"
+        #endregion ""
 
         #region "MeteringPoint"
 
@@ -157,7 +158,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             return this.GetMeteringPointsFromEntityCollection(serviceContext, zahplunkts);
         }
 
-        public List<MeteringPoint> GetMeteringPointsForAccountId(Guid crmAccountId)
+        public List<MeteringPoint> GetMeteringPointsByAccountId(Guid crmAccountId)
         {
             List<MeteringPoint> meteringPoints = new List<MeteringPoint>();
 
@@ -173,6 +174,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             return meteringPoints;
         }
 
+        #region "Beitreibers Metering Points"
         public List<MeteringPoint> GetBeitreiberMetringPoints(Guid crmAccountId, Guid beitreiberId)
         {
             List<MeteringPoint> beitreiberMeteringPoints = new List<MeteringPoint>();
@@ -220,8 +222,8 @@ namespace EPM.Extension.Services.DynamicsCRM
                     meteringPoint.CrmAccountName = linkedAccount.Name;
 
                     //GetBeitreibersByAccountId(linkedAccount.Id);
-                }                
-                if(zahplunkt.Contains(MetadataDZählpunkt.BETREIBER))
+                }
+                if (zahplunkt.Contains(MetadataDZählpunkt.BETREIBER))
                 {
                     EntityReference linkedBetreiber = zahplunkt.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER);
                     meteringPoint.BetreiberId = linkedBetreiber.Id;
@@ -408,6 +410,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
             return meteringPoints;
         }
+        #endregion "Beitreibers Metering Points"
 
         private void SetSetSpannungsebene(int caseValue, out int code, out string value)
         {

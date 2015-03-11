@@ -70,7 +70,7 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Betriebe.
+        ///   Looks up a localized string similar to Betrieber.
         /// </summary>
         public static string BetriebeTitle {
             get {

@@ -32,6 +32,7 @@ namespace EPM.Extension.Services
         {
             DynamicsCrmService crmService = new DynamicsCrmService();
             meteringPoints = crmService.GetMeteringPoints();
+            //meteringPoints = crmService.GetBeitreiberMetringPoints();
 
             //meteringPoints = new List<MeteringPoint>();            
             //for (int i = 1; i <= 15; i++ )
