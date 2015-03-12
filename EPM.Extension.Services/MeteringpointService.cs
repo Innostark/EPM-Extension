@@ -84,7 +84,8 @@ namespace EPM.Extension.Services
             int toRow = searchRequest.PageSize;
 
             Func<MeteringPoint, bool> expression =
-                s => (!searchSpecified && s.CrmAccountId == searchRequest.CustomerId || (s.CrmAccountId == searchRequest.CustomerId && s.Kurzbezeichnung.IndexOf(searchRequest.Param,StringComparison.OrdinalIgnoreCase ) >=0 ));
+                s => (!searchSpecified && s.CrmAccountId == searchRequest.CustomerId
+                     || (s.CrmAccountId == searchRequest.CustomerId && s.Kurzbezeichnung.IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase ) >=0 ));
 
             IEnumerable<MeteringPoint> oList =
             searchRequest.IsAsc ?
