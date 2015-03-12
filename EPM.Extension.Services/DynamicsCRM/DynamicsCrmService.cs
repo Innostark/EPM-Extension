@@ -237,14 +237,18 @@ namespace EPM.Extension.Services.DynamicsCRM
             int toRow = searchRequest.PageSize;
 
             Func<Entity, bool> expression =
-                za => ( za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT) != null
-                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT).Id == searchRequest.CustomerId
-                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id != null
-                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id == searchRequest.BetrieberId
-                        && (za.GetAttributeValue<string>(MetadataDZählpunkt.KURZEEZEICHNUNG).IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase) >= 0 
-                            && searchSpecified || !searchSpecified)
-                     );
-            IQueryable<Entity> zahplunkts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt);
+                za => ((za.Contains(MetadataDZählpunkt.ACCOUNT) 
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT) != null
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT).Id == searchRequest.CustomerId))
+                        && (za.Contains(MetadataDZählpunkt.BETREIBER) 
+                        && (za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id != null
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id == searchRequest.BetrieberId))
+                        && (searchRequest.Param != null
+                        && za.Contains(MetadataDZählpunkt.KURZEEZEICHNUNG) 
+                        && (za.GetAttributeValue<string>(MetadataDZählpunkt.KURZEEZEICHNUNG).IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase) >= 0)
+                        && searchSpecified || !searchSpecified);
+            IQueryable<Entity> zahplunkts =  serviceContext.CreateQuery(EntityNames.D_Zählpunkt);
+            zahplunkts.Where(expression);
             IEnumerable<Entity> oList =
             searchRequest.IsAsc ?
             zahplunkts.Where(expression).OrderBy(meteringPointClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :

@@ -41,7 +41,8 @@ namespace EPM.Extension.Services
 
         public CrmAccount GetCustomerById(Guid id)
         {
-            return customers.FirstOrDefault(x => x.Id == id);
+            return crmService.GetAccountById(id);
+            //return customers.FirstOrDefault(x => x.Id == id);
         }
 
 
