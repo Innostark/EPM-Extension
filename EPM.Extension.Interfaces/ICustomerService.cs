@@ -11,7 +11,6 @@ namespace EPM.Extension.Interfaces
 {
     public interface ICustomerService
     {
-        IEnumerable<CrmAccount> GetAllCustomers();
         CustomerResponse FindCustomers(CustomerSearchRequest request);
         CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest);
         CrmAccount GetCustomerById(Guid id);

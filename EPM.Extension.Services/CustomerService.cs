@@ -14,7 +14,8 @@ namespace EPM.Extension.Services
     public class CustomerService: ICustomerService
     {
         public static List<CrmAccount> customers;
-        DynamicsCrmService crmService = new DynamicsCrmService();
+        private readonly DynamicsCrmService crmService;
+        
         private readonly Dictionary<CustomerColumnBy, Func<CrmAccount, object>> userActivityClause =
                   new Dictionary<CustomerColumnBy, Func<CrmAccount, object>>
                     {
@@ -24,16 +25,11 @@ namespace EPM.Extension.Services
                         {CustomerColumnBy.ZipCode, c => c.Plz},
                         {CustomerColumnBy.City, c => c.Ort}
                     };
-         static CustomerService()
+         public CustomerService()
         {
-            DynamicsCrmService crmService = new DynamicsCrmService();
-            customers = crmService.GetAccounts();
-          
+            crmService = new DynamicsCrmService();
         }
-        public IEnumerable<CrmAccount> GetAllCustomers()
-        {
-            return customers;
-        }
+        
 
         public void UpdateCustomer(CrmAccount customer)
         {
@@ -51,6 +47,7 @@ namespace EPM.Extension.Services
 
         public CustomerResponse FindCustomers(Model.RequestModels.CustomerSearchRequest searchRequest)
         {
+            customers = crmService.GetAccounts();
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
             int toRow = searchRequest.PageSize;
             bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
