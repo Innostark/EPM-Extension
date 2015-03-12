@@ -15,6 +15,7 @@ namespace EPM.Extension.Services
     public class MeteringPointService : IMeteringPointService
     {
         private static List<MeteringPoint> meteringPoints;
+        private DynamicsCrmService crmService;
         private readonly Dictionary<MeteringPointColumnBy, Func<MeteringPoint, object>> userActivityClause =
                   new Dictionary<MeteringPointColumnBy, Func<MeteringPoint, object>>
                     {
@@ -28,57 +29,14 @@ namespace EPM.Extension.Services
                         {MeteringPointColumnBy.Zählverfahren, c => c.ZählverfahrenValue},
                         {MeteringPointColumnBy.Messung, c => c.UMessungValue}
                     };
-        static MeteringPointService()
+        public MeteringPointService()
         {
-            DynamicsCrmService crmService = new DynamicsCrmService();
-            meteringPoints = crmService.GetMeteringPoints();
-            //meteringPoints = crmService.GetBeitreiberMetringPoints();
-
-            //meteringPoints = new List<MeteringPoint>();            
-            //for (int i = 1; i <= 15; i++ )
-            //    meteringCodes.Add(new MeteringPoint
-            //    {
-            //        CustomerId = CustomerService.customers[(i % 5) + 1].Id,
-            //        Anlagentyp = i + "Test Anlagentyp",
-            //        Datenversand = i + " Test Datenversand",
-            //        Entnahme = i + "Test Entnahme",
-            //        Id = Guid.NewGuid(),
-            //        Kundenrückmeldung = i + "Test Kundenrückmeldung",
-            //        Kurzbezeichnung = i + "Test Kurzbezeichnung",
-            //        Messung = i + "Test Messung",
-            //        Ort = i + "TEST ORT",
-            //        PLZ = i + "TEST PLZ",
-            //        Strasse = i + "TEST Strasse",
-            //        Zählpunktbezeichner = i + "Test Zählpunktbezeichner",
-            //        Zählverfahren = i + "Test Zählverfahren",
-            //        MeteringCodeThresholds = new List<MeteringPointThreshold> { new MeteringPointThreshold
-            //        {
-            //            GrenzwertBezeichner = "Test",
-            //            GultingAb = DateTime.Now,
-            //            Id = Guid.NewGuid(),
-            //            MaximaGlobal = "0",
-            //            MinimaGlobal = "0",
-            //            MaximaSommer = "0",
-            //            MinimaSommer = "0",
-            //            MaximaWinter = "0",
-            //            MinimaWinter = "0"
-            //        }, new MeteringPointThreshold
-            //        {
-            //            GrenzwertBezeichner = "Test",
-            //            GultingAb = DateTime.Now,
-            //            Id= Guid.NewGuid(),
-            //            MaximaGlobal = "0",
-            //            MinimaGlobal = "0",
-            //            MaximaSommer = "0",
-            //            MinimaSommer = "0",
-            //            MaximaWinter = "0",
-            //            MinimaWinter = "0"
-            //        }}
-            //    });
+            crmService  = new DynamicsCrmService();
         }
 
         public MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest searchRequest)
         {
+            meteringPoints = crmService.GetBeitreiberMetringPoints(searchRequest.CustomerId, searchRequest.BetrieberId);
             int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
             bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
             int toRow = searchRequest.PageSize;

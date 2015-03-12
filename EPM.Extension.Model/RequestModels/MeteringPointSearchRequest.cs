@@ -11,6 +11,7 @@ namespace EPM.Extension.Model.RequestModels
     {
         public string Param { get; set; }
         public Guid CustomerId { get; set; }
+        public Guid BetrieberId { get; set; }
         /// <summary>
         /// Product Order By
         /// </summary>

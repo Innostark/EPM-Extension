@@ -271,8 +271,8 @@
                         params.SortBy = 1;
                     }
                     params.IsAsc = params.order[0].dir === "asc";
-                    
-                        params.CustomerId = bTable.fnGetData($('#BetriebeList .selected')).Id;
+                    params.BetrieberId = bTable.fnGetData($('#BetriebeList .selected')).Id;
+                    params.CustomerId = $('#Customer_Id').val();
                     $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
 
                     params.Param = $('#SearchMeteringCodeString').val();
