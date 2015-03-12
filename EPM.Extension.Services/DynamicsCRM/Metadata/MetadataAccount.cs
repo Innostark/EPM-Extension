@@ -8,5 +8,7 @@
         public const string PLZ = "address1_postalcode";
         public const string ORT = "address1_city";
         public const string CRM_ACCOUNT_ID = "accountid";
+        public const string ACCOUNTEPMEXTENSIONPORTALUSER = "new_epmextensionportaluserid";
+        public const string BETREIBEREPMEXTENSIONPORTALUSER = "new_beitreiberepmetensionportaluseid";
     }
 }

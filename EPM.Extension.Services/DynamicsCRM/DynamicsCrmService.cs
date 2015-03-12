@@ -14,10 +14,81 @@ namespace EPM.Extension.Services.DynamicsCRM
 {
     public class DynamicsCrmService
     {
+        private readonly Dictionary<CustomerColumnBy, Func<Entity, object>> userActivityClause =
+        new Dictionary<CustomerColumnBy, Func<Entity, object>>
+        {
+            {CustomerColumnBy.Name, c => c.Attributes[MetadataAccount.NAME]},
+            {CustomerColumnBy.Number, c => c.Attributes[MetadataAccount.KUNDENNUMMER]},
+            {CustomerColumnBy.Address, c => c.Attributes[MetadataAccount.STRASSE]},
+            {CustomerColumnBy.ZipCode, c => c.Attributes[MetadataAccount.PLZ]},
+            {CustomerColumnBy.City, c => c.Attributes[MetadataAccount.ORT]}
+        };
+
+        public Guid AuthenticateUser(string username, string password)
+        {
+            Guid userId = new Guid();
+
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    IQueryable<Entity> usersQ = serviceContext.CreateQuery(EntityNames.EpmExtensionPortalUser).Where(u => u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.UserName) == username
+                                                                                                                       && u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.Password) == password);
+                    try
+                    {
+                        List<Entity> users = usersQ.ToList<Entity>();
+                        if (users.Count == 1)
+                            return users[0].Id;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+
+            return userId;
+        }
+
         #region "Account"
+
+        public CustomerResponse GetAccountsByUserId(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userId, out int recordCount)
+        {
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account)
+                                                    .Where(ac => ac.GetAttributeValue<EntityReference>(MetadataAccount.ACCOUNTEPMEXTENSIONPORTALUSER) != null
+                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.ACCOUNTEPMEXTENSIONPORTALUSER).Id != userId);
+
+                    int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+                    int toRow = searchRequest.PageSize;
+                    bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+                    Func<Entity, bool> expression =
+                        s => (
+                            searchSpecified &&
+                            (s.Contains(MetadataAccount.NAME) &&
+                             !string.IsNullOrEmpty(s.GetAttributeValue<string>(MetadataAccount.NAME)) &&
+                             s.GetAttributeValue<string>(MetadataAccount.NAME)
+                                 .ToLower()
+                                 .Contains(searchRequest.Param.ToLower()))
+                            || !searchSpecified);
+
+                    IEnumerable<Entity> oList =
+                    searchRequest.IsAsc ?
+                    accounts.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                    accounts.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+
+                    recordCount = accounts.Count(expression);
+
+                    return new CustomerResponse { Customers = oList.Select(WrapAccountIntoCrmAccount).ToList(), TotalCount = recordCount, UserTotalCount = recordCount };
+                }
+            }
+        }
+
         public CustomerResponse GetAccounts(Model.RequestModels.CustomerSearchRequest searchRequest)
         {
-
             //return new CustomerResponse { Customers = oList, TotalCount = customers.Where(expression).ToList().Count };
 
             int outRecordCount;
@@ -32,15 +103,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
             return new CustomerResponse { Customers = crmAccounts, TotalCount = outRecordCount, UserTotalCount = outRecordCount };
         }
-        private readonly Dictionary<CustomerColumnBy, Func<Entity, object>> userActivityClause =
-                  new Dictionary<CustomerColumnBy, Func<Entity, object>>
-                    {
-                        {CustomerColumnBy.Name, c => c.Attributes[MetadataAccount.NAME]},
-                        {CustomerColumnBy.Number, c => c.Attributes[MetadataAccount.KUNDENNUMMER]},
-                        {CustomerColumnBy.Address, c => c.Attributes[MetadataAccount.STRASSE]},
-                        {CustomerColumnBy.ZipCode, c => c.Attributes[MetadataAccount.PLZ]},
-                        {CustomerColumnBy.City, c => c.Attributes[MetadataAccount.ORT]}
-                    };
+
         public List<CrmAccount> GetAccounts(OrganizationServiceContext serviceContext, Model.RequestModels.CustomerSearchRequest searchRequest, out int recordCount)
         {
             IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account);
@@ -126,7 +189,43 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         #endregion "Account"
 
-        #region "Beitreibers"
+        #region "Beitreibers"        
+        public CustomerResponse GetBeitreibersByUserId(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userId, out int recordCount)
+        {
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account)
+                                                    .Where(ac => ac.GetAttributeValue<EntityReference>(MetadataAccount.BETREIBEREPMEXTENSIONPORTALUSER) != null
+                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.BETREIBEREPMEXTENSIONPORTALUSER).Id != userId);
+
+                    int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+                    int toRow = searchRequest.PageSize;
+                    bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+                    Func<Entity, bool> expression =
+                        s => (
+                            searchSpecified &&
+                            (s.Contains(MetadataAccount.NAME) &&
+                             !string.IsNullOrEmpty(s.GetAttributeValue<string>(MetadataAccount.NAME)) &&
+                             s.GetAttributeValue<string>(MetadataAccount.NAME)
+                                 .ToLower()
+                                 .Contains(searchRequest.Param.ToLower()))
+                            || !searchSpecified);
+
+                    IEnumerable<Entity> oList =
+                    searchRequest.IsAsc ?
+                    accounts.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+                    accounts.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+
+                    recordCount = accounts.Count(expression);
+
+                    return new CustomerResponse { Customers = oList.Select(WrapAccountIntoCrmAccount).ToList(), TotalCount = recordCount, UserTotalCount = recordCount };
+                }
+            }
+        }
+
+
         public List<CrmAccount> GetBeitreibersByAccountId(Guid crmAccountId)
         {
             List<CrmAccount> Beitreibers = new List<CrmAccount>();
@@ -153,7 +252,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             List<CrmAccount> beitreibers = new List<CrmAccount>();
             foreach (MeteringPoint beitreiberMeteringPoint in uniqueBeitreiberMeteringPoints)
             {
-                if ( beitreiberMeteringPoint.BetreiberId != Guid.Empty)
+                if (beitreiberMeteringPoint.BetreiberId != Guid.Empty)
                 {
                     beitreibers.Add(this.GetAccountById(beitreiberMeteringPoint.BetreiberId));
                 }
@@ -258,17 +357,17 @@ namespace EPM.Extension.Services.DynamicsCRM
             int toRow = searchRequest.PageSize;
 
             Func<Entity, bool> expression =
-                za => ((za.Contains(MetadataDZählpunkt.ACCOUNT) 
+                za => ((za.Contains(MetadataDZählpunkt.ACCOUNT)
                         && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT) != null
                         && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT).Id == searchRequest.CustomerId))
-                        && (za.Contains(MetadataDZählpunkt.BETREIBER) 
+                        && (za.Contains(MetadataDZählpunkt.BETREIBER)
                         && (za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id != null
                         && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id == searchRequest.BetrieberId))
                         && (searchRequest.Param != null
-                        && za.Contains(MetadataDZählpunkt.KURZEEZEICHNUNG) 
+                        && za.Contains(MetadataDZählpunkt.KURZEEZEICHNUNG)
                         && (za.GetAttributeValue<string>(MetadataDZählpunkt.KURZEEZEICHNUNG).IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase) >= 0)
                         && searchSpecified || !searchSpecified);
-            IQueryable<Entity> zahplunkts =  serviceContext.CreateQuery(EntityNames.D_Zählpunkt);
+            IQueryable<Entity> zahplunkts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt);
             zahplunkts.Where(expression);
             IEnumerable<Entity> oList =
             searchRequest.IsAsc ?
@@ -533,11 +632,11 @@ namespace EPM.Extension.Services.DynamicsCRM
                 using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
                 {
                     IQueryable<Entity> grenzwerts = serviceContext.CreateQuery(EntityNames.Grenzwert).Where(g => g.GetAttributeValue<Guid>(MetadataGrenzwert.Id) == thresholdId);
-                    if(grenzwerts != null && grenzwerts.ToList().Count() >= 1)
+                    if (grenzwerts != null && grenzwerts.ToList().Count() >= 1)
                     {
                         Entity grenzwert = grenzwerts.ToArray().FirstOrDefault();
 
-                        if(grenzwert != null)
+                        if (grenzwert != null)
                         {
                             MeteringPointThreshold meteringPointThreshlodUser = new MeteringPointThreshold { Type = MeteringPointThresholdType.User };
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwerteId))
@@ -579,7 +678,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
                             return meteringPointThreshlodUser;
                         }
-                    }                   
+                    }
 
                 }
             }
@@ -760,6 +859,6 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         //    return (TProxy)classType.GetConstructor(new Type[] { typeof(IServiceManagement<TService>), typeof(ClientCredentials) }).Invoke(new object[] { serviceManagement, authCredentials.ClientCredentials });
         //} 
-        #endregion        
+        #endregion
     }
 }
