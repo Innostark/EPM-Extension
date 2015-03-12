@@ -41,7 +41,7 @@ namespace EPM.Extension.Services
 
         public MeteringPoint GetMeteringPointsById(Guid id)
         {
-            return meteringPoints.Find(x => x.Id == id);
+            return crmService.GetMeteringPointById(id);
         }
     }
 }

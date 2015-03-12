@@ -165,6 +165,27 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         #region "MeteringPoint"
 
+        public MeteringPoint GetMeteringPointById(Guid crmAccountId)
+        {
+            MeteringPoint crmAccount = new MeteringPoint();
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    crmAccount = GetMeteringPointById(serviceContext, crmAccountId);
+                }
+            }
+
+            return crmAccount;
+        }
+
+        private MeteringPoint GetMeteringPointById(OrganizationServiceContext serviceContext, Guid crmAccountId)
+        {
+            var accounts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt).Where(e => ((Guid?)e[MetadataDZählpunkt.METERING_POINT_ID]) == crmAccountId);
+            var result = GetMeteringPointsFromEntityCollection(serviceContext, accounts);
+            return result.FirstOrDefault();
+
+        }
         public List<MeteringPoint> GetMeteringPoints()
         {
             List<MeteringPoint> meteringPoints = new List<MeteringPoint>();
