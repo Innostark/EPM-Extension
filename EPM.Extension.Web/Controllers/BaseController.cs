@@ -4,12 +4,22 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using EPM.Extension.Web.Helpers;
 
 namespace EPM.Extension.Web.Controllers
 {
     public class BaseController : Controller
     {
+        public Guid LoggedInUserId
+        {
+            get
+            {
+                var ident = ((FormsIdentity)HttpContext.User.Identity);
+                string data = ident.Ticket.UserData;
+                return Guid.Parse(data);
+            }
+        }
         protected override IAsyncResult BeginExecuteCore(AsyncCallback callback, object state)
         {
             string cultureName = null;
