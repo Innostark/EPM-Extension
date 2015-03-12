@@ -16,15 +16,7 @@ namespace EPM.Extension.Services
         public static List<CrmAccount> customers;
         private readonly DynamicsCrmService crmService;
         
-        private readonly Dictionary<CustomerColumnBy, Func<CrmAccount, object>> userActivityClause =
-                  new Dictionary<CustomerColumnBy, Func<CrmAccount, object>>
-                    {
-                        {CustomerColumnBy.Name, c => c.Kunde},
-                        {CustomerColumnBy.Number, c => c.Kundennummer},
-                        {CustomerColumnBy.Address, c => c.Strasse},
-                        {CustomerColumnBy.ZipCode, c => c.Plz},
-                        {CustomerColumnBy.City, c => c.Ort}
-                    };
+        
          public CustomerService()
         {
             crmService = new DynamicsCrmService();
@@ -47,21 +39,7 @@ namespace EPM.Extension.Services
 
         public CustomerResponse FindCustomers(Model.RequestModels.CustomerSearchRequest searchRequest)
         {
-            customers = crmService.GetAccounts();
-            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
-            int toRow = searchRequest.PageSize;
-            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
-            Func<CrmAccount, bool>  expression =
-                s => (
-                    searchSpecified &&
-                    (!string.IsNullOrEmpty(s.Kunde) && s.Kunde.ToLower().Contains(searchRequest.Param.ToLower())) 
-                    || !searchSpecified);
-            
-                IEnumerable<CrmAccount> oList =
-                searchRequest.IsAsc ?
-                customers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
-                customers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
-                return new  CustomerResponse{ Customers = oList, TotalCount = customers.Where(expression).ToList().Count };
+            return crmService.GetAccounts(searchRequest);            
         }
 
         public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest)
@@ -78,8 +56,10 @@ namespace EPM.Extension.Services
 
             IEnumerable<CrmAccount> oList =
             searchRequest.IsAsc ?
-            betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
-            betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+            //betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            //betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+            betriebers.Where(expression).Skip(fromRow).Take(toRow).ToList() :
+            betriebers.Where(expression).Skip(fromRow).Take(toRow).ToList();
             return new CustomerResponse { Customers = oList, TotalCount = betriebers.Where(expression).ToList().Count };
         }
 

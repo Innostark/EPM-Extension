@@ -1,4 +1,5 @@
 ﻿using EPM.Extension.Model;
+using EPM.Extension.Model.Common;
 using EPM.Extension.Services.DynamicsCRM.Metadata;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
@@ -13,30 +14,57 @@ namespace EPM.Extension.Services.DynamicsCRM
     public class DynamicsCrmService
     {
         #region "Account"
-        public List<CrmAccount> GetAccounts()
+        public CustomerResponse GetAccounts(Model.RequestModels.CustomerSearchRequest searchRequest)
         {
+
+            //return new CustomerResponse { Customers = oList, TotalCount = customers.Where(expression).ToList().Count };
+
+            int outRecordCount;
             List<CrmAccount> crmAccounts = new List<CrmAccount>();
             using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
             {
                 using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
                 {
-                    crmAccounts = this.GetAccounts(serviceContext);
+                    crmAccounts = this.GetAccounts(serviceContext, searchRequest, out outRecordCount);
                 }
             }
 
-            return crmAccounts;
+            return new CustomerResponse { Customers = crmAccounts, TotalCount = outRecordCount, UserTotalCount = outRecordCount };
         }
-
-        public List<CrmAccount> GetAccounts(OrganizationServiceContext serviceContext)
+        private readonly Dictionary<CustomerColumnBy, Func<Entity, object>> userActivityClause =
+                  new Dictionary<CustomerColumnBy, Func<Entity, object>>
+                    {
+                        {CustomerColumnBy.Name, c => c.Attributes["MetadataAccount.NAME"]},
+                        //{CustomerColumnBy.Number, c => c.Kundennummer},
+                        //{CustomerColumnBy.Address, c => c.Strasse},
+                        //{CustomerColumnBy.ZipCode, c => c.Plz},
+                        //{CustomerColumnBy.City, c => c.Ort}
+                    };
+        public List<CrmAccount> GetAccounts(OrganizationServiceContext serviceContext, Model.RequestModels.CustomerSearchRequest searchRequest, out int recordCount)
         {
-            List<CrmAccount> crmAccounts = new List<CrmAccount>();
             IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account);
-            foreach (Entity account in accounts)
-            {
-                crmAccounts.Add(this.WrapAccountIntoCrmAccount(account));
-            }
 
-            return crmAccounts;
+            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            int toRow = searchRequest.PageSize;
+            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+            Func<Entity, bool> expression =
+                s => (
+                    searchSpecified &&
+                    (s.Contains(MetadataAccount.NAME) &&
+                     !string.IsNullOrEmpty(s.GetAttributeValue<string>(MetadataAccount.NAME)) &&
+                     s.GetAttributeValue<string>(MetadataAccount.NAME)
+                         .ToLower()
+                         .Contains(searchRequest.Param.ToLower()))
+                    || !searchSpecified);
+
+            IEnumerable<Entity> oList =
+            searchRequest.IsAsc ?
+            accounts.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            accounts.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+
+            recordCount = accounts.Count(expression);
+
+            return oList.Select(WrapAccountIntoCrmAccount).ToList();
         }
 
         private CrmAccount WrapAccountIntoCrmAccount(Entity account)
