@@ -15,7 +15,15 @@ namespace EPM.Extension.Services
     {
         public static List<CrmAccount> customers;
         private readonly DynamicsCrmService crmService;
-        
+        private readonly Dictionary<CustomerColumnBy, Func<CrmAccount, object>> userActivityClause =
+          new Dictionary<CustomerColumnBy, Func<CrmAccount, object>>
+                    {
+                        {CustomerColumnBy.Name, c => c.Kunde},
+                        {CustomerColumnBy.Number, c => c.Kundennummer},
+                        {CustomerColumnBy.Address, c => c.Strasse},
+                        {CustomerColumnBy.ZipCode, c => c.Plz},
+                        {CustomerColumnBy.City, c => c.Ort}
+                    };
         
          public CustomerService()
         {
@@ -56,10 +64,8 @@ namespace EPM.Extension.Services
 
             IEnumerable<CrmAccount> oList =
             searchRequest.IsAsc ?
-            //betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
-            //betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
-            betriebers.Where(expression).Skip(fromRow).Take(toRow).ToList() :
-            betriebers.Where(expression).Skip(fromRow).Take(toRow).ToList();
+            betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
             return new CustomerResponse { Customers = oList, TotalCount = betriebers.Where(expression).ToList().Count };
         }
 

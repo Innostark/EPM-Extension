@@ -36,21 +36,7 @@ namespace EPM.Extension.Services
 
         public MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest searchRequest)
         {
-            meteringPoints = crmService.GetBeitreiberMetringPoints(searchRequest.CustomerId, searchRequest.BetrieberId);
-            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
-            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
-            int toRow = searchRequest.PageSize;
-
-            Func<MeteringPoint, bool> expression =
-                s => (!searchSpecified 
-                     || s.Kurzbezeichnung.IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase ) >=0 );
-
-            IEnumerable<MeteringPoint> oList =
-            searchRequest.IsAsc ?
-            meteringPoints.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
-            meteringPoints.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
-            return new MeteringPointResponse { MeteringPoints= oList, TotalCount = meteringPoints.Where(expression).ToList().Count };
-   
+            return crmService.GetBeitreiberMetringPoints(searchRequest);
         }
 
         public MeteringPoint GetMeteringPointsById(Guid id)

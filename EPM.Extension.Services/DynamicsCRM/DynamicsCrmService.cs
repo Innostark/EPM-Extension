@@ -1,5 +1,6 @@
 ﻿using EPM.Extension.Model;
 using EPM.Extension.Model.Common;
+using EPM.Extension.Model.RequestModels;
 using EPM.Extension.Services.DynamicsCRM.Metadata;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
@@ -34,11 +35,11 @@ namespace EPM.Extension.Services.DynamicsCRM
         private readonly Dictionary<CustomerColumnBy, Func<Entity, object>> userActivityClause =
                   new Dictionary<CustomerColumnBy, Func<Entity, object>>
                     {
-                        {CustomerColumnBy.Name, c => c.Attributes["MetadataAccount.NAME"]},
-                        //{CustomerColumnBy.Number, c => c.Kundennummer},
-                        //{CustomerColumnBy.Address, c => c.Strasse},
-                        //{CustomerColumnBy.ZipCode, c => c.Plz},
-                        //{CustomerColumnBy.City, c => c.Ort}
+                        {CustomerColumnBy.Name, c => c.Attributes[MetadataAccount.NAME]},
+                        {CustomerColumnBy.Number, c => c.Attributes[MetadataAccount.KUNDENNUMMER]},
+                        {CustomerColumnBy.Address, c => c.Attributes[MetadataAccount.STRASSE]},
+                        {CustomerColumnBy.ZipCode, c => c.Attributes[MetadataAccount.PLZ]},
+                        {CustomerColumnBy.City, c => c.Attributes[MetadataAccount.ORT]}
                     };
         public List<CrmAccount> GetAccounts(OrganizationServiceContext serviceContext, Model.RequestModels.CustomerSearchRequest searchRequest, out int recordCount)
         {
@@ -149,16 +150,16 @@ namespace EPM.Extension.Services.DynamicsCRM
                                                                                .Select(grp => grp.First())
                                                                                .ToList<MeteringPoint>();
 
-            List<CrmAccount> Beitreibers = new List<CrmAccount>();
+            List<CrmAccount> beitreibers = new List<CrmAccount>();
             foreach (MeteringPoint beitreiberMeteringPoint in uniqueBeitreiberMeteringPoints)
             {
-                if (beitreiberMeteringPoint.BetreiberId != null && beitreiberMeteringPoint.BetreiberId != Guid.Empty)
+                if ( beitreiberMeteringPoint.BetreiberId != Guid.Empty)
                 {
-                    Beitreibers.Add(this.GetAccountById(beitreiberMeteringPoint.BetreiberId));
+                    beitreibers.Add(this.GetAccountById(beitreiberMeteringPoint.BetreiberId));
                 }
             }
 
-            return Beitreibers;
+            return beitreibers;
         }
         #endregion ""
 
@@ -203,32 +204,56 @@ namespace EPM.Extension.Services.DynamicsCRM
         }
 
         #region "Beitreibers Metering Points"
-        public List<MeteringPoint> GetBeitreiberMetringPoints(Guid crmAccountId, Guid beitreiberId)
+        public MeteringPointResponse GetBeitreiberMetringPoints(MeteringPointSearchRequest request)
         {
-            List<MeteringPoint> beitreiberMeteringPoints = new List<MeteringPoint>();
 
             using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
             {
                 using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
                 {
-                    beitreiberMeteringPoints = this.GetBeitreiberMetringPoints(serviceContext, crmAccountId, beitreiberId);
+                    return GetBeitreiberMetringPoints(serviceContext, request);
                 }
             }
-
-            return beitreiberMeteringPoints;
         }
 
-        public List<MeteringPoint> GetBeitreiberMetringPoints(OrganizationServiceContext serviceContext, Guid crmAccountId, Guid beitreiberId)
+        private readonly Dictionary<MeteringPointColumnBy, Func<Entity, object>> meteringPointClause =
+                 new Dictionary<MeteringPointColumnBy, Func<Entity, object>>
+                    {
+                        {MeteringPointColumnBy.Zählpunktbezeichner, c => c.Attributes[MetadataDZählpunkt.ZAHLPUNKTBEZEICHNER]},
+                        {MeteringPointColumnBy.Kurzbezeichnung, c => c.Attributes[MetadataDZählpunkt.KURZEEZEICHNUNG]},
+                        {MeteringPointColumnBy.Anlagentyp, c => c.Attributes[MetadataDZählpunkt.ANLAGENTYP]},
+                        {MeteringPointColumnBy.Strasse, c => c.Attributes[MetadataDZählpunkt.STRASSE]},
+                        {MeteringPointColumnBy.PLZ, c => c.Attributes[MetadataDZählpunkt.PLZ]},
+                        {MeteringPointColumnBy.Ort, c => c.Attributes[MetadataDZählpunkt.ORT]},
+                        {MeteringPointColumnBy.Datenversand, c => c.Attributes[MetadataDZählpunkt.DATENVERSANDAKTIV]},
+                        {MeteringPointColumnBy.Zählverfahren, c => c.Attributes[MetadataDZählpunkt.ZAHLVERFAHREN]},
+                        {MeteringPointColumnBy.Messung, c => c.Attributes[MetadataDZählpunkt.UMESSUNG]}
+                    };
+
+        public MeteringPointResponse GetBeitreiberMetringPoints(OrganizationServiceContext serviceContext, MeteringPointSearchRequest searchRequest)
         {
-            IQueryable<Entity> zahplunkts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt).Where(za => (za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT) != null
-                                                                                                         && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT).Id == crmAccountId)
-                                                                                                         && (za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id != null
-                                                                                                         && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id == beitreiberId));
-            return this.GetMeteringPointsFromEntityCollection(serviceContext, zahplunkts);
+            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
+            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
+            int toRow = searchRequest.PageSize;
 
+            Func<Entity, bool> expression =
+                za => ( za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT) != null
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.ACCOUNT).Id == searchRequest.CustomerId
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id != null
+                        && za.GetAttributeValue<EntityReference>(MetadataDZählpunkt.BETREIBER).Id == searchRequest.BetrieberId
+                        && (za.GetAttributeValue<string>(MetadataDZählpunkt.KURZEEZEICHNUNG).IndexOf(searchRequest.Param, StringComparison.OrdinalIgnoreCase) >= 0 
+                            && searchSpecified || !searchSpecified)
+                     );
+            IQueryable<Entity> zahplunkts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt);
+            IEnumerable<Entity> oList =
+            searchRequest.IsAsc ?
+            zahplunkts.Where(expression).OrderBy(meteringPointClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
+            zahplunkts.Where(expression).OrderByDescending(meteringPointClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
+            var meteringPoints = this.GetMeteringPointsFromEntityCollection(serviceContext, oList);
+            return new MeteringPointResponse { MeteringPoints = meteringPoints, TotalCount = oList.Where(expression).ToList().Count };
         }
 
-        private List<MeteringPoint> GetMeteringPointsFromEntityCollection(OrganizationServiceContext serviceContext, IQueryable<Entity> zahplunkts)
+        private List<MeteringPoint> GetMeteringPointsFromEntityCollection(OrganizationServiceContext serviceContext, IEnumerable<Entity> zahplunkts)
         {
             List<MeteringPoint> meteringPoints = new List<MeteringPoint>();
             foreach (Entity zahplunkt in zahplunkts)
