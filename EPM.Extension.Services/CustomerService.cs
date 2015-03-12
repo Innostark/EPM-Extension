@@ -43,7 +43,6 @@ namespace EPM.Extension.Services
             customers.Insert(index, customer);
         }
 
-
         public CrmAccount GetCustomerById(Guid id)
         {
             return customers.FirstOrDefault(x => x.Id == id);
@@ -85,6 +84,17 @@ namespace EPM.Extension.Services
             betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
             betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
             return new CustomerResponse { Customers = oList, TotalCount = betriebers.Where(expression).ToList().Count };
+        }
+
+
+        public CrmAccount GetAccount(string username, string password)
+        {
+            return new CrmAccount
+            {
+                Id = Guid.NewGuid(),
+                Kunde = "test",
+                Kundennummer = "testnumber"
+            };
         }
     }
 }

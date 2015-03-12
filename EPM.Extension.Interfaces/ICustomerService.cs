@@ -15,6 +15,7 @@ namespace EPM.Extension.Interfaces
         CustomerResponse FindCustomers(CustomerSearchRequest request);
         CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest);
         CrmAccount GetCustomerById(Guid id);
+        CrmAccount GetAccount(string username, string password);
         void UpdateCustomer(CrmAccount customer);
     }
 }
