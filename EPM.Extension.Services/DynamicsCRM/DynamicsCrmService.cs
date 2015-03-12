@@ -454,8 +454,8 @@ namespace EPM.Extension.Services.DynamicsCRM
             {
                 using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
                 {
-                    IQueryable<Entity> grenzwerts = serviceContext.CreateQuery(EntityNames.Grenzwert).Where(g => g.Id == thresholdId);
-                    if(grenzwerts != null && grenzwerts.Count() >= 1)
+                    IQueryable<Entity> grenzwerts = serviceContext.CreateQuery(EntityNames.Grenzwert).Where(g => g.GetAttributeValue<Guid>(MetadataGrenzwert.Id) == thresholdId);
+                    if(grenzwerts != null && grenzwerts.ToList().Count() >= 1)
                     {
                         Entity grenzwert = grenzwerts.ToArray().FirstOrDefault();
 
