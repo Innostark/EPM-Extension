@@ -149,7 +149,7 @@
                     //select first row
                     var nTop = $('#CustomerList tbody tr')[0];
                     $(nTop).addClass('selected');
-                    //bTable.fnDraw();
+                    mTable.fnDraw();
                 }
             }
 
@@ -185,7 +185,7 @@
                 else {
                     oTable.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
-                    //bTable.fnDraw();
+                    mTable.fnDraw();
                 }
             });
         //****************************************Betriebe Child Table*************+
