@@ -36,7 +36,16 @@ namespace EPM.Extension.Services
 
         public MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest searchRequest)
         {
-            return crmService.GetBeitreiberMetringPoints(searchRequest);
+            if (searchRequest.BetrieberId != Guid.Empty && searchRequest.CustomerId != Guid.Empty)
+            {
+                return crmService.GetBeitreiberMetringPoints(searchRequest);
+                
+            }
+            return new MeteringPointResponse
+            {
+                MeteringPoints = new List<MeteringPoint>(),
+                TotalCount = 0
+            };
         }
 
         public MeteringPoint GetMeteringPointsById(Guid id)
