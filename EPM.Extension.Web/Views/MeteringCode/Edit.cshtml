@@ -171,9 +171,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item  in Model.MeteringCodeThresholds)
+            @foreach (var item in Model.MeteringCodeThresholds)
             {
-                <tr>
+                <tr id="type_@EPM.Extension.Model.MeteringPointThresholdType.User">
                     <td>@item.Id</td>
                     <td>@item.GultingAb </td>
                     <td>@item.SaisonalitatAnwenden</td>
@@ -185,10 +185,10 @@
                     <td>@item.MaximaWinter</td>
                     <td>
                         @{
-                        if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
-                        {
-                            tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
-                        }
+                if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                {
+                    tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                }
                         }
                         @Html.Raw(tag)
                     </td>
