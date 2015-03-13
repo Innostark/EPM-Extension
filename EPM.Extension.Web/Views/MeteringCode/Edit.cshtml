@@ -251,7 +251,8 @@
                         newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                     ];
                     $("#type_User td").each(function (index, val) {
-                        alert(index + '-' + val);
+                      $(this).innerHTML  =
+                        newModel[index + 1];
                     });
                     
                     $('#edit-threshold').modal('hide');
