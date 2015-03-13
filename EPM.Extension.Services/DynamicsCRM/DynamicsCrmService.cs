@@ -60,7 +60,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 {
                     IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account)
                                                     .Where(ac => ac.GetAttributeValue<EntityReference>(MetadataAccount.ACCOUNTEPMEXTENSIONPORTALUSER) != null
-                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.ACCOUNTEPMEXTENSIONPORTALUSER).Id != userId);
+                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.ACCOUNTEPMEXTENSIONPORTALUSER).Id == userId);
 
                     int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
                     int toRow = searchRequest.PageSize;
@@ -198,7 +198,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 {
                     IQueryable<Entity> accounts = serviceContext.CreateQuery(EntityNames.Account)
                                                     .Where(ac => ac.GetAttributeValue<EntityReference>(MetadataAccount.BETREIBEREPMEXTENSIONPORTALUSER) != null
-                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.BETREIBEREPMEXTENSIONPORTALUSER).Id != userId);
+                                                              && ac.GetAttributeValue<EntityReference>(MetadataAccount.BETREIBEREPMEXTENSIONPORTALUSER).Id == userId);
 
                     int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
                     int toRow = searchRequest.PageSize;
