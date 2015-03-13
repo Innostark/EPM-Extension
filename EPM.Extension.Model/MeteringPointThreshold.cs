@@ -12,12 +12,12 @@ namespace EPM.Extension.Model
         public string GrenzwertBezeichner { get; set; }
         public DateTime GultingAb { get; set; }
         public bool SaisonalitatAnwenden { get; set; }
-        public string MinimaGlobal { get; set; }
-        public string MaximaGlobal { get; set; }
-        public string MinimaSommer { get; set; }
-        public string MaximaSommer { get; set; }
-        public string MinimaWinter { get; set; }
-        public string MaximaWinter { get; set; }
+        public decimal MinimaGlobal { get; set; }
+        public decimal MaximaGlobal { get; set; }
+        public decimal MinimaSommer { get; set; }
+        public decimal MaximaSommer { get; set; }
+        public decimal MinimaWinter { get; set; }
+        public decimal MaximaWinter { get; set; }
         public MeteringPointThresholdType Type { get; set; }
 
     }

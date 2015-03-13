@@ -512,27 +512,27 @@ namespace EPM.Extension.Services.DynamicsCRM
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMaxSystem))
                         {
-                            meteringPointThreshlodSystem.MaximaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxSystem)).ToString();
+                            meteringPointThreshlodSystem.MaximaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxSystem);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMinSystem))
                         {
-                            meteringPointThreshlodSystem.MinimaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinSystem)).ToString();
+                            meteringPointThreshlodSystem.MinimaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinSystem);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMaxSystem))
                         {
-                            meteringPointThreshlodSystem.MaximaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxSystem)).ToString();
+                            meteringPointThreshlodSystem.MaximaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxSystem);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMinSystem))
                         {
-                            meteringPointThreshlodSystem.MinimaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinSystem)).ToString();
+                            meteringPointThreshlodSystem.MinimaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinSystem);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMaxSystem))
                         {
-                            meteringPointThreshlodSystem.MaximaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxSystem)).ToString();
+                            meteringPointThreshlodSystem.MaximaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxSystem);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinSystem))
                         {
-                            meteringPointThreshlodSystem.MinimaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinSystem)).ToString();
+                            meteringPointThreshlodSystem.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinSystem);
                         }
                         meteringPointThresholds.Add(meteringPointThreshlodSystem);
                         #endregion "System Threshold Values"
@@ -553,27 +553,27 @@ namespace EPM.Extension.Services.DynamicsCRM
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMaxUser))
                         {
-                            meteringPointThreshlodUser.MaximaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser)).ToString();
+                            meteringPointThreshlodUser.MaximaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMinUser))
                         {
-                            meteringPointThreshlodUser.MinimaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser)).ToString();
+                            meteringPointThreshlodUser.MinimaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMaxUser))
                         {
-                            meteringPointThreshlodUser.MaximaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser)).ToString();
+                            meteringPointThreshlodUser.MaximaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMinUser))
                         {
-                            meteringPointThreshlodUser.MinimaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser)).ToString();
+                            meteringPointThreshlodUser.MinimaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMaxUser))
                         {
-                            meteringPointThreshlodUser.MaximaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser)).ToString();
+                            meteringPointThreshlodUser.MaximaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser);
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinUser))
                         {
-                            meteringPointThreshlodUser.MinimaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser)).ToString();
+                            meteringPointThreshlodUser.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser);
                         }
                         meteringPointThresholds.Add(meteringPointThreshlodUser);
                         #endregion "User Threshold Values"
@@ -653,27 +653,27 @@ namespace EPM.Extension.Services.DynamicsCRM
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMaxUser))
                             {
-                                meteringPointThreshlodUser.MaximaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser)).ToString();
+                                meteringPointThreshlodUser.MaximaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser);
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMinUser))
                             {
-                                meteringPointThreshlodUser.MinimaGlobal = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser)).ToString();
+                                meteringPointThreshlodUser.MinimaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser);
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMaxUser))
                             {
-                                meteringPointThreshlodUser.MaximaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser)).ToString();
+                                meteringPointThreshlodUser.MaximaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser);
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMinUser))
                             {
-                                meteringPointThreshlodUser.MinimaSommer = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser)).ToString();
+                                meteringPointThreshlodUser.MinimaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser);
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMaxUser))
                             {
-                                meteringPointThreshlodUser.MaximaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser)).ToString();
+                                meteringPointThreshlodUser.MaximaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser);
                             }
                             if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinUser))
                             {
-                                meteringPointThreshlodUser.MinimaWinter = (grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser)).ToString();
+                                meteringPointThreshlodUser.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser);
                             }
 
                             return meteringPointThreshlodUser;
