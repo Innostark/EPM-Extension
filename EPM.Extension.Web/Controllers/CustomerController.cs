@@ -33,7 +33,7 @@ namespace EPM.Extension.Web.Controllers
         {
             CustomerViewModel viewModel = new CustomerViewModel();
 
-            var cList = customerService.FindCustomers(request);
+            var cList = customerService.FindCustomers(request, LoggedInUserId);
             viewModel.data = cList.Customers;
             viewModel.recordsTotal = cList.TotalCount;
             viewModel.recordsFiltered = cList.TotalCount;

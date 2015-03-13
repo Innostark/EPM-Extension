@@ -51,12 +51,12 @@ namespace EPM.Extension.Web.Controllers
                 return View(model);
             }
 
-            CrmAccount account = _customerService.GetAccount(model.Email, model.Password);
+            Guid accountId = _customerService.GetAccount(model.Email, model.Password);
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            if (account != null)
+            if ( accountId != Guid.Empty)
             {
-                _formsAuthentication.SignIn(model.Email,model.RememberMe, account.Id.ToString());
+                _formsAuthentication.SignIn(model.Email,model.RememberMe, accountId.ToString());
                 return RedirectToLocal(returnUrl);
             }
             

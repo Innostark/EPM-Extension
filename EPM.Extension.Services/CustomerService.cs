@@ -46,9 +46,9 @@ namespace EPM.Extension.Services
         }
 
 
-        public CustomerResponse FindCustomers(Model.RequestModels.CustomerSearchRequest searchRequest)
+        public CustomerResponse FindCustomers(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userGuid)
         {
-            return crmService.GetAccounts(searchRequest);            
+            return crmService.GetAccountsByUserId(searchRequest, userGuid);            
         }
 
         public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest)
@@ -71,14 +71,9 @@ namespace EPM.Extension.Services
         }
 
 
-        public CrmAccount GetAccount(string username, string password)
+        public Guid GetAccount(string username, string password)
         {
-            return new CrmAccount
-            {
-                Id = Guid.NewGuid(),
-                Kunde = "test",
-                Kundennummer = "testnumber"
-            };
+            return crmService.AuthenticateUser(username, password);
         }
     }
 }
