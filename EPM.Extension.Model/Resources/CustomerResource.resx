@@ -135,4 +135,31 @@
   <data name="AccountController_Login_Invalid_login_attempt_" xml:space="preserve">
     <value>Invalid login attempt.</value>
   </data>
+  <data name="MeteringPointThreshold_MaximaWinter_Maxima_Winter" xml:space="preserve">
+    <value>Maxima Winter</value>
+  </data>
+  <data name="MeteringPointThreshold_MinimaWinter_Minima_Winter" xml:space="preserve">
+    <value>Minima Winter</value>
+  </data>
+  <data name="MeteringPointThreshold_MaximaSommer_Maxima_Sommer" xml:space="preserve">
+    <value>Maxima Sommer</value>
+  </data>
+  <data name="MeteringPointThreshold_MinimaSommer_Minima_Sommer" xml:space="preserve">
+    <value>Minima Sommer</value>
+  </data>
+  <data name="MeteringPointThreshold_MaximaGlobal_Maxima_Global" xml:space="preserve">
+    <value>Maxima Global</value>
+  </data>
+  <data name="MeteringPointThreshold_MinimaGlobal_Minima_Global" xml:space="preserve">
+    <value>Minima Global</value>
+  </data>
+  <data name="GultingAb" xml:space="preserve">
+    <value>Gulting Ab</value>
+  </data>
+  <data name="MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden" xml:space="preserve">
+    <value>Saisonalitat Anwenden</value>
+  </data>
+  <data name="MeteringPointThreshold_GrenzwertBezeichner_Grenzwert_Bezeichner" xml:space="preserve">
+    <value>Grenzwert Bezeichner</value>
+  </data>
 </root>

@@ -88,6 +88,87 @@ namespace EPM.Extension.Model.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Gulting Ab.
+        /// </summary>
+        public static string GultingAb {
+            get {
+                return ResourceManager.GetString("GultingAb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grenzwert Bezeichner.
+        /// </summary>
+        public static string MeteringPointThreshold_GrenzwertBezeichner_Grenzwert_Bezeichner {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_GrenzwertBezeichner_Grenzwert_Bezeichner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maxima Global.
+        /// </summary>
+        public static string MeteringPointThreshold_MaximaGlobal_Maxima_Global {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MaximaGlobal_Maxima_Global", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maxima Sommer.
+        /// </summary>
+        public static string MeteringPointThreshold_MaximaSommer_Maxima_Sommer {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MaximaSommer_Maxima_Sommer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maxima Winter.
+        /// </summary>
+        public static string MeteringPointThreshold_MaximaWinter_Maxima_Winter {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MaximaWinter_Maxima_Winter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minima Global.
+        /// </summary>
+        public static string MeteringPointThreshold_MinimaGlobal_Minima_Global {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MinimaGlobal_Minima_Global", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minima Sommer.
+        /// </summary>
+        public static string MeteringPointThreshold_MinimaSommer_Minima_Sommer {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MinimaSommer_Minima_Sommer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minima Winter.
+        /// </summary>
+        public static string MeteringPointThreshold_MinimaWinter_Minima_Winter {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_MinimaWinter_Minima_Winter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saisonalitat Anwenden.
+        /// </summary>
+        public static string MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden {
+            get {
+                return ResourceManager.GetString("MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Name {
