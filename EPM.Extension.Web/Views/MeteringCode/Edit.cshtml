@@ -245,12 +245,15 @@
                 success: function (data) {
                     // Set values
                     //alert('saved');
-                    var t = $('#ThresholdTable').DataTable();
+                    var t = $('#type_User')[0];
                     var array = [
                         newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
                         newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                     ];
-                    var test = t.fnGetData(t.rows()[0]);
+                    $("#type_User td").each(function (index, val) {
+                        alert(index + '-' + val);
+                    });
+                    
                     $('#edit-threshold').modal('hide');
                 },
                 error: callError
