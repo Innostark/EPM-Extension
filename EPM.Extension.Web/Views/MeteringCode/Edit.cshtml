@@ -250,10 +250,16 @@
                         newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
                         newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                     ];
-                    $("#type_User td").each(function (index, val) {
-                      $(this).innerHTML  =
-                        newModel[index + 1];
-                    });
+
+                    $('#type_User td:eq(1)').innerHTML = newModel.GultingAb;
+                    $('#type_User td:eq(2)').innerHTML = newModel.SaisonalitatAnwenden;
+                    $('#type_User td:eq(3)').innerHTML = newModel.MinimaGlobal;
+                    $('#type_User td:eq(4)').innerHTML = newModel.MaximaGlobal;
+                    $('#type_User td:eq(5)').innerHTML = newModel.MinimaSommer;
+                    $('#type_User td:eq(6)').innerHTML = newModel.MaximaSommer;
+                    $('#type_User td:eq(7)').innerHTML = newModel.MinimaWinter;
+                    $('#type_User td:eq(8)').innerHTML = newModel.MaximaWinter;
+                   
                     
                     $('#edit-threshold').modal('hide');
                 },
