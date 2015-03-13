@@ -51,23 +51,9 @@ namespace EPM.Extension.Services
             return crmService.GetAccountsByUserId(searchRequest, userGuid);            
         }
 
-        public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest)
+        public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userGuid)
         {
-            int fromRow = (searchRequest.PageNo - 1) * searchRequest.PageSize;
-            int toRow = searchRequest.PageSize;
-            bool searchSpecified = !string.IsNullOrEmpty(searchRequest.Param);
-            List<CrmAccount> betriebers = crmService.GetBeitreibersByAccountId(searchRequest.CustomerId);
-            Func<CrmAccount, bool> expression =
-                s => (
-                    searchSpecified && 
-                    (!string.IsNullOrEmpty(s.Kunde) && s.Kunde.ToLower().Contains(searchRequest.Param.ToLower()))
-                    || !searchSpecified);
-
-            IEnumerable<CrmAccount> oList =
-            searchRequest.IsAsc ?
-            betriebers.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
-            betriebers.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
-            return new CustomerResponse { Customers = oList, TotalCount = betriebers.Where(expression).ToList().Count };
+            return crmService.GetBeitreibersByUserId(searchRequest, userGuid );
         }
 
 

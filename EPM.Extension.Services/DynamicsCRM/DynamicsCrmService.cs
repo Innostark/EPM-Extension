@@ -190,7 +190,7 @@ namespace EPM.Extension.Services.DynamicsCRM
         #endregion "Account"
 
         #region "Beitreibers"        
-        public CustomerResponse GetBeitreibersByUserId(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userId, out int recordCount)
+        public CustomerResponse GetBeitreibersByUserId(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userId)
         {
             using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
             {
@@ -218,7 +218,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                     accounts.Where(expression).OrderBy(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList() :
                     accounts.Where(expression).OrderByDescending(userActivityClause[searchRequest.OrderBy]).Skip(fromRow).Take(toRow).ToList();
 
-                    recordCount = accounts.Count(expression);
+                    int recordCount = accounts.Count(expression);
 
                     return new CustomerResponse { Customers = oList.Select(WrapAccountIntoCrmAccount).ToList(), TotalCount = recordCount, UserTotalCount = recordCount };
                 }

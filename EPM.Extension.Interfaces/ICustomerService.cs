@@ -12,7 +12,7 @@ namespace EPM.Extension.Interfaces
     public interface ICustomerService
     {
         CustomerResponse FindCustomers(CustomerSearchRequest request, Guid loggedInUserId);
-        CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest);
+        CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest, Guid loggedInUserId);
         CrmAccount GetCustomerById(Guid id);
         Guid GetAccount(string username, string password);
         void UpdateCustomer(CrmAccount customer);

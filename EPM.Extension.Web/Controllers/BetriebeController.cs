@@ -26,7 +26,7 @@ namespace EPM.Extension.Web.Controllers
         {
             CustomerViewModel viewModel = new CustomerViewModel();
 
-            var cList = _customerService.FindBetrieber(request);
+            var cList = _customerService.FindBetrieber(request, LoggedInUserId);
             viewModel.data = cList.Customers;
             viewModel.recordsTotal = cList.TotalCount;
             viewModel.recordsFiltered = cList.TotalCount;
