@@ -149,7 +149,7 @@
                     //select first row
                     var nTop = $('#CustomerList tbody tr')[0];
                     $(nTop).addClass('selected');
-                    bTable.fnDraw();
+                    //bTable.fnDraw();
                 }
             }
 
@@ -185,7 +185,7 @@
                 else {
                     oTable.$('tr.selected').removeClass('selected');
                     $(this).addClass('selected');
-                    bTable.fnDraw();
+                    //bTable.fnDraw();
                 }
             });
         //****************************************Betriebe Child Table*************+
@@ -195,7 +195,7 @@
 
         var bTable = $("#BetriebeList").dataTable({
             "iDisplayLength": 10,
-            "iDeferLoading": true,
+            //"iDeferLoading": true,
             "displayStart": startBetriebe || 0,
             "bFilter": true,
             "bLengthChange": false,
@@ -245,7 +245,7 @@
                     }
                     params.IsAsc = params.order[0].dir === "asc";
                     params.Param = $('#SearchBetriebeString').val();
-                    params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
+                   // params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
                     $("#BetriebeList_filter input").val($('#SearchBetriebeString').val());
                 },
                 complete: fnBetriebeComplete
