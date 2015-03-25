@@ -1,4 +1,5 @@
-﻿@model EPM.Extension.Model.MeteringPoint
+﻿@using EPM.Extension.Model
+@model EPM.Extension.Model.MeteringPoint
 
 @{
     ViewBag.Title = "Detail";
@@ -84,7 +85,7 @@
                 datatype: "json",
                 url: postUrl,
                 data: newModel,
-                success: function (data) {
+                success: function(data) {
                     // Set values
                     alert('Changes saved successfully.');
                     var t = $('#type_User')[0];
@@ -92,15 +93,20 @@
                         newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
                         newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                     ];
-
-                    $('#type_User td:eq(0)')[0].innerText = newModel.GultingAb;
-                    $('#type_User td:eq(1)')[0].innerHTML = newModel.SaisonalitatAnwenden;
-                    $('#type_User td:eq(2)')[0].innerHTML = newModel.MinimaGlobal;
-                    $('#type_User td:eq(3)')[0].innerHTML = newModel.MaximaGlobal;
-                    $('#type_User td:eq(4)')[0].innerHTML = newModel.MinimaSommer;
-                    $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaSommer;
-                    $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaWinter;
-                    $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaWinter;
+                    if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null 
+                      || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null 
+                      || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
+                        $('#System_isActive').prop('checked', '');
+                        $('#User_isActive').prop('checked', 'checked');
+                    }
+                    $('#type_User td:eq(1)')[0].innerText = newModel.GultingAb;
+                    $('#type_User td:eq(2)')[0].innerHTML = newModel.SaisonalitatAnwenden;
+                    $('#type_User td:eq(3)')[0].innerHTML = newModel.MinimaGlobal;
+                    $('#type_User td:eq(4)')[0].innerHTML = newModel.MaximaGlobal;
+                    $('#type_User td:eq(5)')[0].innerHTML = newModel.MinimaSommer;
+                    $('#type_User td:eq(6)')[0].innerHTML = newModel.MaximaSommer;
+                    $('#type_User td:eq(7)')[0].innerHTML = newModel.MinimaWinter;
+                    $('#type_User td:eq(8)')[0].innerHTML = newModel.MaximaWinter;
 
 
                     $('#edit-threshold').modal('hide');
@@ -110,9 +116,11 @@
 
 
         }
+
         function callError() {
             alert("Problem in Saving Changes.");
         }
+
         function getFormValues() {
             return {
                 Id: $('#edit-threshold #Id').val(),
@@ -141,9 +149,19 @@
                     }
                 ]
             });
-            $('#addMeteringCodeThreshold').click(function (e) {
+            if (@Model.MeteringCodeThresholds.Count() >= 2) {
+
+                var flag = '@Model.MeteringCodeThresholds.First(x => x.Type == MeteringPointThresholdType.System).IsActive' == 'True' ? true : false;
+                if (flag == true) {
+                    $('#System_isActive').prop('checked', 'checked');
+                } else {
+                    $('#User_isActive').prop('checked', 'checked');
+                }
+
+            }
+            $('#addMeteringCodeThreshold').click(function(e) {
                 var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
-                var url = "/MeteringCodeThreshold/Edit/"+data; // the url to the controller
+                var url = "/MeteringCodeThreshold/Edit/" + data; // the url to the controller
                 $.get(url, function(data) {
                     $('#form-content').html(data);
                     $('#edit-threshold').modal('show');

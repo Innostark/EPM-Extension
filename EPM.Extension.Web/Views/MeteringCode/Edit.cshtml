@@ -252,7 +252,12 @@
                     newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
                     newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                 ];
-
+                if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null 
+                      || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null 
+                      || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
+                    $('#System_isActive').prop('checked', '');
+                    $('#User_isActive').prop('checked', 'checked');
+                }
                 $('#type_User td:eq(1)')[0].innerText = newModel.GultingAb;
                 $('#type_User td:eq(2)')[0].innerHTML = newModel.SaisonalitatAnwenden;
                 $('#type_User td:eq(3)')[0].innerHTML = newModel.MinimaGlobal;
