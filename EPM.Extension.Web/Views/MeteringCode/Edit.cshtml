@@ -182,7 +182,7 @@
                     <td>@item.MinimaWinter</td>
                     <td>@item.MaximaWinter</td>
                     <td>
-                        @Html.RadioButton("isActive",item.IsActive,item.IsActive)
+                        @Html.RadioButton(@item.Type+"_isActive",item.IsActive,item.IsActive)
                     </td>
                     <td>
                         @{
