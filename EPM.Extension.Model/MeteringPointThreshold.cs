@@ -48,6 +48,8 @@ namespace EPM.Extension.Model
 
         public string GrenzwertType { get; set; }
 
+        public bool IsActive { get; set; }
+
         public MeteringPointThresholdType Type { get; set; }
 
     }

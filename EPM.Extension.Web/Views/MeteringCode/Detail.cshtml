@@ -34,6 +34,7 @@
                     <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
                     <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -50,6 +51,7 @@
                         <td>@item.MinimaSommerInt</td>
                         <td>@item.MinimaWinterInt</td>
                         <td>@item.MaximaWinterInt</td>
+                        <td><input type="radio" name="active" checked="@item.IsActive"/></td>
                         <td>
                             @{
                                 if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)

@@ -499,7 +499,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                     if (grenzwert != null)
                     {
                         #region "System Threshold Values"
-                        MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System" };
+                        MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System", IsActive = false};
 
                         if (grenzwert.Contains(MetadataGrenzwert.Grenze))
                         {
@@ -541,7 +541,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                         #endregion "System Threshold Values"
 
                         #region "User Threshold Values"
-                        MeteringPointThreshold meteringPointThreshlodUser = new MeteringPointThreshold { Type = MeteringPointThresholdType.User, GrenzwertType = "Grenzwert Benutzer" };
+                        MeteringPointThreshold meteringPointThreshlodUser = new MeteringPointThreshold { Type = MeteringPointThresholdType.User, GrenzwertType = "Grenzwert Benutzer",IsActive = false};
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwerteId))
                         {
                             meteringPointThreshlodUser.Id = grenzwert.GetAttributeValue<Guid>(MetadataGrenzwert.GrenzwerteId);
@@ -549,6 +549,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                         if (grenzwert.Contains(MetadataGrenzwert.Grenze))
                         {
                             meteringPointThreshlodUser.GrenzwertBezeichner = String.Format("{0:F2}", grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.Grenze));
+                            
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GültigAb))
                         {
@@ -557,26 +558,38 @@ namespace EPM.Extension.Services.DynamicsCRM
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMaxUser))
                         {
                             meteringPointThreshlodUser.MaximaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMaxUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertMinUser))
                         {
                             meteringPointThreshlodUser.MinimaGlobal = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertMinUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMaxUser))
                         {
                             meteringPointThreshlodUser.MaximaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMaxUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertSommerMinUser))
                         {
                             meteringPointThreshlodUser.MinimaSommer = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertSommerMinUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMaxUser))
                         {
                             meteringPointThreshlodUser.MaximaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMaxUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinUser))
                         {
                             meteringPointThreshlodUser.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser);
+                            meteringPointThreshlodUser.IsActive = true;
+                            meteringPointThreshlodSystem.IsActive = false;
                         }
                         meteringPointThresholds.Add(meteringPointThreshlodUser);
                         #endregion "User Threshold Values"
