@@ -499,7 +499,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                     if (grenzwert != null)
                     {
                         #region "System Threshold Values"
-                        MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System", IsActive = false};
+                        MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System", IsActive = true};
 
                         if (grenzwert.Contains(MetadataGrenzwert.Grenze))
                         {
