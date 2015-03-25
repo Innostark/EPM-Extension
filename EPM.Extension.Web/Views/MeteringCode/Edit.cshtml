@@ -181,7 +181,9 @@
                     <td>@item.MinimaSommer</td>
                     <td>@item.MinimaWinter</td>
                     <td>@item.MaximaWinter</td>
-                    <td><input type="radio" name="active" checked="@item.IsActive" /></td>
+                    <td>
+                        @Html.RadioButton("isActive",item.IsActive,item.IsActive)
+                    </td>
                     <td>
                         @{
                 if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
