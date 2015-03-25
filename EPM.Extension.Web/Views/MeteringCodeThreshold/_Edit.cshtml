@@ -18,16 +18,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.SaisonalitatAnwenden, htmlAttributes: new { @class = "control-label col-md-5" })
-        <div class="col-md-5">
-            <div class="checkbox">
-                @Html.EditorFor(model => model.SaisonalitatAnwenden)
-                @Html.ValidationMessageFor(model => model.SaisonalitatAnwenden, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
+    
     <div class="form-group">
         @Html.LabelFor(model => model.MinimaGlobal, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
@@ -43,6 +34,17 @@
             @Html.ValidationMessageFor(model => model.MaximaGlobalInt, "", new { @class = "text-danger" })
         </div>
     </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.SaisonalitatAnwenden, htmlAttributes: new { @class = "control-label col-md-5" })
+        <div class="col-md-5">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.SaisonalitatAnwenden)
+                @Html.ValidationMessageFor(model => model.SaisonalitatAnwenden, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
 
     <div class="form-group" id="minimaSommerDiv">
         @Html.LabelFor(model => model.MinimaSommer, htmlAttributes: new { @class = "control-label col-md-5" })
