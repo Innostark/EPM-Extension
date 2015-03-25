@@ -14,7 +14,7 @@ namespace EPM.Extension.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapRoute(
                 name: "Default_MeteringPoint",
-                url: "MeteringCode/{id}",
+                url: "MeteringPoint/{id}",
                 defaults: new { controller = "MeteringCode", action = "Detail" }
             );
             routes.MapRoute(
