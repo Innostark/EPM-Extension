@@ -82,15 +82,42 @@
 </div>
 
 <script language="javascript">
-         (function thename() {
+    function showAdvanceFields() {
+        $('#edit-threshold #MinimaSommer').show();
+        $('#edit-threshold #MaximaSommer').show();
+        $('#edit-threshold #MinimaWinter').show();
+        $('#edit-threshold #MaximaWinter').show();
+    }
+    function hideAdvanceFields() {
+        $('#edit-threshold #MinimaSommer').hide();
+        $('#edit-threshold #MaximaSommer').hide();
+        $('#edit-threshold #MinimaWinter').hide();
+        $('#edit-threshold #MaximaWinter').hide();
+    }
 
-             $("#GultingAb").datepicker();
+    function showHideAdvanceFields() {
+        if ($('#SaisonalitatAnwenden')) {
+            showAdvanceFields();
+        } else {
+            hideAdvanceFields();
+        }
+    }
+    (function thename() {
 
-            $('#saveThreshold').click(function () {
-                saveClicked();
-            });
+        $("#GultingAb").datepicker();
+        $('#SaisonalitatAnwenden').click(function() {
+            showHideAdvanceFields();
+        });
 
+        $('#saveThreshold').click(function () {
+            saveClicked();
+        });
+        if ('@Model.SaisonalitatAnwenden') {
+            showAdvanceFields();
+        } else {
+            hideAdvanceFields();
+        }
 
-        }()); //auto-run
+    }()); //auto-run
 
 </script>
