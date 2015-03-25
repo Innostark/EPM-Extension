@@ -40,11 +40,16 @@ namespace EPM.Extension.Web.Controllers
             return View(meteringCode);
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public ActionResult EditMinimized(Guid id)
+        public ActionResult Detail(string id)
         {
-            MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
-            return View(meteringCode);
+            var meteringPoint = new MeteringPoint
+            {
+                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() {Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System}, new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User} }
+            };
+
+            return View(meteringPoint);
         }
     }
 }

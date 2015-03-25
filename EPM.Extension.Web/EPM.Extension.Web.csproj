@@ -337,8 +337,12 @@
     <Content Include="Views\MeteringCodeThreshold\_Edit.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\_Create.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\Test.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\MeteringCode\EditMinimized.cshtml" />
     <Content Include="Views\Shared\_LayoutWithoutHeader.cshtml" />
+=======
+    <Content Include="Views\MeteringCode\Detail.cshtml" />
+>>>>>>> 7e9c71620a045a493b39bef3b214967bd4796938
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
