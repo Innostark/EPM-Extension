@@ -155,6 +155,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th>Active</th>
                 <th></th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
@@ -164,7 +165,7 @@
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
                 <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
-                <th></th>
+
                 <th></th>
             </tr>
         </thead>
@@ -173,6 +174,10 @@
             {
                 <tr id="type_@item.Type">
                     <td>@item.Id</td>
+                    <td>
+                        @Html.RadioButton(@item.Type + "_isActive", "", item.IsActive, new { @disabled = "disabled" })
+                    </td>
+
                     <td>@item.GrenzwertType</td>
                     <td>@item.GultingAb </td>
                     <td>@item.SaisonalitatAnwenden</td>
@@ -182,11 +187,7 @@
                     <td>@item.MinimaSommer</td>
                     <td>@item.MinimaWinter</td>
                     <td>@item.MaximaWinter</td>
-                    <td>
-                        @Html.RadioButton(@item.Type + "_isActive", "", item.IsActive,  new { @disabled = "disabled" })
 
-
-                    </td>
                     <td>
                         @{
                 if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
@@ -260,14 +261,14 @@
                     $('#System_isActive').prop('checked', '');
                     $('#User_isActive').prop('checked', 'checked');
                 }
-                $('#type_User td:eq(1)')[0].innerText = newModel.GultingAb;
-                $('#type_User td:eq(2)')[0].innerHTML = newModel.SaisonalitatAnwenden;
-                $('#type_User td:eq(3)')[0].innerHTML = newModel.MinimaGlobal;
-                $('#type_User td:eq(4)')[0].innerHTML = newModel.MaximaGlobal;
-                $('#type_User td:eq(5)')[0].innerHTML = newModel.MinimaSommer;
-                $('#type_User td:eq(6)')[0].innerHTML = newModel.MaximaSommer;
-                $('#type_User td:eq(7)')[0].innerHTML = newModel.MinimaWinter;
-                $('#type_User td:eq(8)')[0].innerHTML = newModel.MaximaWinter;
+                $('#type_User td:eq(2)')[0].innerText = newModel.GultingAb;
+                $('#type_User td:eq(3)')[0].innerHTML = newModel.SaisonalitatAnwenden;
+                $('#type_User td:eq(4)')[0].innerHTML = newModel.MinimaGlobal;
+                $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaGlobal;
+                $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaSommer;
+                $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaSommer;
+                $('#type_User td:eq(8)')[0].innerHTML = newModel.MinimaWinter;
+                $('#type_User td:eq(9)')[0].innerHTML = newModel.MaximaWinter;
 
 
                 $('#edit-threshold').modal('hide');

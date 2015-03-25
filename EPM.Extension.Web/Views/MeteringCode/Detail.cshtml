@@ -4,77 +4,104 @@
 @{
     ViewBag.Title = "Detail";
     string tag = "";
+    Layout = null;
     
 }
+<!DOCTYPE html>
+<html lang="@EPM.Extension.Web.Helpers.CultureHelper.GetCurrentNeutralCulture()">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="allow">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
 
-<h2>Detail</h2>
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>
 
-<div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div id="edit-threshold-container" class="modal-dialog">
-        <div id="form-content" class="modal-content">
+    @Scripts.Render("~/bundles/bootstrap")
+    <script type="text/javascript" src="~/Scripts/App/Site.js"></script>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="~/Content/jquery.dataTables.css" />
+    <link rel="stylesheet" href="~/Content/themes/base/base.css" />
+    <link rel="stylesheet" href="~/Content/themes/base/theme.css" />
+    <link rel="stylesheet" href="~/Content/themes/base/datepicker.css" />
+    @Scripts.Render("~/bundles/modernizr")
 
+
+</head>
+<body>
+    <h2>Detail</h2>
+
+    <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="edit-threshold-container" class="modal-dialog">
+            <div id="form-content" class="modal-content">
+
+            </div>
         </div>
     </div>
-</div>
 
 
-<div class="row-fluid">
-    <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
-    <div class="span12">
-        <table id="ThresholdTable" class="table display table-responsive">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.MeteringCodeThresholds)
-                {
-                    <tr id="type_@item.Type">
-                        <td>@item.Id</td>
-                        <td>@item.GrenzwertType</td>
-                        <td>@item.GultingAb </td>
-                        <td>@item.SaisonalitatAnwenden</td>
-                        <td>@item.MinimaGlobalInt</td>
-                        <td>@item.MaximaGlobalInt</td>
-                        <td>@item.MinimaSommerInt</td>
-                        <td>@item.MinimaSommerInt</td>
-                        <td>@item.MinimaWinterInt</td>
-                        <td>@item.MaximaWinterInt</td>
-                        <td>
-                            @Html.RadioButton(@item.Type + "_isActive", "", item.IsActive,  new {  @disabled="disabled" })
-                        </td>
-                        <td>
-                            @{
-                                if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
-                                {
-                                    tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
-                                }
-                            }
-                            @Html.Raw(tag)
-                        </td>
+    <div class="row-fluid">
+        <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
+        <div class="span12">
+            <table id="ThresholdTable" class="table display table-responsive">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Active</th>
+                        <th></th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+
+                        <th></th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.MeteringCodeThresholds)
+                    {
+                        <tr id="type_@item.Type">
+                            <td>@item.Id</td>
+                            <td>
+                                @Html.RadioButton(@item.Type + "_isActive", "", item.IsActive, new { @disabled = "disabled" })
+                            </td>
+                            <td>@item.GrenzwertType</td>
+                            <td>@item.GultingAb </td>
+                            <td>@item.SaisonalitatAnwenden</td>
+                            <td>@item.MinimaGlobalInt</td>
+                            <td>@item.MaximaGlobalInt</td>
+                            <td>@item.MinimaSommerInt</td>
+                            <td>@item.MinimaSommerInt</td>
+                            <td>@item.MinimaWinterInt</td>
+                            <td>@item.MaximaWinterInt</td>
+
+                            <td>
+                                @{
+                                    if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                                    {
+                                        tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                                    }
+                                }
+                                @Html.Raw(tag)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-        
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+    <p>
+        <a href="@Request.UrlReferrer">Back</a>
+    </p>
+</body>
+</html>
 @section scripts
 {
     <script type="text/javascript">
@@ -95,20 +122,20 @@
                         newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
                         newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                     ];
-                    if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null 
-                      || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null 
+                    if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null
+                      || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null
                       || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
                         $('#System_isActive').prop('checked', '');
                         $('#User_isActive').prop('checked', 'checked');
                     }
-                    $('#type_User td:eq(1)')[0].innerText = newModel.GultingAb;
-                    $('#type_User td:eq(2)')[0].innerHTML = newModel.SaisonalitatAnwenden;
-                    $('#type_User td:eq(3)')[0].innerHTML = newModel.MinimaGlobal;
-                    $('#type_User td:eq(4)')[0].innerHTML = newModel.MaximaGlobal;
-                    $('#type_User td:eq(5)')[0].innerHTML = newModel.MinimaSommer;
-                    $('#type_User td:eq(6)')[0].innerHTML = newModel.MaximaSommer;
-                    $('#type_User td:eq(7)')[0].innerHTML = newModel.MinimaWinter;
-                    $('#type_User td:eq(8)')[0].innerHTML = newModel.MaximaWinter;
+                    $('#type_User td:eq(2)')[0].innerText = newModel.GultingAb;
+                    $('#type_User td:eq(3)')[0].innerHTML = newModel.SaisonalitatAnwenden;
+                    $('#type_User td:eq(4)')[0].innerHTML = newModel.MinimaGlobal;
+                    $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaGlobal;
+                    $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaSommer;
+                    $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaSommer;
+                    $('#type_User td:eq(8)')[0].innerHTML = newModel.MinimaWinter;
+                    $('#type_User td:eq(9)')[0].innerHTML = newModel.MaximaWinter;
 
 
                     $('#edit-threshold').modal('hide');
