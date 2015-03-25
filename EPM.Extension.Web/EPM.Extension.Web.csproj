@@ -273,6 +273,8 @@
     <Content Include="Scripts\App\Site.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\EPMEXTENSION.pubxml" />
+    <None Include="Properties\PublishProfiles\EPMEXTENSION0064.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -335,6 +337,8 @@
     <Content Include="Views\MeteringCodeThreshold\_Edit.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\_Create.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\Test.cshtml" />
+    <Content Include="Views\MeteringCode\EditMinimized.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithoutHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -411,6 +415,8 @@
           <DevelopmentServerPort>10294</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:10294/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:10294/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

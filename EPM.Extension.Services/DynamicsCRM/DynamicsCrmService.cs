@@ -26,26 +26,29 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         public Guid AuthenticateUser(string username, string password)
         {
+            
+
             Guid userId = new Guid();
+            userId = Guid.Parse("269c6436-01c9-e411-8fd9-00155d65282d");
 
-            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
-            {
-                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
-                {
-                    IQueryable<Entity> usersQ = serviceContext.CreateQuery(EntityNames.EpmExtensionPortalUser).Where(u => u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.UserName) == username
-                                                                                                                       && u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.Password) == password);
-                    try
-                    {
-                        List<Entity> users = usersQ.ToList<Entity>();
-                        if (users.Count == 1)
-                            return users[0].Id;
-                    }
-                    catch (Exception ex)
-                    {
+            //using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            //{
+            //    using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+            //    {
+            //        IQueryable<Entity> usersQ = serviceContext.CreateQuery(EntityNames.EpmExtensionPortalUser).Where(u => u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.UserName) == username
+            //                                                                                                           && u.GetAttributeValue<string>(MetadataEpmExtensionPortalUser.Password) == password);
+            //        try
+            //        {
+            //            List<Entity> users = usersQ.ToList<Entity>();
+            //            if (users.Count == 1)
+            //                return users[0].Id;
+            //        }
+            //        catch (Exception ex)
+            //        {
 
-                    }
-                }
-            }
+            //        }
+            //    }
+            //}
 
             return userId;
         }
@@ -720,7 +723,7 @@ namespace EPM.Extension.Services.DynamicsCRM
         {
             IServiceManagement<IDiscoveryService> serviceManagement = DynamicsCrmService.GetDiscoveryService("http://10.10.30.6:5555");
             IServiceManagement<IOrganizationService> orgServiceManagement = DynamicsCrmService.GetOrganisationService("http://10.10.30.6:5555", "crm-epm");
-            AuthenticationCredentials authenticationCredentials = GetCredentials(serviceManagement.AuthenticationType, "CRM-001", "Energy4321!", "ENOMOS");
+            AuthenticationCredentials authenticationCredentials = GetCredentials(serviceManagement.AuthenticationType, "Dev0001", "London123", "ENOMOS");
 
             return GetProxy<IOrganizationService, OrganizationServiceProxy>(orgServiceManagement, authenticationCredentials);
         }

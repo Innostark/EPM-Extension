@@ -39,5 +39,12 @@ namespace EPM.Extension.Web.Controllers
             MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
             return View(meteringCode);
         }
+
+        [HttpGet]
+        public ActionResult EditMinimized(Guid id)
+        {
+            MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
+            return View(meteringCode);
+        }
     }
 }
