@@ -24,19 +24,7 @@ namespace EPM.Extension.Web.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id)
         {
-            //MeteringPointThreshold model = _meteringPointThresholdService.GetMeteringPointThresholdById(id);
-            MeteringPointThreshold model = new MeteringPointThreshold()
-            {
-                Id = Guid.NewGuid(),
-                Type = MeteringPointThresholdType.User,
-                GultingAb = DateTime.Now,
-                MaximaGlobal = 10.5m,
-                MinimaGlobal = 5.5m,
-                MaximaSommer = 20.3m,
-                MinimaSommer = 15.2m,
-                MaximaWinter = 7.5m,
-                MinimaWinter = 5.1m
-            };
+            MeteringPointThreshold model = _meteringPointThresholdService.GetMeteringPointThresholdById(id);
             return PartialView("_Edit", model);
         }
 
