@@ -29,6 +29,24 @@ namespace EPM.Extension.Model
         public decimal MinimaWinter { get; set; }
         [Display(ResourceType = typeof (CustomerResource), Name = "MeteringPointThreshold_MaximaWinter_Maxima_Winter")]
         public decimal MaximaWinter { get; set; }
+
+
+
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MinimaGlobal_Minima_Global")]
+        public int MinimaGlobalInt { get { return Convert.ToInt32(MinimaGlobal); }}
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MaximaGlobal_Maxima_Global")]
+        public int MaximaGlobalInt { get { return Convert.ToInt32(MaximaGlobal); } }
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MinimaSommer_Minima_Sommer")]
+        public int MinimaSommerInt { get { return Convert.ToInt32(MinimaSommer); } }
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MaximaSommer_Maxima_Sommer")]
+        public int MaximaSommerInt { get { return Convert.ToInt32(MaximaSommer); } }
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MinimaWinter_Minima_Winter")]
+        public int MinimaWinterInt { get { return Convert.ToInt32(MinimaWinter); } }
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MaximaWinter_Maxima_Winter")]
+        public int MaximaWinterInt { get { return Convert.ToInt32(MaximaWinter); } }
+
+
+
         public MeteringPointThresholdType Type { get; set; }
 
     }

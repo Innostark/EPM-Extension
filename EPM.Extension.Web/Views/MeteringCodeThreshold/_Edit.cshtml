@@ -9,15 +9,7 @@
 
 <div class="modal-body">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.GrenzwertBezeichner, htmlAttributes: new { @class = "control-label col-md-5" })
-        <div class="col-md-5">
-            @Html.EditorFor(model => model.GrenzwertBezeichner, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.HiddenFor(model => model.Id)
-            @Html.ValidationMessageFor(model => model.GrenzwertBezeichner, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
+    
     <div class="form-group">
         @Html.LabelFor(model => model.GultingAb, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
@@ -39,48 +31,48 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MinimaGlobal, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MinimaGlobal, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MinimaGlobal, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MinimaGlobalInt, new { htmlAttributes = new { @class = "form-control", @id="MinimaGlobal" } })
+            @Html.ValidationMessageFor(model => model.MinimaGlobalInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MaximaGlobal, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MaximaGlobal, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MaximaGlobal, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MaximaGlobalInt, new { htmlAttributes = new { @class = "form-control",@id="MaximaGlobal" } })
+            @Html.ValidationMessageFor(model => model.MaximaGlobalInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MinimaSommer, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MinimaSommer, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MinimaSommer, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MinimaSommerInt, new { htmlAttributes = new { @class = "form-control",@id="MinimaSommer" } })
+            @Html.ValidationMessageFor(model => model.MinimaSommerInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MaximaSommer, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MaximaSommer, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MaximaSommer, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MaximaSommerInt, new { htmlAttributes = new { @class = "form-control",@id ="MaximaSommer" }})
+            @Html.ValidationMessageFor(model => model.MaximaSommerInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MinimaWinter, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MinimaWinter, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MinimaWinter, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MinimaWinterInt, new { htmlAttributes = new { @class = "form-control", @id = "MinimaWinter" } })
+            @Html.ValidationMessageFor(model => model.MinimaWinterInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MaximaWinter, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
-            @Html.EditorFor(model => model.MaximaWinter, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.MaximaWinter, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.MaximaWinterInt, new { htmlAttributes = new { @class = "form-control", @id = "MaximaWinter" } })
+            @Html.ValidationMessageFor(model => model.MaximaWinterInt, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -92,6 +84,7 @@
 <script language="javascript">
          (function thename() {
 
+             $("#GultingAb").datepicker();
 
             $('#saveThreshold').click(function () {
                 saveClicked();
