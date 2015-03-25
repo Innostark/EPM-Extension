@@ -44,12 +44,8 @@ namespace EPM.Extension.Web.Controllers
         [HttpGet]
         public ActionResult Detail(string id)
         {
-            var meteringPoint = new MeteringPoint
-            {
-                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() {Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System}, new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User} }
-            };
-
-            return View(meteringPoint);
+            MeteringPoint pt = _meteringCodeService.GetMeteringPointsByCode(id);
+            return View(pt);
         }
     }
 }

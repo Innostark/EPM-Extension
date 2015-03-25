@@ -52,5 +52,14 @@ namespace EPM.Extension.Services
         {
             return crmService.GetMeteringPointById(id);
         }
+
+        public MeteringPoint GetMeteringPointsByCode(string id)
+        {
+            var meteringPoint = new MeteringPoint
+            {
+                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System }, new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User } }
+            };
+            return meteringPoint;//crmService.GetMeteringPointById(id);
+        }
     }
 }

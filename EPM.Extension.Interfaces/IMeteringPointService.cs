@@ -14,5 +14,7 @@ namespace EPM.Extension.Interfaces
     {
         MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest request);
         MeteringPoint GetMeteringPointsById(Guid id);
+
+        MeteringPoint GetMeteringPointsByCode(string id);
     }
 }
