@@ -105,8 +105,13 @@
     (function thename() {
 
         $("#GultingAb").datepicker();
-        $('#SaisonalitatAnwenden').click(function() {
-            showHideAdvanceFields();
+        $('#SaisonalitatAnwenden').click(function () {
+            alert('clicked');
+            if(this.checked)
+            showAdvanceFields();
+            else {
+                hideAdvanceFields();
+            }
         });
 
         $('#saveThreshold').click(function () {
