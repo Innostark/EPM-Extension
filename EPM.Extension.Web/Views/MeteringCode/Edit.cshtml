@@ -1,4 +1,5 @@
-﻿@model EPM.Extension.Model.MeteringPoint
+﻿@using EPM.Extension.Model
+@model EPM.Extension.Model.MeteringPoint
 @{
     ViewBag.Title = "Detail";
     string tag = "";
@@ -234,60 +235,70 @@
 @section scripts
 {
     <script type="text/javascript">
-        function saveClicked() {
-            var newModel = getFormValues();
-           
-            var postUrl = "http://localhost:10294/MeteringCodeThreshold/Edit";
-            $.ajax({
-                type: "POST",
-                datatype: "json",
-                url: postUrl,
-                data: newModel,
-                success: function (data) {
-                    // Set values
-                    alert('Changes saved successfully.');
-                    var t = $('#type_User')[0];
-                    var array = [
-                        newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
-                        newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
-                    ];
+    function saveClicked() {
+        var newModel = getFormValues();
 
-                    $('#type_User td:eq(0)')[0].innerText = newModel.GultingAb;
-                    $('#type_User td:eq(1)')[0].innerHTML = newModel.SaisonalitatAnwenden;
-                    $('#type_User td:eq(2)')[0].innerHTML = newModel.MinimaGlobal;
-                    $('#type_User td:eq(3)')[0].innerHTML = newModel.MaximaGlobal;
-                    $('#type_User td:eq(4)')[0].innerHTML = newModel.MinimaSommer;
-                    $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaSommer;
-                    $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaWinter;
-                    $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaWinter;
-                   
-                    
-                    $('#edit-threshold').modal('hide');
-                },
-                error: callError
-            });
-           
-           
-        }
-        function callError() {
-            alert("Problem in Saving Changes.");
-        }
-        function getFormValues() {
-            return {
-                Id: $('#edit-threshold #Id').val(),
-                GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
-                GultingAb: $('#edit-threshold #GultingAb').val(),
-                SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
-                MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
-                MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
-                MinimaSommer: $('#edit-threshold #MinimaSommer').val(),
-                MaximaSommer: $('#edit-threshold #MaximaSommer').val(),
-                MinimaWinter: $('#edit-threshold #MinimaWinter').val(),
-                MaximaWinter: $('#edit-threshold #MaximaWinter').val()
-            };
-        }
+        var postUrl = "http://localhost:10294/MeteringCodeThreshold/Edit";
+        $.ajax({
+            type: "POST",
+            datatype: "json",
+            url: postUrl,
+            data: newModel,
+            success: function (data) {
+                // Set values
+                alert('Changes saved successfully.');
+                var t = $('#type_User')[0];
+                var array = [
+                    newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
+                    newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
+                ];
 
-        $(document).ready(function() {
+                $('#type_User td:eq(0)')[0].innerText = newModel.GultingAb;
+                $('#type_User td:eq(1)')[0].innerHTML = newModel.SaisonalitatAnwenden;
+                $('#type_User td:eq(2)')[0].innerHTML = newModel.MinimaGlobal;
+                $('#type_User td:eq(3)')[0].innerHTML = newModel.MaximaGlobal;
+                $('#type_User td:eq(4)')[0].innerHTML = newModel.MinimaSommer;
+                $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaSommer;
+                $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaWinter;
+                $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaWinter;
+
+
+                $('#edit-threshold').modal('hide');
+            },
+            error: callError
+        });
+
+
+    }
+    function callError() {
+        alert("Problem in Saving Changes.");
+    }
+    function getFormValues() {
+        return {
+            Id: $('#edit-threshold #Id').val(),
+            GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
+            GultingAb: $('#edit-threshold #GultingAb').val(),
+            SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
+            MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
+            MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
+            MinimaSommer: $('#edit-threshold #MinimaSommer').val(),
+            MaximaSommer: $('#edit-threshold #MaximaSommer').val(),
+            MinimaWinter: $('#edit-threshold #MinimaWinter').val(),
+            MaximaWinter: $('#edit-threshold #MaximaWinter').val()
+        };
+    }
+
+    $(document).ready(function () {
+        if ('@Model.MeteringCodeThresholds.Count()' >= 2) {
+
+            var flag = '@Model.MeteringCodeThresholds.First(x=>x.Type == MeteringPointThresholdType.System).IsActive';
+            if (flag== true) {
+                $('#System_isActive').prop('checked', 'checked');
+            } else {
+                $('#User_isActive').prop('checked', 'checked');
+            }
+
+        }
             var thresholdTable = $('#ThresholdTable').dataTable({
                 "bFilter": false,
                 "bLengthChange": false,
