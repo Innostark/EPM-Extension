@@ -88,7 +88,7 @@ namespace EPM.Extension.Model.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gulting Ab.
+        ///   Looks up a localized string similar to Gültig Ab.
         /// </summary>
         public static string GultingAb {
             get {

@@ -46,6 +46,7 @@ namespace EPM.Extension.Model
         public int MaximaWinterInt { get { return Convert.ToInt32(MaximaWinter); } }
 
 
+        public string GrenzwertType { get; set; }
 
         public MeteringPointThresholdType Type { get; set; }
 
