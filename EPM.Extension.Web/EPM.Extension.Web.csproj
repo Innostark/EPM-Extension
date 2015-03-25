@@ -335,6 +335,7 @@
     <Content Include="Views\MeteringCodeThreshold\_Edit.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\_Create.cshtml" />
     <Content Include="Views\MeteringCodeThreshold\Test.cshtml" />
+    <Content Include="Views\MeteringCode\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

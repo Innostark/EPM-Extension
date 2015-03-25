@@ -39,5 +39,17 @@ namespace EPM.Extension.Web.Controllers
             MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
             return View(meteringCode);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Detail(string id)
+        {
+            var meteringPoint = new MeteringPoint
+            {
+                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() {Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System}, new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User} }
+            };
+
+            return View(meteringPoint);
+        }
     }
 }
