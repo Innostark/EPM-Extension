@@ -80,7 +80,6 @@ namespace EPM.Extension.Services
                     MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System,IsActive = true, GrenzwertType = "Grenzwert System"}
                     , new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User, IsActive = false,GrenzwertType = "Grenzwert Benutzer"} }
                 };
-                throw new Exception("test this code");
                 return meteringPoint;//crmService.GetMeteringPointById(id);
             }
             catch (Exception exception)
