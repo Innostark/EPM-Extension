@@ -326,6 +326,24 @@ namespace EPM.Extension.Services.DynamicsCRM
             return meteringPoints;
         }
 
+        public MeteringPoint GetMeteringPointByCode(string meteringPointCode)
+        {
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    var zahplunkts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt).Where(za => za.GetAttributeValue<string>(MetadataDZählpunkt.ZAHLPUNKTBEZEICHNER) == meteringPointCode);
+                    List<MeteringPoint> meteringPoints = GetMeteringPointsFromEntityCollection(serviceContext, zahplunkts);
+                    if(meteringPoints != null && meteringPoints.Count == 1)
+                    {
+                        return meteringPoints[0];
+                    }
+                }
+            }
+
+            return null;
+        }
+
         #region "Beitreibers Metering Points"
         public MeteringPointResponse GetBeitreiberMetringPoints(MeteringPointSearchRequest request)
         {
