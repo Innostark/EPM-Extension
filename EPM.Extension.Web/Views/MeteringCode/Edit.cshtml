@@ -298,7 +298,10 @@
 
     $(document).ready(function () {
       
-            var thresholdTable = $('#ThresholdTable').dataTable({
+        var thresholdTable = $('#ThresholdTable').dataTable({
+                
+                "sDom": '<"top"i>rt<"bottom"flp><"clear">',
+                
                 "bFilter": false,
                 "bLengthChange": false,
                 "aoColumnDefs": [
