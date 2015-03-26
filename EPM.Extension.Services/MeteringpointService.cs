@@ -57,7 +57,8 @@ namespace EPM.Extension.Services
         {
             var meteringPoint = new MeteringPoint
             {
-                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System,IsActive = true}, new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User, IsActive = false} }
+                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System,IsActive = true, GrenzwertType = "Grenzwert System"}
+                    , new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User, IsActive = false,GrenzwertType = "Grenzwert Benutzer"} }
             };
             return meteringPoint;//crmService.GetMeteringPointById(id);
         }
