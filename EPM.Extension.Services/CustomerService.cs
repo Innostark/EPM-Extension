@@ -33,33 +33,74 @@ namespace EPM.Extension.Services
 
         public void UpdateCustomer(CrmAccount customer)
         {
-            CrmAccount c = customers.FirstOrDefault(x => x.Id == customer.Id);
-            var index = customers.IndexOf(c);
-            customers.Remove(c);
-            customers.Insert(index, customer);
+            try
+            {
+                CrmAccount c = customers.FirstOrDefault(x => x.Id == customer.Id);
+                var index = customers.IndexOf(c);
+                customers.Remove(c);
+                customers.Insert(index, customer);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
+           
         }
 
         public CrmAccount GetCustomerById(Guid id)
         {
-            return crmService.GetAccountById(id);
-            //return customers.FirstOrDefault(x => x.Id == id);
+            try
+            {
+                return crmService.GetAccountById(id);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
         }
 
 
         public CustomerResponse FindCustomers(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userGuid)
         {
-            return crmService.GetAccountsByUserId(searchRequest, userGuid);            
+            try
+            {
+                return crmService.GetAccountsByUserId(searchRequest, userGuid);            
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
         }
 
         public CustomerResponse FindBetrieber(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userGuid)
         {
-            return crmService.GetBeitreibersByUserId(searchRequest, userGuid );
+            try
+            {
+                return crmService.GetBeitreibersByUserId(searchRequest, userGuid);
+            }
+            catch (Exception exception)
+            {
+                Trace.LogError(exception);
+                throw;
+            }
         }
 
 
         public Guid GetAccount(string username, string password)
         {
-            return crmService.AuthenticateUser(username, password);
+            try
+            {
+                return crmService.AuthenticateUser(username, password);
+
+            }
+            catch (Exception exception)
+            {
+                Trace.LogError(exception);
+                throw;
+            }
         }
     }
 }

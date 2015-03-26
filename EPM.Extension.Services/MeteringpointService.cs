@@ -36,31 +36,59 @@ namespace EPM.Extension.Services
 
         public MeteringPointResponse GetMeteringPointsByCustomerId(MeteringPointSearchRequest searchRequest)
         {
-            if (searchRequest.BetrieberId != Guid.Empty && searchRequest.CustomerId != Guid.Empty)
+            try
             {
-                return crmService.GetBeitreiberMetringPoints(searchRequest);
-                
+                if (searchRequest.BetrieberId != Guid.Empty && searchRequest.CustomerId != Guid.Empty)
+                {
+                    return crmService.GetBeitreiberMetringPoints(searchRequest);
+
+                }
+                return new MeteringPointResponse
+                {
+                    MeteringPoints = new List<MeteringPoint>(),
+                    TotalCount = 0
+                };
             }
-            return new MeteringPointResponse
+            catch (Exception exception)
             {
-                MeteringPoints = new List<MeteringPoint>(),
-                TotalCount = 0
-            };
+                Trace.LogError(exception);
+                throw;
+            }
+           
         }
 
         public MeteringPoint GetMeteringPointsById(Guid id)
         {
-            return crmService.GetMeteringPointById(id);
+            try
+            {
+                return crmService.GetMeteringPointById(id);
+
+            }
+            catch (Exception exception)
+            {
+                Trace.LogError(exception);
+                throw;
+            }
         }
 
         public MeteringPoint GetMeteringPointsByCode(string id)
         {
-            var meteringPoint = new MeteringPoint
+            try
             {
-                MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System,IsActive = true, GrenzwertType = "Grenzwert System"}
+                var meteringPoint = new MeteringPoint
+                {
+                    MeteringCodeThresholds = new List<MeteringPointThreshold>() { new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.System,IsActive = true, GrenzwertType = "Grenzwert System"}
                     , new MeteringPointThreshold() { Id = Guid.NewGuid(), Type = MeteringPointThresholdType.User, IsActive = false,GrenzwertType = "Grenzwert Benutzer"} }
-            };
-            return meteringPoint;//crmService.GetMeteringPointById(id);
+                };
+                throw new Exception("test this code");
+                return meteringPoint;//crmService.GetMeteringPointById(id);
+            }
+            catch (Exception exception)
+            {
+                Trace.LogError(exception);
+                throw;
+            }
+           
         }
     }
 }

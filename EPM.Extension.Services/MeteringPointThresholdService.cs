@@ -21,28 +21,32 @@ namespace EPM.Extension.Services
 
         public MeteringPointThreshold GetMeteringPointThresholdById(Guid id)
         {
-            DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
+            try
+            {
+                DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
 
-            return dynamicsCrmService.GetThresholdById(id);
-
-            //return new MeteringPointThreshold
-            //{
-            //    Id = id,
-            //    GrenzwertBezeichner = "test",
-            //    GultingAb = DateTime.Now,
-            //    MaximaGlobal = "10",
-            //    MinimaGlobal = "20",
-            //    MaximaSommer = "30",
-            //    MinimaSommer = "40",
-            //    MaximaWinter = "50",
-            //    MinimaWinter = "60"
-            //};
+                return dynamicsCrmService.GetThresholdById(id);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
         }
 
         public void UpdateMeteringThreshold(MeteringPointThreshold model)
         {
-            DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
-            dynamicsCrmService.UpdateMeteringPointThreshold(model);
+            try
+            {
+                DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
+                dynamicsCrmService.UpdateMeteringPointThreshold(model);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
+            
         }
     }
 }
