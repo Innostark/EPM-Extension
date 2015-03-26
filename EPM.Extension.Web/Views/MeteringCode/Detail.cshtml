@@ -31,7 +31,7 @@
             <table id="ThresholdTable" class="table display table-responsive">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th style="display: none;"></th>
                         <th>Active</th>
                         <th></th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
@@ -50,7 +50,7 @@
                     @foreach (var item in Model.MeteringCodeThresholds)
                     {
                         <tr id="type_@item.Type">
-                            <td>@item.Id</td>
+                            <td style="display: none;">@item.Id</td>
                             <td id="@{ Write(@item.Type + "_isActive");}">
                                 @{
                         W‌rite(item.IsActive ? "Yes" : "No");
