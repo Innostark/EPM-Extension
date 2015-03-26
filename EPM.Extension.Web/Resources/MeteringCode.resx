@@ -156,6 +156,9 @@
   <data name="CoolingActive" xml:space="preserve">
     <value>Klimatisierung aktiv</value>
   </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="Flat" xml:space="preserve">
     <value>Flat</value>
   </data>
