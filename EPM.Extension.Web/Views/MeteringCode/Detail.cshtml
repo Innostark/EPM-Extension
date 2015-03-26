@@ -152,15 +152,8 @@
             var thresholdTable = $('#ThresholdTable').dataTable({
                 "bInfo": false,
                 "bFilter": false,
+                "bSort" : false,
                 "bLengthChange": false,
-                "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [0] },
-                    {
-                        "targets": [0],
-                        "visible": false,
-                        "searchable": false
-                    }
-                ]
             });
             $('#ThresholdTable_paginate').hide();
             $('#addMeteringCodeThreshold').click(function(e) {
