@@ -27,7 +27,7 @@
 
 
     <div class="row-fluid">
-        <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
+        
         <div class="span12">
             <table id="ThresholdTable" class="table display table-responsive">
                 <thead>
@@ -70,7 +70,13 @@
                             <td>@item.MaximaWinterInt</td>
 
                             <td>
-                              
+                                @{
+                        if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                        {
+                            tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                        }
+                                }
+                                @Html.Raw(tag)
                             </td>
                         </tr>
                     }
