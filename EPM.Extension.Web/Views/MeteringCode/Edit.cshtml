@@ -299,9 +299,6 @@
     $(document).ready(function () {
       
         var thresholdTable = $('#ThresholdTable').dataTable({
-                
-                "sDom": '<"top"i>rt<"bottom"flp><"clear">',
-                
                 "bFilter": false,
                 "bLengthChange": false,
                 "aoColumnDefs": [
@@ -312,7 +309,8 @@
                         "searchable": false
                     }
                 ]
-            });
+        });
+        $('#ThresholdTable .bottom').hide();
             if (@Model.MeteringCodeThresholds.Count() >= 2) {
 
                 var flag = '@Model.MeteringCodeThresholds.First(x=>x.Type == MeteringPointThresholdType.System).IsActive' == 'True'? true: false;
