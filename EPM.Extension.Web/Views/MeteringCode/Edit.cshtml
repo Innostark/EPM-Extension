@@ -185,7 +185,12 @@
 
                             <td>@item.GrenzwertType</td>
                             <td>@item.GultingAb.ToString("dd-MM-yyyy") </td>
-                            <td>@item.SaisonalitatAnwenden</td>
+                            <td>
+                            
+                                @{
+                        W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
+                            }
+                        </td>
                             <td>@item.MinimaGlobalInt</td>
                             <td>@item.MaximaGlobalInt</td>
                             <td>@item.MinimaSommerInt</td>

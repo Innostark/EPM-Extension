@@ -15,15 +15,14 @@
         display: none;
     }
 </style>
-<h2>@EPM.Extension.Web.Resources.MeteringCode.Details</h2>
 
-    <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div id="edit-threshold-container" class="modal-dialog">
-            <div id="form-content" class="modal-content">
+<div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="edit-threshold-container" class="modal-dialog">
+        <div id="form-content" class="modal-content">
 
-            </div>
         </div>
     </div>
+</div>
 
 
     <div class="row-fluid">
@@ -61,7 +60,9 @@
 
                             <td>@item.GrenzwertType</td>
                             <td>@item.GultingAb.ToString("dd-MM-yyyy") </td>
-                            <td>@item.SaisonalitatAnwenden</td>
+                            <td>@{
+                        W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
+                            }</td>
                             <td>@item.MinimaGlobalInt</td>
                             <td>@item.MaximaGlobalInt</td>
                             <td>@item.MinimaSommerInt</td>
