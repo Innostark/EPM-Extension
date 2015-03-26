@@ -3,6 +3,7 @@
 
 @{
     ViewBag.Title = "Detail";
+    string isActive = "Yes";
     string tag = "";
 }
 
@@ -51,9 +52,13 @@
                     {
                         <tr id="type_@item.Type">
                             <td>@item.Id</td>
-                            <td>
-                                @Html.RadioButton(@item.Type + "_isActive", "", item.IsActive, new { @disabled = "disabled" })
+                            <td id="@{ Write(@item.Type + "_isActive");}">
+                                @{
+                        W‌rite(item.IsActive ? "Yes" : "No");
+                                }
+
                             </td>
+
                             <td>@item.GrenzwertType</td>
                             <td>@item.GultingAb </td>
                             <td>@item.SaisonalitatAnwenden</td>
@@ -65,13 +70,7 @@
                             <td>@item.MaximaWinterInt</td>
 
                             <td>
-                                @{
-                                    if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
-                                    {
-                                        tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
-                                    }
-                                }
-                                @Html.Raw(tag)
+                              
                             </td>
                         </tr>
                     }
@@ -102,8 +101,8 @@
                     if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null
                       || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null
                       || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
-                        $('#System_isActive').prop('checked', '');
-                        $('#User_isActive').prop('checked', 'checked');
+                        $('#System_isActive')[0].innerText = "No";
+                        $('#User_isActive')[0].innerText = "Yes";
                     }
                     $('#type_User td:eq(2)')[0].innerText = newModel.GultingAb;
                     $('#type_User td:eq(3)')[0].innerHTML = newModel.SaisonalitatAnwenden;
@@ -157,16 +156,6 @@
                 ]
             });
             $('#ThresholdTable_paginate').hide();
-            if (@Model.MeteringCodeThresholds.Count() >= 2) {
-
-                var flag = '@Model.MeteringCodeThresholds.First(x => x.Type == MeteringPointThresholdType.System).IsActive' == 'True' ? true : false;
-                if (flag == true) {
-                    $('#System_isActive').prop('checked', 'checked');
-                } else {
-                    $('#User_isActive').prop('checked', 'checked');
-                }
-
-            }
             $('#addMeteringCodeThreshold').click(function(e) {
                 var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
                 var url = "/MeteringCodeThreshold/Edit/" + data; // the url to the controller
