@@ -310,7 +310,7 @@
                     }
                 ]
         });
-        $('#ThresholdTable .bottom').hide();
+        $('#ThresholdTable_paginate').hide();
             if (@Model.MeteringCodeThresholds.Count() >= 2) {
 
                 var flag = '@Model.MeteringCodeThresholds.First(x=>x.Type == MeteringPointThresholdType.System).IsActive' == 'True'? true: false;
