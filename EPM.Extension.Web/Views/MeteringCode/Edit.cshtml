@@ -278,7 +278,8 @@
                             $('#User_isActive')[0].innerText = "Yes";
                         }
                         $('#type_User td:eq(3)')[0].innerText = newModel.GultingAb;
-                        $('#type_User td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden;
+                        $('#type_User td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
+                        $('#type_User td:eq(5)')[0].innerHTML = newModel.MinimaGlobal;
                         $('#type_User td:eq(5)')[0].innerHTML = newModel.MinimaGlobal;
                         $('#type_User td:eq(6)')[0].innerHTML = newModel.MaximaGlobal;
                         $('#type_User td:eq(7)')[0].innerHTML = newModel.MinimaSommer;

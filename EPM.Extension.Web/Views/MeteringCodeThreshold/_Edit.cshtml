@@ -9,7 +9,7 @@
 
 <div class="modal-body">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    
+    @Html.HiddenFor(model => model.Id)
     <div class="form-group">
         @Html.LabelFor(model => model.SaisonalitatAnwenden, htmlAttributes: new { @class = "control-label col-md-5" })
         <div class="col-md-5">
