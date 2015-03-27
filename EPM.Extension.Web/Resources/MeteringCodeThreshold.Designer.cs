@@ -142,6 +142,15 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grenzwerttyp.
+        /// </summary>
+        public static string Threshold {
+            get {
+                return ResourceManager.GetString("Threshold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grenzwerte.
         /// </summary>
         public static string Title {
