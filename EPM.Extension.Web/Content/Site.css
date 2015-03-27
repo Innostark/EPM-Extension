@@ -26,3 +26,6 @@ textarea {
 .modal-body{
     height: 450px;
 }
+.float-right {
+        float: right;
+    }

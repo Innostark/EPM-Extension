@@ -155,9 +155,9 @@
                 <thead>
                     <tr>
                         <th style="display: none;"></th>
-                        <th>Active</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                        <th style="width:5%">Active</th>
+                        <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
+                        <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
@@ -166,8 +166,7 @@
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
-                        <th></th>
-                    </tr>
+                        <th style="width:5%"></th>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.MeteringCodeThresholds)
@@ -191,12 +190,12 @@
                         W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
                             }
                         </td>
-                            <td>@item.MinimaGlobalInt</td>
-                            <td>@item.MaximaGlobalInt</td>
-                            <td>@item.MinimaSommerInt</td>
-                            <td>@item.MinimaSommerInt</td>
-                            <td>@item.MinimaWinterInt</td>
-                            <td>@item.MaximaWinterInt</td>
+                            <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
+                            <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
+                            <td><span class="float-right">@item.MinimaSommerInt</span></td>
+                            <td><span class="float-right"> @item.MinimaSommerInt</span></td>
+                            <td><span class="float-right">@item.MinimaWinterInt</span></td>
+                            <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
                             <td>
                                 @{
