@@ -747,6 +747,29 @@ namespace EPM.Extension.Services.DynamicsCRM
             }
         }
 
+        internal void SetThresholdReport(Guid thresholdId, MetadataGrenzwert.OpSetReport report)
+        {
+            if (thresholdId != null && thresholdId != Guid.Empty)
+            {
+                using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+                {
+                    using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                    {
+                        Entity crmThreshold = new Entity(EntityNames.Grenzwert);
+                        crmThreshold.Id = thresholdId;
+                        //TODO: BR change the column to correct column
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>("decide later cannot find field in crm", (Object) new OptionSetValue((int)report)));
+                        if (!serviceContext.IsAttached(crmThreshold))
+                        {
+                            serviceContext.Attach(crmThreshold);
+                        }
+                        serviceContext.UpdateObject(crmThreshold);
+                        serviceContext.SaveChanges();
+                    }
+                }
+            }
+        }
+
         #endregion "Threshold"
 
         #region Dynamics CRM Connection

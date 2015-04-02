@@ -13,6 +13,7 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string GültigAb = "new_gltigab";
         public const string GrenzwerteId = "new_grenzwerteid";
         public const string Id = "new_grenzwerteid";
+        public const string Seasonal = "new_saisonjanein";
 
        #region System
 		public const string GrenzwertMaxSystem = "new_grenzwertmaxsystem";
@@ -31,5 +32,18 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string GrenzwertWinterMaxUser = "new_grenzwertwintermaxuser";
         public const string GrenzwertWinterMinUser = "new_grenzwertwinterminuser";
 	#endregion User
+
+        public enum OpSetSeasonal
+        {
+            Ja = 100000000,
+            Nein = 100000001
+        }
+
+        public enum OpSetReport
+        {
+            Aktiv = 100000000,
+            NeinAktiv = 100000001
+        }
+
     }
 }
