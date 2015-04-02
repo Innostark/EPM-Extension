@@ -1,11 +1,12 @@
 ﻿@model EPM.Extension.Model.MeteringPointThreshold
 
-
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h3>
-</div>
-
+@if (ViewBag.ShowHeader)
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h3>
+    </div>
+}
 
 <div class="modal-body">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
