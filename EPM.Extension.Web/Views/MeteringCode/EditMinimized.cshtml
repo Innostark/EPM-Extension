@@ -1,4 +1,5 @@
-﻿@model EPM.Extension.Model.MeteringPoint
+﻿@using System.Configuration
+@model EPM.Extension.Model.MeteringPoint
 @{
     ViewBag.Title = "Detail";
     string tag = "";
@@ -239,7 +240,7 @@
         function saveClicked() {
             var newModel = getFormValues();
            
-            var postUrl = ConfigurationManager.AppSettings["SiteUrl"] + "MeteringCodeThreshold/Edit";
+            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
             $.ajax({
                 type: "POST",
                 datatype: "json",
