@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using EPM.Extension.Interfaces;
 using EPM.Extension.Model;
 using EPM.Extension.Model.RequestModels;
+using EPM.Extension.Services.DynamicsCRM.Metadata;
 using EPM.Extension.Web.Models;
 
 namespace EPM.Extension.Web.Controllers
@@ -45,6 +46,13 @@ namespace EPM.Extension.Web.Controllers
         public ActionResult Detail(string id)
         {
             MeteringPoint pt = _meteringCodeService.GetMeteringPointsByCode(id);
+            var list = new SelectList(new[]
+                                      {
+                                          new{ID="0",Name="- Please Select -"},
+                                          new{ID=MetadataGrenzwert.OpSetReport.Aktiv.ToString(),Name= Resources.MeteringCodeThreshold.Active},
+                                          new{ID=MetadataGrenzwert.OpSetReport.NeinAktiv.ToString(),Name= Resources.MeteringCodeThreshold.InActive},
+                                      }, "ID", "Name", "0");
+            ViewBag.List = list;
             return View(pt);
         }
     }

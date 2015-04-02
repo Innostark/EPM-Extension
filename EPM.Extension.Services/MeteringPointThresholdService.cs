@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EPM.Extension.Model.RequestModels;
+using EPM.Extension.Services.DynamicsCRM.Metadata;
 
 namespace EPM.Extension.Services
 {
@@ -47,6 +48,20 @@ namespace EPM.Extension.Services
                 throw;
             }
             
+        }
+
+        public void SaveMeteringPointThresholdReport(Guid id, int option)
+        {
+            try
+            {
+                DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
+                dynamicsCrmService.SetThresholdReport(id,(MetadataGrenzwert.OpSetReport)option);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
         }
     }
 }

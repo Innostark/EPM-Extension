@@ -45,5 +45,15 @@ namespace EPM.Extension.Web.Controllers
             }
             return PartialView("_Edit", model);
         }
+
+        [HttpPost]
+        public ActionResult SaveReport(Guid id, int option)
+        {
+            if (ModelState.IsValid)
+            {
+                _meteringPointThresholdService.SaveMeteringPointThresholdReport(id, option);
+            }
+            return Content("");
+        }
     }
 }

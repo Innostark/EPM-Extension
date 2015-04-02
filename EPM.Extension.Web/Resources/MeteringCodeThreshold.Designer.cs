@@ -151,6 +151,24 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email Reports.
+        /// </summary>
+        public static string EmailReport {
+            get {
+                return ResourceManager.GetString("EmailReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to InActive.
+        /// </summary>
+        public static string InActive {
+            get {
+                return ResourceManager.GetString("InActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
