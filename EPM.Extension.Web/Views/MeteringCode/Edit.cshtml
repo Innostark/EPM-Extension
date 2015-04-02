@@ -323,7 +323,7 @@
                 $('#ThresholdTable_paginate').hide();
                 $('#addMeteringCodeThreshold').click(function (e) {
                     var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
-                    var url = "/MeteringCodeThreshold/Edit/" + data; // the url to the controller
+                    var url = "/MeteringCodeThreshold/Edit/" + data + "?stamp=" + new Date().getTime(); // the url to the controller
                     $.get(url, function (data) {
                         $('#form-content').html(data);
                         $('#edit-threshold').modal('show');

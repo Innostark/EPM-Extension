@@ -22,7 +22,7 @@ namespace EPM.Extension.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult Edit(Guid id, bool? header)
+        public ActionResult Edit(Guid id)
         {
             if (Request.UrlReferrer != null)
             {
@@ -31,6 +31,7 @@ namespace EPM.Extension.Web.Controllers
            
             
             MeteringPointThreshold model = _meteringPointThresholdService.GetMeteringPointThresholdById(id);
+            Response.CacheControl = "no-cache";
             return PartialView("_Edit", model);
         }
 
