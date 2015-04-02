@@ -24,11 +24,11 @@ namespace EPM.Extension.Web.Controllers
         [HttpGet]
         public ActionResult Edit(Guid id, bool? header)
         {
-            string urlReferer = Request.UrlReferrer.ToString();
-            if (header.HasValue && header.Value == false)
+            if (Request.UrlReferrer != null)
             {
-                //TODO: hide header
+                ViewBag.ShowHeader = Request.UrlReferrer.ToString().Contains("Edit");
             }
+           
             
             MeteringPointThreshold model = _meteringPointThresholdService.GetMeteringPointThresholdById(id);
             return PartialView("_Edit", model);
