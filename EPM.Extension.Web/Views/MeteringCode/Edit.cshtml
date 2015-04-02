@@ -155,16 +155,16 @@
                 <thead>
                     <tr>
                         <th style="display: none;"></th>
-                        <th style="width:5%">Active</th>
+                        <th style="width:5%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Active</th>
                         <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
                         <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</span></th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</span></th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</span></th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</span></th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</span></th>
-                        <th><span class="float-right">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</span></th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
                         <th style="width:5%"></th>
                 </thead>
@@ -175,7 +175,7 @@
                             <td style="display: none;">@item.Id</td>
                             <td id="@{ Write(@item.Type + "_isActive");}">
                                 @{
-                        W‌rite(item.IsActive ? "Yes" : "No");
+                        W‌rite(item.IsActive ? @EPM.Extension.Web.Resources.MeteringCodeThreshold.Yes : @EPM.Extension.Web.Resources.MeteringCodeThreshold.No);
                                 }
 
                             </td>
