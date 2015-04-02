@@ -23,9 +23,7 @@ textarea {
     max-width: 280px;
 }
 
-table.dataTable thead th, table.dataTable thead td {
-        padding: 0 0;
-    }
+
 @media screen and (min-width: 768px) {
     .modal-dialog {
         width: 525px;
