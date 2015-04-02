@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,8 +50,8 @@ namespace EPM.Extension.Web.Controllers
             var list = new SelectList(new[]
                                       {
                                           new{ID="0",Name="- Please Select -"},
-                                          new{ID=MetadataGrenzwert.OpSetReport.Aktiv.ToString(),Name= Resources.MeteringCodeThreshold.Active},
-                                          new{ID=MetadataGrenzwert.OpSetReport.NeinAktiv.ToString(),Name= Resources.MeteringCodeThreshold.InActive},
+                                          new{ID= ((int)MetadataGrenzwert.OpSetReport.Aktiv).ToString(CultureInfo.InvariantCulture),Name= Resources.MeteringCodeThreshold.Active},
+                                          new{ID= ((int)MetadataGrenzwert.OpSetReport.NeinAktiv).ToString(CultureInfo.InvariantCulture),Name= Resources.MeteringCodeThreshold.InActive},
                                       }, "ID", "Name", "0");
             ViewBag.List = list;
             return View(pt);
