@@ -206,24 +206,30 @@
 
             function getReportFormValues() {
                 var thesholdId = '@tId';
-                var optionSelected = $('#reportDdl').val();;
-                return { Id: thesholdId, ReportStatus: optionSelected };
+                var optionSelected = $('#reportDdl').val();
+                if (optionSelected !== '0') {
+                    return { id: thesholdId, option: optionSelected };
+                }
+                return false;
+
             }
             $('#saveReport').click(function(e) {
                 var newModel = getReportFormValues();
-
-                var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/SaveReport";
-                $.ajax({
-                    type: "POST",
-                    datatype: "json",
-                    url: postUrl,
-                    data: newModel,
-                    success: function(data) {
-                        // Set values
-                        alert('Changes saved successfully.');
-                    },
-                    error: callError
-                });
+                if (newModel) {
+                    var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/SaveReport";
+                    $.ajax({
+                        type: "POST",
+                        datatype: "json",
+                        url: postUrl,
+                        data: newModel,
+                        success: function(data) {
+                            // Set values
+                            alert('Changes saved successfully.');
+                        },
+                        error: callError
+                    });
+                }
+               
             });
             $('#ThresholdTable').on('click', '.edit', function(e) {
                 e.preventDefault();
