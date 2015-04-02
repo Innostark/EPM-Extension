@@ -29,3 +29,7 @@ textarea {
 .float-right {
         float: right;
     }
+
+ table.dataTable thead th, table.dataTable thead td {
+        padding: 0 0;
+    }
