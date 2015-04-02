@@ -26,11 +26,14 @@ select,
 textarea {
     max-width: 280px;
 }
-
+.modal-dialog {
+    left: 10%;
+}
 
 @media screen and (min-width: 768px) {
     .modal-dialog {
         width: 525px;
+
     }
 }
 .modal-body{
