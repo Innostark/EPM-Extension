@@ -239,7 +239,7 @@
         function saveClicked() {
             var newModel = getFormValues();
            
-            var postUrl = "http://localhost:10294/MeteringCodeThreshold/Edit";
+            var postUrl = ConfigurationManager.AppSettings["SiteUrl"] + "MeteringCodeThreshold/Edit";
             $.ajax({
                 type: "POST",
                 datatype: "json",

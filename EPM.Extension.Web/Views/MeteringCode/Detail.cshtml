@@ -29,73 +29,77 @@
 </div>
 
 
-    <div class="row-fluid">
+<div class="row-fluid">
         
-        <div class="span12">
-            <table id="ThresholdTable" class="table display table-responsive">
-                <thead>
-                    <tr>
-                        <th style="display: none;"></th>
-                        <th style="width:5%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Active</th>
-                        <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
-                        <th style ="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+    <div class="span12">
+        <table id="ThresholdTable" class="table display table-responsive">
+            <thead>
+                <tr>
+                    <th style="display: none;"></th>
+                    <th style="width:5%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Active</th>
+                    <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
+                    <th style ="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
-                        <th style="width:5%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.MeteringCodeThresholds)
-                    {
-                        <tr id="type_@item.Type">
-                            <td style="display: none;">@item.Id</td>
-                            <td id="@{ Write(@item.Type + "_isActive");}">
-                                @{
-                        W‌rite(item.IsActive ? @EPM.Extension.Web.Resources.MeteringCodeThreshold.Yes : @EPM.Extension.Web.Resources.MeteringCodeThreshold.No);
-                                }
+                    <th style="width:5%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.MeteringCodeThresholds)
+                {
+                    <tr id="type_@item.Type">
+                        <td style="display: none;">@item.Id</td>
+                        <td id="@{ Write(@item.Type + "_isActive");}">
+                            @{
+                                W‌rite(item.IsActive ? @EPM.Extension.Web.Resources.MeteringCodeThreshold.Yes : @EPM.Extension.Web.Resources.MeteringCodeThreshold.No);
+                            }
 
-                            </td>
+                        </td>
 
-                            <td>@item.GrenzwertType</td>
-                            <td>@item.GultingAb.ToString("dd-MM-yyyy") </td>
-                            <td>@{
-                        W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
+                        <td>@item.GrenzwertType</td>
+                        <td>@item.GultingAb.ToString("dd-MM-yyyy") </td>
+                        <td>@{
+                                W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
                             }</td>
-                            <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
-                            <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
-                            <td><span class="float-right">@item.MinimaSommerInt</span></td>
-                            <td><span class="float-right"> @item.MinimaSommerInt</span></td>
-                            <td><span class="float-right">@item.MinimaWinterInt</span></td>
-                            <td><span class="float-right"> @item.MaximaWinterInt</span></td>
+                        <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
+                        <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
+                        <td><span class="float-right">@item.MinimaSommerInt</span></td>
+                        <td><span class="float-right"> @item.MinimaSommerInt</span></td>
+                        <td><span class="float-right">@item.MinimaWinterInt</span></td>
+                        <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
-                            <td>
-                                @{
-                        if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
-                        {
-                            tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
-                        }
+                        <td>
+                            @{
+                                if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                                {
+                                    tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
                                 }
-                                @Html.Raw(tag)
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                            }
+                            @Html.Raw(tag)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
+</div>
+
+<div class="row-fluid">
+    
+</div>
 @section scripts
 {
     <script type="text/javascript">
         function saveClicked() {
             var newModel = getFormValues();
 
-            var postUrl = "http://localhost:10294/MeteringCodeThreshold/Edit";
+            var postUrl = ConfigurationManager.AppSettings["SiteUrl"] + "MeteringCodeThreshold/Edit";
             $.ajax({
                 type: "POST",
                 datatype: "json",
