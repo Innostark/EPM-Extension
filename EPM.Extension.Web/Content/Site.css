@@ -28,6 +28,8 @@ textarea {
 }
 .modal-dialog {
     left: 10%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 @media screen and (min-width: 768px) {
