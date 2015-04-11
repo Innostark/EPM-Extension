@@ -198,7 +198,7 @@
                             <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
                             <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
                             <td><span class="float-right">@item.MinimaSommerInt</span></td>
-                            <td><span class="float-right"> @item.MinimaSommerInt</span></td>
+                            <td><span class="float-right"> @item.MaximaSommerInt</span></td>
                             <td><span class="float-right">@item.MinimaWinterInt</span></td>
                             <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
@@ -216,33 +216,6 @@
                 </tbody>
             </table>
 
-            @*<div role="tabpanel">
-
-                    <!-- Nav tabs -->
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.General</a></li>
-                        <li role="presentation"><a href="#flat" aria-controls="flat" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.Flat</a></li>
-                        <li role="presentation"><a href="#openinghours" aria-controls="openinghours" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.OpeningHours</a></li>
-                        <li role="presentation"><a href="#analog" aria-controls="analog" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.Analog</a></li>
-                    </ul>
-
-                    <!-- Tab panes -->
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="general">
-
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="flat">
-
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="openinghours">
-
-                        </div>
-                        <div role="tabpanel" class="tab-pane" id="analog">
-
-                        </div>
-                    </div>
-
-                </div>*@
         </div>
     </div>
 
@@ -288,7 +261,7 @@
                         $('#type_User td:eq(7)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaSommer + "</span>";
                         $('#type_User td:eq(8)')[0].innerHTML = "<span class='float-right'>" + newModel.MaximaSommer + "</span>";
                         $('#type_User td:eq(9)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaWinter + "</span>";
-                        $('#type_User td:eq(10)')[0].innerHTML = newModel.MaximaWinter;
+                        $('#type_User td:eq(10)')[0].innerHTML = "<span class='float-right'>" + newModel.MaximaWinter + "</span>";
 
 
                         $('#edit-threshold').modal('hide');

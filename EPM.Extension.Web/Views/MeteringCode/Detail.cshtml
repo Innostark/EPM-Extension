@@ -81,7 +81,7 @@
                         <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
                         <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
                         <td><span class="float-right">@item.MinimaSommerInt</span></td>
-                        <td><span class="float-right"> @item.MinimaSommerInt</span></td>
+                        <td><span class="float-right"> @item.MaximaSommerInt</span></td>
                         <td><span class="float-right">@item.MinimaWinterInt</span></td>
                         <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
@@ -106,7 +106,7 @@
         <div class="form-group">
             @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.EmailReport, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-3">
-                @Html.DropDownList("Reports", ViewBag.List as SelectList, new {@class = "form-control", id= "reportDdl"})
+                @Html.DropDownList("Reports", ViewBag.List as SelectList, new {@class = "form-control", id= "reportDdl", })
             </div>
             <div class="col-md-1">
                 <button id="saveReport" class="btn btn-primary">Save</button>
@@ -147,7 +147,7 @@
                     $('#type_User td:eq(7)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaSommer + "</span>";
                     $('#type_User td:eq(8)')[0].innerHTML = "<span class='float-right'>" + newModel.MaximaSommer + "</span>";
                     $('#type_User td:eq(9)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaWinter + "</span>";
-                    $('#type_User td:eq(10)')[0].innerHTML = newModel.MaximaWinter;
+                    $('#type_User td:eq(10)')[0].innerHTML = "<span class='float-right'>" + newModel.MaximaWinter + "</span>";
 
 
                     $('#edit-threshold').modal('hide');

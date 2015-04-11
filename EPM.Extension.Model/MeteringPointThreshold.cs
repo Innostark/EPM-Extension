@@ -47,6 +47,8 @@ namespace EPM.Extension.Model
         [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_MaximaWinter_Maxima_Winter")]
         public int MaximaWinterInt { get { return Convert.ToInt32(MaximaWinter); } }
 
+        [Display(ResourceType = typeof(CustomerResource), Name = "MeteringPointThreshold_EMail_Berichte")]
+        public int EMailBerichte { get; set; }
 
         public string GrenzwertType { get; set; }
 

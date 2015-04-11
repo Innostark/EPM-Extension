@@ -6,155 +6,6 @@
     Layout = "~/Views/Shared/_LayoutWithoutHeader.cshtml";
     
 }
-@*
-<h2>@ViewBag.Title</h2>
-
-<div>
-    <h4>Metering Point</h4>
-    <hr />
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Zählpunktbezeichner, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Zählpunktbezeichner, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Zählpunktbezeichner, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Kurzbezeichnung, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Kurzbezeichnung, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Kurzbezeichnung, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Strasse, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Strasse, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Strasse, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.PLZ, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PLZ, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PLZ, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Ort, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Ort, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Ort, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DatenversandAktiv, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DatenversandAktiv, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DatenversandAktiv, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-    
-
-   
-    <div class="form-group">
-        @Html.LabelFor(model => model.CrmAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.CrmAccountName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.CrmAccountName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-    <div class="form-group">
-        @Html.LabelFor(model => model.BetreiberName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.BetreiberName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.BetreiberName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.VNBName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.VNBName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.VNBName, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.ZählverfahrenValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ZählverfahrenValue, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ZählverfahrenValue, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.UMessungValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UMessungValue, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UMessungValue, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-   
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.UEntnahmeValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UEntnahmeValue, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UEntnahmeValue, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @class = "form-control", @cols = 40, @rows = 3 })
-            @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-</div>
-
-
-<!-- Button trigger modal -->
-@*<button type="button" id="addMeteringCodeThreshold" class="btn btn-primary btn-sm" style="float: right;" data-toggle="modal" data-target="#myModal">
-    Add
-</button>*@
-@*
-
-    <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div id="edit-threshold-container" class="modal-dialog">
-            <div id="form-content" class="modal-content">
-
-            </div>
-        </div>
-    </div>
-*@
 
 <div class="row-fluid">
     <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
@@ -184,7 +35,7 @@
                     <td>@item.MinimaGlobal</td>
                     <td>@item.MaximaGlobal</td>
                     <td>@item.MinimaSommer</td>
-                    <td>@item.MinimaSommer</td>
+                    <td>@item.MaximaSommer</td>
                     <td>@item.MinimaWinter</td>
                     <td>@item.MaximaWinter</td>
                     <td>
@@ -201,33 +52,7 @@
         </tbody>
     </table>
     
-    @*<div role="tabpanel">
-
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.General</a></li>
-            <li role="presentation"><a href="#flat" aria-controls="flat" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.Flat</a></li>
-            <li role="presentation"><a href="#openinghours" aria-controls="openinghours" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.OpeningHours</a></li>
-            <li role="presentation"><a href="#analog" aria-controls="analog" role="tab" data-toggle="tab">@EPM.Extension.Web.Resources.MeteringCode.Analog</a></li>
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="general">
-                
-            </div>
-            <div role="tabpanel" class="tab-pane" id="flat">
-                
-            </div>
-            <div role="tabpanel" class="tab-pane" id="openinghours">
-                
-            </div>
-            <div role="tabpanel" class="tab-pane" id="analog">
-                
-            </div>
-        </div>
-
-    </div>*@
+    
 </div>
     </div>
 

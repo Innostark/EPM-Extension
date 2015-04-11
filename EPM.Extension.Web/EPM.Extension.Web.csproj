@@ -400,10 +400,12 @@
     <EmbeddedResource Include="Resources\MeteringCodeThreshold.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MeteringCodeThreshold.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\MeteringCodeThreshold.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MeteringCodeThreshold.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

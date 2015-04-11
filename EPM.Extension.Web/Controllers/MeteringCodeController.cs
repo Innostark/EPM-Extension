@@ -46,15 +46,21 @@ namespace EPM.Extension.Web.Controllers
         [HttpGet]
         public ActionResult Detail(string id)
         {
-            MeteringPoint pt = _meteringCodeService.GetMeteringPointsByCode(id);
+            const string defaultReport = "0";
+            string selectedValue = defaultReport;
+            string aktivId = ((int)MetadataGrenzwert.OpSetReport.Aktiv).ToString(CultureInfo.InvariantCulture);
+            string inAktivId = ((int)MetadataGrenzwert.OpSetReport.NeinAktiv).ToString(CultureInfo.InvariantCulture);
+            MeteringPoint mp = _meteringCodeService.GetMeteringPointsByCode(id);
+            selectedValue = _meteringCodeService.GetReportSelectedValue(mp, defaultReport, aktivId, inAktivId);
+
             var list = new SelectList(new[]
                                       {
-                                          new{ID="0",Name="- Please Select -"},
-                                          new{ID= ((int)MetadataGrenzwert.OpSetReport.Aktiv).ToString(CultureInfo.InvariantCulture),Name= Resources.MeteringCodeThreshold.Active},
-                                          new{ID= ((int)MetadataGrenzwert.OpSetReport.NeinAktiv).ToString(CultureInfo.InvariantCulture),Name= Resources.MeteringCodeThreshold.InActive},
-                                      }, "ID", "Name", "0");
+                                          new{ID=defaultReport, Name="- Please Select -"},
+                                          new{ID= aktivId, Name= Resources.MeteringCodeThreshold.Active},
+                                          new{ID= inAktivId, Name= Resources.MeteringCodeThreshold.InActive},
+                                      }, "ID", "Name", selectedValue);
             ViewBag.List = list;
-            return View(pt);
-        }
+            return View(mp);
+        }        
     }
 }

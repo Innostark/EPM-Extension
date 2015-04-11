@@ -504,7 +504,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 if (zahplunkt.Contains(MetadataDZählpunkt.CODE))
                 {
                     meteringPoint.Code = zahplunkt.GetAttributeValue<string>(MetadataDZählpunkt.CODE);
-                }
+                }               
 
                 #region "Threshold Values"
                 //Get the threshold for this metering point
@@ -515,7 +515,8 @@ namespace EPM.Extension.Services.DynamicsCRM
                 {
                     Entity grenzwert = grenzwerts.ToList().FirstOrDefault();
                     if (grenzwert != null)
-                    {
+                    {                        
+
                         #region "System Threshold Values"
                         MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System", IsActive = true};
 
@@ -554,8 +555,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinSystem))
                         {
                             meteringPointThreshlodSystem.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinSystem);
-                        }
-                        meteringPointThresholds.Add(meteringPointThreshlodSystem);
+                        }                        
                         #endregion "System Threshold Values"
 
                         #region "User Threshold Values"
@@ -609,8 +609,18 @@ namespace EPM.Extension.Services.DynamicsCRM
                             meteringPointThreshlodUser.IsActive = true;
                             meteringPointThreshlodSystem.IsActive = false;
                         }
-                        meteringPointThresholds.Add(meteringPointThreshlodUser);
                         #endregion "User Threshold Values"
+
+                        #region "Email Reports"
+                        if (grenzwert.Contains(MetadataGrenzwert.EMailBerichte))
+                        {
+                            meteringPointThreshlodSystem.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
+                            meteringPointThreshlodUser.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
+                        }
+                        #endregion "Email Reports"
+                        
+                        meteringPointThresholds.Add(meteringPointThreshlodUser);
+                        meteringPointThresholds.Add(meteringPointThreshlodSystem);
 
                         meteringPoint.MeteringCodeThresholds = meteringPointThresholds;
                     }
@@ -753,19 +763,10 @@ namespace EPM.Extension.Services.DynamicsCRM
             {
                 using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
                 {
-                    using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
-                    {
-                        Entity crmThreshold = new Entity(EntityNames.Grenzwert);
-                        crmThreshold.Id = thresholdId;
-                        //TODO: BR change the column to correct column
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>("decide later cannot find field in crm", (Object) new OptionSetValue((int)report)));
-                        if (!serviceContext.IsAttached(crmThreshold))
-                        {
-                            serviceContext.Attach(crmThreshold);
-                        }
-                        serviceContext.UpdateObject(crmThreshold);
-                        serviceContext.SaveChanges();
-                    }
+                    Entity crmThreshold = new Entity(EntityNames.Grenzwert);
+                    crmThreshold.Id = thresholdId;
+                    crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.EMailBerichte, (Object) new OptionSetValue((int)report)));
+                    serviceProxy.Update(crmThreshold);
                 }
             }
         }

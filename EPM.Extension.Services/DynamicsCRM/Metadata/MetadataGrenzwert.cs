@@ -14,6 +14,7 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string GrenzwerteId = "new_grenzwerteid";
         public const string Id = "new_grenzwerteid";
         public const string Seasonal = "new_saisonjanein";
+        public const string EMailBerichte = "new_emailreports";
 
        #region System
 		public const string GrenzwertMaxSystem = "new_grenzwertmaxsystem";

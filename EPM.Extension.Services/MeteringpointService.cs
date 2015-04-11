@@ -1,17 +1,14 @@
-﻿using System;
+﻿using EPM.Extension.Interfaces;
+using EPM.Extension.Model;
+using EPM.Extension.Model.Common;
+using EPM.Extension.Model.RequestModels;
+using EPM.Extension.Services.DynamicsCRM;
+using EPM.Extension.Services.DynamicsCRM.Metadata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EPM.Extension.Model.RequestModels;
-
 namespace EPM.Extension.Services
 {
-    using EPM.Extension.Model;
-    using EPM.Extension.Model.Common;
-    using Interfaces;
-    using EPM.Extension.Services.DynamicsCRM;
-
     public class MeteringPointService : IMeteringPointService
     {
         private static List<MeteringPoint> meteringPoints;
@@ -83,6 +80,27 @@ namespace EPM.Extension.Services
                 throw;
             }
            
+        }
+
+        public string GetReportSelectedValue(MeteringPoint mp,string defaultId, string aktivId, string inAktivId)
+        {
+            string selectedValue = defaultId;
+            if (mp.MeteringCodeThresholds != null && mp.MeteringCodeThresholds.Count() > 0)
+            {
+                MeteringPointThreshold mpt = mp.MeteringCodeThresholds.FirstOrDefault();
+                if (mpt != null)
+                {
+                    if (mpt.EMailBerichte == (int)MetadataGrenzwert.OpSetReport.Aktiv)
+                    {
+                        selectedValue = aktivId;
+                    }
+                    else if (mpt.EMailBerichte == (int)MetadataGrenzwert.OpSetReport.NeinAktiv)
+                    {
+                        selectedValue = inAktivId;
+                    }
+                }
+            }
+            return selectedValue;
         }
     }
 }
