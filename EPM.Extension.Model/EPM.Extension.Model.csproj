@@ -74,6 +74,7 @@
     <EmbeddedResource Include="Resources\CustomerResource.de.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CustomerResource.de.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\CustomerResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -159,4 +159,7 @@
   <data name="ZipCode" xml:space="preserve">
     <value>PLZ</value>
   </data>
+  <data name="MeteringPointThreshold_EMail_Berichte" xml:space="preserve">
+    <value>EMail- Berichte</value>
+  </data>
 </root>

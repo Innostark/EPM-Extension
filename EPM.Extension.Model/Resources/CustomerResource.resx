@@ -162,4 +162,7 @@
   <data name="MeteringPointThreshold_GrenzwertBezeichner_Grenzwert_Bezeichner" xml:space="preserve">
     <value>Grenzwert Bezeichner</value>
   </data>
+  <data name="MeteringPointThreshold_EMail_Berichte" xml:space="preserve">
+    <value>EMail- Berichte</value>
+  </data>
 </root>

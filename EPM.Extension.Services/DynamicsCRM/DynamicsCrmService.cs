@@ -617,10 +617,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                             meteringPointThreshlodSystem.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
                             meteringPointThreshlodUser.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
                         }
-                        #endregion "Email Reports"
-                        
-                        meteringPointThresholds.Add(meteringPointThreshlodUser);
+                        #endregion "Email Reports"                        
+
                         meteringPointThresholds.Add(meteringPointThreshlodSystem);
+                        meteringPointThresholds.Add(meteringPointThreshlodUser);
 
                         meteringPoint.MeteringCodeThresholds = meteringPointThresholds;
                     }

@@ -3,7 +3,7 @@
 @model EPM.Extension.Model.MeteringPoint
 
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Metering Point Detail";
     string isActive = "Yes";
     string tag = "";
     var tId = Model.MeteringCodeThresholds.Any() ? Model.MeteringCodeThresholds.First().Id : Guid.Empty;
