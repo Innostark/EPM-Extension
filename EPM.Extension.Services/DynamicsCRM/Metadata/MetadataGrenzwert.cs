@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EPM.Extension.Services.DynamicsCRM.Metadata
+﻿namespace EPM.Extension.Services.DynamicsCRM.Metadata
 {
     public class MetadataGrenzwert
     {
@@ -15,6 +9,9 @@ namespace EPM.Extension.Services.DynamicsCRM.Metadata
         public const string Id = "new_grenzwerteid";
         public const string Seasonal = "new_saisonjanein";
         public const string EMailBerichte = "new_emailreports";
+        public const string Empfaenger1 = "new_empfaenger1";
+        public const string Empfaenger2 = "new_empfaenger2";
+        public const string Empfaenger3 = "new_empfaenger3";
 
        #region System
 		public const string GrenzwertMaxSystem = "new_grenzwertmaxsystem";

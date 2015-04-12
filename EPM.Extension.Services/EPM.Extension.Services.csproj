@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="DynamicsCRM\DynamicsCrmService.cs" />
     <Compile Include="DynamicsCRM\EntityNames.cs" />
+    <Compile Include="DynamicsCRM\Metadata\MetadataKundenspezifikation_ZP.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataAccount.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataDZählpunkt.cs" />
     <Compile Include="DynamicsCRM\Metadata\MetadataEpmExtensionPortalUser.cs" />

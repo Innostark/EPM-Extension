@@ -192,7 +192,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         #endregion "Account"
 
-        #region "Beitreibers"        
+        #region "Beitreibers"
         public CustomerResponse GetBeitreibersByUserId(Model.RequestModels.CustomerSearchRequest searchRequest, Guid userId)
         {
             using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
@@ -504,7 +504,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 if (zahplunkt.Contains(MetadataDZählpunkt.CODE))
                 {
                     meteringPoint.Code = zahplunkt.GetAttributeValue<string>(MetadataDZählpunkt.CODE);
-                }               
+                }        
 
                 #region "Threshold Values"
                 //Get the threshold for this metering point
@@ -515,8 +515,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 {
                     Entity grenzwert = grenzwerts.ToList().FirstOrDefault();
                     if (grenzwert != null)
-                    {                        
-
+                    {
                         #region "System Threshold Values"
                         MeteringPointThreshold meteringPointThreshlodSystem = new MeteringPointThreshold { Type = MeteringPointThresholdType.System, GrenzwertType = "Grenzwert System", IsActive = true};
 
@@ -617,7 +616,25 @@ namespace EPM.Extension.Services.DynamicsCRM
                             meteringPointThreshlodSystem.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
                             meteringPointThreshlodUser.EMailBerichte = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.EMailBerichte).Value;
                         }
-                        #endregion "Email Reports"                        
+                        #endregion "Email Reports" 
+                       
+                        #region "Empfaenger"
+                        if (grenzwert.Contains(MetadataGrenzwert.Empfaenger1))
+                        {
+                            meteringPointThreshlodSystem.Empfaenger1 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger1);
+                            meteringPointThreshlodUser.Empfaenger1 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger1);
+                        }
+                        if (grenzwert.Contains(MetadataGrenzwert.Empfaenger2))
+                        {
+                            meteringPointThreshlodSystem.Empfaenger2 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger2);
+                            meteringPointThreshlodUser.Empfaenger2 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger2);
+                        }
+                        if (grenzwert.Contains(MetadataGrenzwert.Empfaenger3))
+                        {
+                            meteringPointThreshlodSystem.Empfaenger3 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger3);
+                            meteringPointThreshlodUser.Empfaenger3 = grenzwert.GetAttributeValue<string>(MetadataGrenzwert.Empfaenger3);
+                        }
+                        #endregion "Empfaenger"
 
                         meteringPointThresholds.Add(meteringPointThreshlodSystem);
                         meteringPointThresholds.Add(meteringPointThreshlodUser);
@@ -772,6 +789,99 @@ namespace EPM.Extension.Services.DynamicsCRM
         }
 
         #endregion "Threshold"
+
+        #region "Kundenspezifikation_ZP"
+        public Kundenspezifikation_ZP GetKundenspezifikationZPByMeteringPointId(Guid meteringPointId)
+        {
+            Kundenspezifikation_ZP crmKundenspezifikationZP = new Kundenspezifikation_ZP();
+            using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+            {
+                using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
+                {
+                    crmKundenspezifikationZP = GetKundenspezifikationZPByMeteringPointId(serviceContext, meteringPointId);
+                }
+            }
+
+            return crmKundenspezifikationZP;
+        }
+
+        private Kundenspezifikation_ZP GetKundenspezifikationZPByMeteringPointId(OrganizationServiceContext serviceContext, Guid meteringPointId)
+        {
+            var crmKundenspezifikationZPs = serviceContext.CreateQuery(EntityNames.Kundenspezifikation_ZP).Where(e => ((Guid?)e[MetadataKundenspezifikation_ZP.Zahlpunkt]) == meteringPointId);
+            var result = GetKundenspezifikationZPFromEntityCollection(serviceContext, crmKundenspezifikationZPs);
+            return result.FirstOrDefault();
+        }
+
+        private List<Kundenspezifikation_ZP> GetKundenspezifikationZPFromEntityCollection(OrganizationServiceContext serviceContext, IEnumerable<Entity> crmKundenspezifikationZPs)
+        {
+            List<Kundenspezifikation_ZP> kundenspezifikationZPs = new List<Kundenspezifikation_ZP>();
+            foreach (Entity crmKundenspezifikationZP in crmKundenspezifikationZPs)
+            {
+                Kundenspezifikation_ZP kundenspezifikation_ZP = new Kundenspezifikation_ZP();
+                kundenspezifikation_ZP.Id = crmKundenspezifikationZP.Id;
+
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.KlimatisierungAktiv))
+                {
+                    string value = String.Empty;
+                    int code = -1;
+                    switch (crmKundenspezifikationZP.GetAttributeValue<OptionSetValue>(MetadataKundenspezifikation_ZP.KlimatisierungAktiv).Value)
+                    {
+                        case (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.JA:
+                            code = (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.JA;
+                            value = "Ja";
+                            break;
+                        case (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.NEIN:
+                            code = (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.NEIN;
+                            value = "Nein";
+                            break;
+                        case (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.UNBEKANNT:
+                            code = (int)MetadataKundenspezifikation_ZP.OpSetKlimatisierungAktiv.UNBEKANNT;
+                            value = "Unbekannt";
+                            break;
+                    }
+                    kundenspezifikation_ZP.KlimatisierungAktivCode = code;
+                    kundenspezifikation_ZP.KlimatisierungAktivValue = value;
+                }
+                
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3))
+                {
+                    kundenspezifikation_ZP.Beheizte_Flache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3);
+                }
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Gesamtflache_Flaechentyp1))
+                {
+                    kundenspezifikation_ZP.Gesamtflache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Gesamtflache_Flaechentyp1);
+                }
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Nebenflache_Flaechentyp2))
+                {
+                    kundenspezifikation_ZP.Nebenflache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Nebenflache_Flaechentyp2);
+                }                
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5))
+                {
+                    kundenspezifikation_ZP.Sonstige_Flachen = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5);
+                }
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4))
+                {
+                    kundenspezifikation_ZP.Unbeheizte_Flache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4);
+                }
+
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Zahlpunkt))
+                {
+                    EntityReference linkedMeteringPoint = crmKundenspezifikationZP.GetAttributeValue<EntityReference>(MetadataKundenspezifikation_ZP.Zahlpunkt);
+                    kundenspezifikation_ZP.ZahlpunktId = linkedMeteringPoint.Id;
+                    kundenspezifikation_ZP.ZahlpunktName = linkedMeteringPoint.Name;                        
+                }
+
+                if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Notizfeld_Freitextfeld1))
+                {
+                    kundenspezifikation_ZP.Notizfeld = crmKundenspezifikationZP.GetAttributeValue<string>(MetadataKundenspezifikation_ZP.Notizfeld_Freitextfeld1);
+                }                
+                
+                kundenspezifikationZPs.Add(kundenspezifikation_ZP);
+            }
+
+            return kundenspezifikationZPs;
+        }
+        #endregion "Kundenspezifikation_ZP"
 
         #region Dynamics CRM Connection
         private static OrganizationServiceProxy GetProxyService()

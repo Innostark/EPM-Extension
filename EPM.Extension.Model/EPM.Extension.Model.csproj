@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Kundenspezifikation_ZP.cs" />
     <Compile Include="Common\MeteringPointResponse.cs" />
     <Compile Include="Common\MeteringPointColumnBy.cs" />
     <Compile Include="Common\CustomerResponse.cs" />

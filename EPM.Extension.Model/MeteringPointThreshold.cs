@@ -56,6 +56,10 @@ namespace EPM.Extension.Model
 
         public MeteringPointThresholdType Type { get; set; }
 
+        public string Empfaenger1 { get; set; } //length 100 chars
+        public string Empfaenger2 { get; set; } //length 100 chars
+        public string Empfaenger3 { get; set; } //length 100 chars
+
     }
 
     public enum MeteringPointThresholdType
