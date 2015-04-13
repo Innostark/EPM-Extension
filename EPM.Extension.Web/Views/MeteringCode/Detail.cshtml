@@ -43,7 +43,7 @@
 <div class="row-fluid">
         
     <div class="span12">
-        <table id="ThresholdTable" class="table display table-responsive">
+        <table id="ThresholdTable" class="pretty table display table-responsive">
             <thead>
                 <tr>
                     <th style="display: none;"></th>
@@ -78,12 +78,12 @@
                         <td>@{
                                 W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
                             }</td>
-                        <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
-                        <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
-                        <td><span class="float-right">@item.MinimaSommerInt</span></td>
-                        <td><span class="float-right"> @item.MaximaSommerInt</span></td>
-                        <td><span class="float-right">@item.MinimaWinterInt</span></td>
-                        <td><span class="float-right"> @item.MaximaWinterInt</span></td>
+                        <td> <span class="float-left">@item.MinimaGlobalInt</span></td>
+                        <td><span class="float-left">@item.MaximaGlobalInt</span> </td>
+                        <td><span class="float-left">@item.MinimaSommerInt</span></td>
+                        <td><span class="float-left"> @item.MaximaSommerInt</span></td>
+                        <td><span class="float-left">@item.MinimaWinterInt</span></td>
+                        <td><span class="float-left"> @item.MaximaWinterInt</span></td>
 
                         <td>
                             @{

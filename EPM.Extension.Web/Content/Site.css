@@ -37,6 +37,15 @@ textarea {
         float: right;
     }
 
- table.dataTable thead th, table.dataTable thead td {
+ /*table.dataTable thead th, table.dataTable thead td {
         padding: 0 0;
+    }*/
+
+ .float-left {
+        float: left;
     }
+
+ table.pretty thead th {
+    text-align: center;
+    background: #66a9bd;
+}
