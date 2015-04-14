@@ -231,9 +231,13 @@
     @section scripts
 {
         <script type="text/javascript">
+            var oldModel;
+            var newModel;
             function saveClicked() {
-                var newModel = getFormValues();
-
+                debugger;
+                newModel = getFormValues();
+                //set -1 for the unchanged value
+                setChangedValues(newModel);
                 var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
                 $.ajax({
                     type: "POST",
@@ -249,8 +253,8 @@
                             newModel.MaximaGlobal, newModel.MinimaSommer, newModel.MaximaSommer, newModel.MinimaWinter, newModel.MaximaWinter
                         ];
                         if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null
-                              || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null
-                              || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
+                            || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null
+                            || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
                             $('#System_isActive')[0].innerText = "No";
                             $('#User_isActive')[0].innerText = "Yes";
                         }
@@ -288,7 +292,35 @@
                     MaximaWinter: $('#edit-threshold #MaximaWinter').val()
                 };
             }
-
+            function setChangedValues(newModelValues) {
+                if (oldModel.GrenzwertBezeichner == newModelValues.GrenzwertBezeichner) {
+                    newModel.GrenzwertBezeichner = -1;
+                }
+                if (oldModel.GultingAb == newModelValues.GultingAb) {
+                    newModel.GultingAb = -1;
+                }
+                if (oldModel.SaisonalitatAnwenden == newModelValues.SaisonalitatAnwenden) {
+                    newModel.SaisonalitatAnwenden = -1;
+                }
+                if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
+                    newModel.MinimaGlobal = -1;
+                }
+                if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
+                    newModel.MaximaGlobal = -1;
+                }
+                if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
+                    newModel.MinimaSommer = -1;
+                }
+                if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
+                    newModel.MaximaSommer = -1;
+                }
+                if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
+                    newModel.MinimaWinter = -1;
+                }
+                if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
+                    newModel.MaximaWinter = -1;
+                }
+            }
             $(document).ready(function () {
 
                 var thresholdTable = $('#ThresholdTable').dataTable({
@@ -305,6 +337,7 @@
                         $('#form-content').html(data);
                         $('#edit-threshold').modal('show');
                     });
+                    oldModel = getFormValues();
                 });
 
 
