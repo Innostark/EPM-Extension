@@ -268,8 +268,9 @@
                 $.get(url, function(data) {
                     $('#form-content').html(data);
                     $('#edit-threshold').modal('show');
+
+                    oldModel = getFormValues();
                 });
-                oldModel = getFormValues();
             });
 
 
