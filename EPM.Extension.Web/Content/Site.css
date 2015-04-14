@@ -37,15 +37,30 @@ textarea {
         float: right;
     }
 
- /*table.dataTable thead th, table.dataTable thead td {
+ table.dataTable thead th, table.dataTable thead td {
         padding: 0 0;
-    }*/
+    }
+ th, td {
+    border-right: 1px solid white;
+}
 
+  table, td{    
+    font-weight: bold !important;
+    font-size:10px;
+}
+  tr:nth-child(even) {
+    background-color: #DBDBFF !important;
+}
+  tr:nth-child(odd) td {
+   border-right: 1px solid #DBDBFF !important;
+}
  .float-left {
         float: left;
     }
 
  table.pretty thead th {
-    text-align: center;
-    background: #66a9bd;
+    text-align: left;
+    background: #6D92FF;
+    color: white;
+    padding-left:10px !important;
 }

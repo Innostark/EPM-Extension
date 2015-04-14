@@ -50,12 +50,12 @@ namespace EPM.Extension.Services
             
         }
 
-        public void SaveMeteringPointThresholdReport(Guid id, int option)
+        public void SaveMeteringPointThresholdReport(Guid id, int option, string Empfaenger1, string Empfaenger2, string Empfaenger3)
         {
             try
             {
                 DynamicsCrmService dynamicsCrmService = new DynamicsCrmService();
-                dynamicsCrmService.SetThresholdReport(id,(MetadataGrenzwert.OpSetReport)option);
+                dynamicsCrmService.SetThresholdReport(id,(MetadataGrenzwert.OpSetReport)option, Empfaenger1, Empfaenger2, Empfaenger3);
             }
             catch (Exception ex)
             {

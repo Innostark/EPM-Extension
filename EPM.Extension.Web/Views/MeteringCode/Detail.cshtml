@@ -48,17 +48,17 @@
                 <tr>
                     <th style="display: none;"></th>
                     <th style="width:5%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Active</th>
-                    <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
-                    <th style ="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
+                    <th style ="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
+                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
-                    <th style="width:5%"></th>
+                    <th style="width:5%;border-right: 0px solid white;"></th>
                 </tr>
             </thead>
             <tbody>
@@ -78,22 +78,23 @@
                         <td>@{
                                 W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
                             }</td>
-                        <td> <span class="float-left">@item.MinimaGlobalInt</span></td>
-                        <td><span class="float-left">@item.MaximaGlobalInt</span> </td>
-                        <td><span class="float-left">@item.MinimaSommerInt</span></td>
-                        <td><span class="float-left"> @item.MaximaSommerInt</span></td>
-                        <td><span class="float-left">@item.MinimaWinterInt</span></td>
-                        <td><span class="float-left"> @item.MaximaWinterInt</span></td>
+                        <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
+                        <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
+                        <td><span class="float-right">@item.MinimaSommerInt</span></td>
+                        <td><span class="float-right"> @item.MaximaSommerInt</span></td>
+                        <td><span class="float-right">@item.MinimaWinterInt</span></td>
+                        <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
-                        <td>
+                        <td style="border-right: 0px solid white;">
                             @{
-                                if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
-                                {
-                                    tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
-                                }
+                    if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
+                    {
+                        tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                    }
                             }
                             @Html.Raw(tag)
                         </td>
+
                     </tr>
                 }
             </tbody>
@@ -104,15 +105,35 @@
 {
     <div class="row-fluid">
         <div class="form-group">
-            @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.EmailReport, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-3">
-                @Html.DropDownList("Reports", ViewBag.List as SelectList, new {@class = "form-control", id= "reportDdl", })
+            @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.EmailReport, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-9">
+                @Html.DropDownList("Reports", ViewBag.List as SelectList, new { @class = "form-control", id = "reportDdl", })
+            </div>            
+        </div>
+    </div>
+        <div class="row-fluid">
+            <div class="form-group">
+                @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfaenger1, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Empfaenger1", @Model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, new { @class = "form-control", id = "Empfaenger1", })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfanger2, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Empfaenger2", @Model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, new { @class = "form-control", id = "Empfaenger2", })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfänger3, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("Empfaenger3", @Model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, new { @class = "form-control", id = "Empfaenger3", })
+                </div>
             </div>
             <div class="col-md-1">
                 <button id="saveReport" class="btn btn-primary">Save</button>
             </div>
         </div>
-    </div>
 }
 @section scripts
 {
@@ -207,8 +228,18 @@
             function getReportFormValues() {
                 var thesholdId = '@tId';
                 var optionSelected = $('#reportDdl').val();
+                var empfaenger1 = $('#Empfaenger1').val();
+                var empfaenger2 = $('#Empfaenger2').val();
+                var empfaenger3 = $('#Empfaenger3').val();
+
                 if (optionSelected !== '0') {
-                    return { id: thesholdId, option: optionSelected };
+                    return {
+                        id: thesholdId,
+                        option: optionSelected,
+                        Empfaenger1: empfaenger1,
+                        Empfaenger2: empfaenger2,
+                        Empfaenger3:empfaenger3
+                    };
                 }
                 return false;
 

@@ -160,6 +160,33 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Empfänger 1.
+        /// </summary>
+        public static string Empfaenger1 {
+            get {
+                return ResourceManager.GetString("Empfaenger1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empfänger 2.
+        /// </summary>
+        public static string Empfanger2 {
+            get {
+                return ResourceManager.GetString("Empfanger2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empfänger 3.
+        /// </summary>
+        public static string Empfänger3 {
+            get {
+                return ResourceManager.GetString("Empfänger3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to InActive.
         /// </summary>
         public static string InActive {

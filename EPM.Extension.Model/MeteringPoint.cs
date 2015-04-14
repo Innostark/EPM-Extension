@@ -47,6 +47,7 @@ namespace EPM.Extension.Model
         #endregion OptionSets
 
         public IEnumerable<MeteringPointThreshold> MeteringCodeThresholds { get; set; }
+        public Kundenspezifikation_ZP KundenspezifikationZP { get; set; }
 
     }
 }

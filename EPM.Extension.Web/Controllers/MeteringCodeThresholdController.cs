@@ -47,11 +47,11 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult SaveReport(Guid id, int option)
+        public ActionResult SaveReport(Guid id, int option, string Empfaenger1, string Empfaenger2, string Empfaenger3)
         {
             if (ModelState.IsValid)
             {
-                _meteringPointThresholdService.SaveMeteringPointThresholdReport(id, option);
+                _meteringPointThresholdService.SaveMeteringPointThresholdReport(id, option,Empfaenger1,Empfaenger2,Empfaenger3);
             }
             return Content("");
         }

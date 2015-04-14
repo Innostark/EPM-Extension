@@ -150,6 +150,15 @@
   <data name="EmailReport" xml:space="preserve">
     <value>E-Mail- Berichte</value>
   </data>
+  <data name="Empfaenger1" xml:space="preserve">
+    <value>Empfänger 1</value>
+  </data>
+  <data name="Empfanger2" xml:space="preserve">
+    <value>Empfänger 2</value>
+  </data>
+  <data name="Empfänger3" xml:space="preserve">
+    <value>Empfänger 3</value>
+  </data>
   <data name="InActive" xml:space="preserve">
     <value>InActive</value>
   </data>

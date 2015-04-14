@@ -15,7 +15,7 @@ namespace EPM.Extension.Interfaces
         MeteringPointThreshold GetMeteringPointThresholdById(Guid id);
         void UpdateMeteringThreshold(MeteringPointThreshold model);
 
-        void SaveMeteringPointThresholdReport(Guid id, int option);
+        void SaveMeteringPointThresholdReport(Guid id, int option, string Empfaenger1, string Empfaenger2, string Empfaenger3);
     }
 }
 

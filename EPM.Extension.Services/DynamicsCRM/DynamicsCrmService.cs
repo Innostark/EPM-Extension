@@ -641,8 +641,13 @@ namespace EPM.Extension.Services.DynamicsCRM
 
                         meteringPoint.MeteringCodeThresholds = meteringPointThresholds;
                     }
-                #endregion "Threshold Values"
+                
+                
                 }
+                #endregion "Threshold Values"
+
+                meteringPoint.KundenspezifikationZP = this.GetKundenspezifikationZPByMeteringPointId(meteringPoint.Id);
+
                 meteringPoints.Add(meteringPoint);
             }
 
@@ -774,7 +779,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             }
         }
 
-        internal void SetThresholdReport(Guid thresholdId, MetadataGrenzwert.OpSetReport report)
+        internal void SetThresholdReport(Guid thresholdId, MetadataGrenzwert.OpSetReport report, string Empfaenger1, string Empfaenger2, string Empfaenger3)
         {
             if (thresholdId != null && thresholdId != Guid.Empty)
             {
@@ -783,6 +788,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                     Entity crmThreshold = new Entity(EntityNames.Grenzwert);
                     crmThreshold.Id = thresholdId;
                     crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.EMailBerichte, (Object) new OptionSetValue((int)report)));
+                    crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger1, Empfaenger1));
+                    crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger2, Empfaenger2));
+                    crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger3, Empfaenger3));
+
                     serviceProxy.Update(crmThreshold);
                 }
             }
