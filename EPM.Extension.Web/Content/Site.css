@@ -40,4 +40,6 @@ textarea {
  table.dataTable thead th, table.dataTable thead td {
         padding: 0 0;
     }
- 
+ .cursorHand {
+    cursor: pointer !important;
+}

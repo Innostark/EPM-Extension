@@ -109,11 +109,11 @@
                         <td><span class="float-right">@item.MinimaWinterInt</span></td>
                         <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
-                        <td style="border-right: 0px solid white;">
+                        <td style="border-right: 0 solid white;">
                             @{
                     if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
                     {
-                        tag = "<a id='addMeteringCodeThreshold' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                        tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>Edit</a>";
                     }
                             }
                             @Html.Raw(tag)
