@@ -231,9 +231,12 @@
     @section scripts
 {
         <script type="text/javascript">
+            var oldModel;
+            var newModel;
             function saveClicked() {
-                var newModel = getFormValues();
-                
+                newModel = getFormValues();
+                //set -1 for the unchanged value
+                if (setChangedValues(newModel)) {
                 var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
                 $.ajax({
                     type: "POST",
@@ -268,8 +271,9 @@
                     },
                     error: callError
                 });
-
-
+                } else {
+                    callError();
+                }
             }
             function callError() {
                 alert("Problem in Saving Changes.");
@@ -288,7 +292,46 @@
                     MaximaWinter: $('#edit-threshold #MaximaWinter').val()
                 };
             }
-            
+            function setChangedValues(newModelValues) {
+                //if (oldModel.GrenzwertBezeichner == newModelValues.GrenzwertBezeichner) {
+                //    newModel.GrenzwertBezeichner = -1;
+                //}
+                //if (oldModel.SaisonalitatAnwenden == newModelValues.SaisonalitatAnwenden) {
+                //    newModel.SaisonalitatAnwenden = -1;
+                //}
+                if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
+                    newModelValues.MaximaWinter == "0" || newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
+                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+                    return false;
+                }
+                if (oldModel.GultingAb == newModelValues.GultingAb) {
+                    newModel.GultingAb = -1;
+                }
+
+                if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
+                    if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
+                        newModel.MinimaSommer = -1;
+                    }
+                    if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
+                        newModel.MaximaSommer = -1;
+                    }
+                    if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
+                        newModel.MinimaWinter = -1;
+                    }
+                    if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
+                        newModel.MaximaWinter = -1;
+                    }
+                }
+                else {
+                    if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
+                        newModel.MinimaGlobal = -1;
+                    }
+                    if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
+                        newModel.MaximaGlobal = -1;
+                    }
+                }
+                return true;
+            }
             $(document).ready(function () {
 
                 var thresholdTable = $('#ThresholdTable').dataTable({
