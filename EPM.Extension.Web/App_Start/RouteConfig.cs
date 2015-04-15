@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
 
 namespace EPM.Extension.Web
@@ -16,6 +12,11 @@ namespace EPM.Extension.Web
                 name: "Default_MeteringPoint",
                 url: "MeteringPoint/{id}",
                 defaults: new { controller = "MeteringCode", action = "Detail" }
+            );
+            routes.MapRoute(
+                name: "Default_MeteringPointEditNew",
+                url: "StandortInfoV1/{id}",
+                defaults: new { controller = "MeteringCode", action = "EditNew" }
             );
             routes.MapRoute(
                 name: "Default",
