@@ -13,7 +13,7 @@
 </style>
 <h2>@EPM.Extension.Web.Resources.MeteringCode.Details</h2>
 
-<div class="marginBelow">
+<div>
     <h4>@EPM.Extension.Web.Resources.Customer.SubTitle</h4>
     <hr />
 
@@ -205,7 +205,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.Notizfeld, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Notizfeld, "", new { @class = "text-danger" })
         </div>
     </div>
