@@ -49,3 +49,7 @@ textarea {
      margin-top: 20px;
      margin-bottom: 10px;
  }
+
+ .width100 {
+     width: 100% !important;
+ }
