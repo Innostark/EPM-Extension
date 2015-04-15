@@ -36,9 +36,15 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(Guid id)
+        public ActionResult Edit(string id)
         {
-            MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
+            Guid guidOutput;
+            MeteringPoint meteringCode;
+            bool isValid = Guid.TryParse(id, out guidOutput);
+            if(isValid)
+            meteringCode = this._meteringCodeService.GetMeteringPointsById(guidOutput);
+            else
+                meteringCode = this._meteringCodeService.GetMeteringPointsByCode(id);
             return View(meteringCode);
         }
 
