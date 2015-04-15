@@ -40,11 +40,8 @@ namespace EPM.Extension.Web.Controllers
         {
             Guid guidOutput;
             MeteringPoint meteringCode;
-            bool isValid = Guid.TryParse(id, out guidOutput);
-            if(isValid)
-            meteringCode = this._meteringCodeService.GetMeteringPointsById(guidOutput);
-            else
-                meteringCode = this._meteringCodeService.GetMeteringPointsByCode(id);
+            bool isGuid = Guid.TryParse(id, out guidOutput);
+            meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
             return View(meteringCode);
         }
 
