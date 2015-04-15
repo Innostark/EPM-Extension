@@ -43,3 +43,7 @@ textarea {
  .cursorHand {
     cursor: pointer !important;
 }
+
+ .marginBelow {
+     margin-bottom: 20px;
+ }
