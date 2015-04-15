@@ -9,17 +9,19 @@ namespace EPM.Extension.Model
 {
     public class MeteringPoint
     {
+        #region Points of Delivery (Zählpunkte)
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Zählpunktbezeichner { get; set; }
         public string Kurzbezeichnung { get; set; }
         public string Anlagentyp { get; set; }
         public string Strasse { get; set; }
-        public string PLZ { get; set; } 
+        public string PLZ { get; set; }
         public string Ort { get; set; }
         public string DatenversandAktiv { get; set; }
         public string Kundenrückmeldung { get; set; }
         public string Code { get; set; }
+        #endregion
         
         #region Links
         public Guid CrmAccountId { get; set; }
@@ -47,7 +49,9 @@ namespace EPM.Extension.Model
         #endregion OptionSets
 
         public IEnumerable<MeteringPointThreshold> MeteringCodeThresholds { get; set; }
-        public Kundenspezifikation_ZP KundenspezifikationZP { get; set; }
 
+        #region site specifications (Standortspezifkationen)
+        public KundenspezifikationZp KundenspezifikationZp { get; set; }
+        #endregion
     }
 }

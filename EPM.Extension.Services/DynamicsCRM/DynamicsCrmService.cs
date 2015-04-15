@@ -26,10 +26,7 @@ namespace EPM.Extension.Services.DynamicsCRM
 
         public Guid AuthenticateUser(string username, string password)
         {
-            
-
-            Guid userId = new Guid();
-            userId = Guid.Parse("269c6436-01c9-e411-8fd9-00155d65282d");
+            Guid userId = Guid.Parse("269c6436-01c9-e411-8fd9-00155d65282d");
 
             //using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
             //{
@@ -646,7 +643,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 }
                 #endregion "Threshold Values"
 
-                meteringPoint.KundenspezifikationZP = this.GetKundenspezifikationZPByMeteringPointId(meteringPoint.Id);
+                meteringPoint.KundenspezifikationZp = this.GetKundenspezifikationZPByMeteringPointId(meteringPoint.Id);
 
                 meteringPoints.Add(meteringPoint);
             }
@@ -800,9 +797,9 @@ namespace EPM.Extension.Services.DynamicsCRM
         #endregion "Threshold"
 
         #region "Kundenspezifikation_ZP"
-        public Kundenspezifikation_ZP GetKundenspezifikationZPByMeteringPointId(Guid meteringPointId)
+        public KundenspezifikationZp GetKundenspezifikationZPByMeteringPointId(Guid meteringPointId)
         {
-            Kundenspezifikation_ZP crmKundenspezifikationZP = new Kundenspezifikation_ZP();
+            KundenspezifikationZp crmKundenspezifikationZP = new KundenspezifikationZp();
             using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
             {
                 using (OrganizationServiceContext serviceContext = new OrganizationServiceContext(serviceProxy))
@@ -814,19 +811,19 @@ namespace EPM.Extension.Services.DynamicsCRM
             return crmKundenspezifikationZP;
         }
 
-        private Kundenspezifikation_ZP GetKundenspezifikationZPByMeteringPointId(OrganizationServiceContext serviceContext, Guid meteringPointId)
+        private KundenspezifikationZp GetKundenspezifikationZPByMeteringPointId(OrganizationServiceContext serviceContext, Guid meteringPointId)
         {
             var crmKundenspezifikationZPs = serviceContext.CreateQuery(EntityNames.Kundenspezifikation_ZP).Where(e => ((Guid?)e[MetadataKundenspezifikation_ZP.Zahlpunkt]) == meteringPointId);
             var result = GetKundenspezifikationZPFromEntityCollection(serviceContext, crmKundenspezifikationZPs);
             return result.FirstOrDefault();
         }
 
-        private List<Kundenspezifikation_ZP> GetKundenspezifikationZPFromEntityCollection(OrganizationServiceContext serviceContext, IEnumerable<Entity> crmKundenspezifikationZPs)
+        private List<KundenspezifikationZp> GetKundenspezifikationZPFromEntityCollection(OrganizationServiceContext serviceContext, IEnumerable<Entity> crmKundenspezifikationZPs)
         {
-            List<Kundenspezifikation_ZP> kundenspezifikationZPs = new List<Kundenspezifikation_ZP>();
+            List<KundenspezifikationZp> kundenspezifikationZPs = new List<KundenspezifikationZp>();
             foreach (Entity crmKundenspezifikationZP in crmKundenspezifikationZPs)
             {
-                Kundenspezifikation_ZP kundenspezifikation_ZP = new Kundenspezifikation_ZP();
+                KundenspezifikationZp kundenspezifikation_ZP = new KundenspezifikationZp();
                 kundenspezifikation_ZP.Id = crmKundenspezifikationZP.Id;
 
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.KlimatisierungAktiv))
@@ -854,7 +851,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                 
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3))
                 {
-                    kundenspezifikation_ZP.Beheizte_Flache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3);
+                    kundenspezifikation_ZP.BeheizteFlache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3);
                 }
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Gesamtflache_Flaechentyp1))
                 {
@@ -866,11 +863,11 @@ namespace EPM.Extension.Services.DynamicsCRM
                 }                
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5))
                 {
-                    kundenspezifikation_ZP.Sonstige_Flachen = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5);
+                    kundenspezifikation_ZP.SonstigeFlachen = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5);
                 }
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4))
                 {
-                    kundenspezifikation_ZP.Unbeheizte_Flache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4);
+                    kundenspezifikation_ZP.UnbeheizteFlache = crmKundenspezifikationZP.GetAttributeValue<int>(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4);
                 }
 
                 if (crmKundenspezifikationZP.Contains(MetadataKundenspezifikation_ZP.Zahlpunkt))

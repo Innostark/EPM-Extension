@@ -230,6 +230,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MeteringCodeThreshold.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\SiteSpecifications.de.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteSpecifications.de.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SiteSpecifications.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SiteSpecifications.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -407,6 +417,14 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MeteringCodeThreshold.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SiteSpecifications.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SiteSpecifications.de.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SiteSpecifications.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SiteSpecifications.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
