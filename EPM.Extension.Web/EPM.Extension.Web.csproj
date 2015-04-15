@@ -349,6 +349,7 @@
     <Content Include="Views\MeteringCode\EditMinimized.cshtml" />
     <Content Include="Views\Shared\_LayoutWithoutHeader.cshtml" />
     <Content Include="Views\MeteringCode\Detail.cshtml" />
+    <Content Include="Views\MeteringCode\EditNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
