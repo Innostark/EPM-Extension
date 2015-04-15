@@ -319,13 +319,14 @@
 
 <p>
     @{
-            if (Request.UrlReferrer != null && !string.IsNullOrEmpty(Request.UrlReferrer.Host))
-            {
-        <a href="@Request.UrlReferrer">Back</a>
-            }
+        if (Request.UrlReferrer != null && !string.IsNullOrEmpty(Request.UrlReferrer.Host))
+        {
+            <a href="@Request.UrlReferrer">Back</a>
+        }
     }
 
 </p>
+
 @section scripts
 {
     <script type="text/javascript">
