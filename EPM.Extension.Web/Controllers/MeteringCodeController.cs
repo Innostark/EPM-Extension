@@ -39,16 +39,17 @@ namespace EPM.Extension.Web.Controllers
         public ActionResult Edit(string id)
         {
             Guid guidOutput;
-            MeteringPoint meteringCode;
             bool isGuid = Guid.TryParse(id, out guidOutput);
-            meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
+            MeteringPoint meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
             return View(meteringCode);
         }
 
         [HttpGet]
-        public ActionResult EditNew(Guid id)
+        public ActionResult EditNew(string id)
         {
-            MeteringPoint meteringCode = this._meteringCodeService.GetMeteringPointsById(id);
+            Guid guidOutput;
+            bool isGuid = Guid.TryParse(id, out guidOutput);
+            MeteringPoint meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
             return View(meteringCode);
         }
 
