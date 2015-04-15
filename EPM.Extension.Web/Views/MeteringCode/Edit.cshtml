@@ -299,16 +299,18 @@
                 //if (oldModel.SaisonalitatAnwenden == newModelValues.SaisonalitatAnwenden) {
                 //    newModel.SaisonalitatAnwenden = -1;
                 //}
-                if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
-                    newModelValues.MaximaWinter == "0" || newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
-                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
-                    return false;
-                }
                 if (oldModel.GultingAb == newModelValues.GultingAb) {
                     newModel.GultingAb = -1;
                 }
 
                 if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
+
+                    if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
+                    newModelValues.MaximaWinter == "0") {
+                        alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+                        return false;
+                    }
+
                     if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
                         newModel.MinimaSommer = -1;
                     }
@@ -323,6 +325,12 @@
                     }
                 }
                 else {
+
+                    if (newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
+                        alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+                        return false;
+                    }
+
                     if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
                         newModel.MinimaGlobal = -1;
                     }
