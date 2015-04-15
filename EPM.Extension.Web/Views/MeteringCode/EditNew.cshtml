@@ -130,8 +130,7 @@
 </div>
 
 <div>
-    <h4>@EPM.Extension.Web.Resources.SiteSpecifications.Standortspezifkationen</h4>
-    <hr />
+    <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.Standortspezifkationen</label>
 
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -185,8 +184,7 @@
 </div>
 
 <div>
-    <h4>@EPM.Extension.Web.Resources.SiteSpecifications.Notiz</h4>
-    <hr />
+    <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.Notiz</label>
 
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -198,8 +196,7 @@
 </div>
 
 <div>
-    <h4>@EPM.Extension.Web.Resources.SiteSpecifications.EmpfängerFürBerichte</h4>
-    <hr />
+    <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.EmpfängerFürBerichte</label>
 
     <div class="form-group">
         @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -225,9 +222,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="edit-threshold-container" class="modal-dialog">
