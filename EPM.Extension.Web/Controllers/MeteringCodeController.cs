@@ -45,12 +45,20 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditNew(string id)
+        public ActionResult StandardInfo(string id)
         {
             Guid guidOutput;
             bool isGuid = Guid.TryParse(id, out guidOutput);
             MeteringPoint meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
             return View(meteringCode);
+        }
+
+
+        [HttpPost]
+        public bool StandardInfo(MeteringPoint meteringPoint)
+        {
+            
+            return true;
         }
 
         [AllowAnonymous]
