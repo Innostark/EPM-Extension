@@ -44,6 +44,7 @@ textarea {
     cursor: pointer !important;
 }
 
- .marginBelow {
+ .headingLabel {
+     font-size: 16px;
      margin-bottom: 20px;
  }

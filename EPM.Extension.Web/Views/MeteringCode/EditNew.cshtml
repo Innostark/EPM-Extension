@@ -14,9 +14,8 @@
 <h2>@EPM.Extension.Web.Resources.MeteringCode.Details</h2>
 
 <div>
-    <h4>@EPM.Extension.Web.Resources.Customer.SubTitle</h4>
-    <hr />
-
+    <label class="headingLabel">@EPM.Extension.Web.Resources.Customer.SubTitle</label>
+    
     <div class="form-group">
         @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -40,8 +39,6 @@
             @Html.ValidationMessageFor(model => model.Kurzbezeichnung, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.Strasse, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -75,10 +72,6 @@
         </div>
     </div>
 
-
-
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.CrmAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -87,7 +80,6 @@
         </div>
     </div>
 
-
     <div class="form-group">
         @Html.LabelFor(model => model.BetreiberName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -95,8 +87,6 @@
             @Html.ValidationMessageFor(model => model.BetreiberName, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.VNBName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -114,8 +104,6 @@
         </div>
     </div>
 
-
-
     <div class="form-group">
         @Html.LabelFor(model => model.UMessungValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -123,8 +111,6 @@
             @Html.ValidationMessageFor(model => model.UMessungValue, "", new { @class = "text-danger" })
         </div>
     </div>
-
-
 
     <div class="form-group">
         @Html.LabelFor(model => model.UEntnahmeValue, htmlAttributes: new { @class = "control-label col-md-2" })
