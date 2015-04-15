@@ -123,7 +123,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @class = "form-control", @cols = 40, @rows = 3 })
+            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @class = "form-control", @cols = 200, @rows = 4 })
             @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -189,7 +189,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @class = "form-control", @cols = 40, @rows = 3 })
+            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @class = "form-control", @cols = 200, @rows = 4 })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Notizfeld, "", new { @class = "text-danger" })
         </div>
     </div>
