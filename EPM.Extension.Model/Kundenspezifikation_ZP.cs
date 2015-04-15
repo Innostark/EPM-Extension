@@ -1,15 +1,15 @@
 ﻿using System;
 namespace EPM.Extension.Model
 {
-    public class Kundenspezifikation_ZP
+    public class KundenspezifikationZp
     {
         public Guid Id { get; set; }
 
         public int Gesamtflache { get; set; }
         public int Nebenflache { get; set; }
-        public int Beheizte_Flache { get; set; }
-        public int Unbeheizte_Flache { get; set; }
-        public int Sonstige_Flachen { get; set; }
+        public int BeheizteFlache { get; set; }
+        public int UnbeheizteFlache { get; set; }
+        public int SonstigeFlachen { get; set; }
         public string Notizfeld { get; set; }
 
         #region Links
