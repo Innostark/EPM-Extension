@@ -189,7 +189,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new {@cols = 200, @rows = 4 })
+            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @class = "form-control width100", @cols = 200, @rows = 4 })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Notizfeld, "", new { @class = "text-danger" })
         </div>
     </div>
