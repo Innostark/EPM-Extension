@@ -205,6 +205,24 @@ namespace EPM.Extension.Web.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Problem in Saving Changes..
+        /// </summary>
+        public static string ProblemSavingChanges {
+            get {
+                return ResourceManager.GetString("ProblemSavingChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changes saved successfully..
+        /// </summary>
+        public static string SuccessfullySavedChanges {
+            get {
+                return ResourceManager.GetString("SuccessfullySavedChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grenzwerttyp.
         /// </summary>
         public static string Threshold {

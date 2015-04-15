@@ -165,6 +165,12 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="ProblemSavingChanges" xml:space="preserve">
+    <value>Problem in Saving Changes.</value>
+  </data>
+  <data name="SuccessfullySavedChanges" xml:space="preserve">
+    <value>Changes saved successfully.</value>
+  </data>
   <data name="Threshold" xml:space="preserve">
     <value>Grenzwerttyp</value>
   </data>
