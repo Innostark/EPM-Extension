@@ -384,10 +384,8 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
-
             if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
-            newModelValues.MaximaWinter == "0") {
+            newModelValues.MaximaWinter == "0" || newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
                 alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
                 return false;
             }
@@ -404,13 +402,6 @@
             if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
                 newModelValues.MaximaWinter = -1;
             }
-        }
-        else {
-
-            if (newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
-                alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
-                return false;
-            }
 
             if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
                 newModelValues.MinimaGlobal = -1;
@@ -418,7 +409,6 @@
             if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
                 newModelValues.MaximaGlobal = -1;
             }
-        }
         return true;
     }
     $('#saveInfo').click(function (e) {

@@ -242,40 +242,30 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
-
-            if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
-            newModelValues.MaximaWinter == "0") {
-                alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
-                return false;
-            }
-
-            if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
-                newModelValues.MinimaSommer = -1;
-            }
-            if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
-                newModelValues.MaximaSommer = -1;
-            }
-            if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
-                newModelValues.MinimaWinter = -1;
-            }
-            if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
-                newModelValues.MaximaWinter = -1;
-            }
+        if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
+        newModelValues.MaximaWinter == "0" || newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
+            alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+            return false;
         }
-        else {
 
-            if (newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
-                alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
-                return false;
-            }
+        if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
+            newModelValues.MinimaSommer = -1;
+        }
+        if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
+            newModelValues.MaximaSommer = -1;
+        }
+        if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
+            newModelValues.MinimaWinter = -1;
+        }
+        if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
+            newModelValues.MaximaWinter = -1;
+        }
 
-            if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
-                newModelValues.MinimaGlobal = -1;
-            }
-            if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
-                newModelValues.MaximaGlobal = -1;
-            }
+        if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
+            newModelValues.MinimaGlobal = -1;
+        }
+        if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
+            newModelValues.MaximaGlobal = -1;
         }
         return true;
     }
