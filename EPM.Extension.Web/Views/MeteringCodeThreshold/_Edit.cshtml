@@ -125,5 +125,11 @@
         }
 
     }()); //auto-run
-
+    $(document).ready(function() {
+        if ($('#SaisonalitatAnwenden').is(":checked"))
+            showAdvanceFields();
+        else {
+            hideAdvanceFields();
+        }
+    });
 </script>
