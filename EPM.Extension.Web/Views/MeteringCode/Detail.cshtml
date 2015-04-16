@@ -113,26 +113,26 @@
                         <td>
                             @{
                     W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
-                        }
-                    </td>
-                    <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
-                    <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
-                    <td><span class="float-right">@item.MinimaSommerInt</span></td>
-                    <td><span class="float-right"> @item.MaximaSommerInt</span></td>
-                    <td><span class="float-right">@item.MinimaWinterInt</span></td>
-                    <td><span class="float-right"> @item.MaximaWinterInt</span></td>
+                            }
+                        </td>
+                        <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
+                        <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
+                        <td><span class="float-right">@item.MinimaSommerInt</span></td>
+                        <td><span class="float-right"> @item.MaximaSommerInt</span></td>
+                        <td><span class="float-right">@item.MinimaWinterInt</span></td>
+                        <td><span class="float-right"> @item.MaximaWinterInt</span></td>
 
-                    <td style="border-right: 0 solid white;">
-                        @{
+                        <td style="border-right: 0 solid white;">
+                            @{
                     if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
                     {
                         tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>Edit</a>";
                     }
-                        }
-                        @Html.Raw(tag)
-                    </td>
+                            }
+                            @Html.Raw(tag)
+                        </td>
 
-                </tr>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -148,7 +148,8 @@
             </div>
             <div class="col-md-1">
                 <button id="saveReport" class="btn btn-primary">Save</button>
-            </div></div>
+            </div>
+        </div>
     </div>
     <div class="row-fluid">
         <div class="form-group">
@@ -174,13 +175,13 @@
 @section scripts
 {
     <script type="text/javascript">
-    var oldModel;
-    var newModel;
-    function saveClicked() {
-        newModel = getFormValues();
-        //set -1 for the unchanged value
-        if (setChangedValues(newModel)) {
-            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
+        var oldModel;
+        var newModel;
+        function saveClicked() {
+            newModel = getFormValues();
+            //set -1 for the unchanged value
+            if (setChangedValues(newModel)) {
+                var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
                 $.ajax({
                     type: "POST",
                     datatype: "json",
@@ -214,7 +215,7 @@
                     },
                     error: callError
                 });
-            } 
+            }
             //else {
             //    callError();
             //}
@@ -222,144 +223,137 @@
 
         function callError() {
             alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ProblemSavingChanges');
-    }
-
-    function getFormValues() {
-        return {
-            Id: $('#edit-threshold #Id').val(),
-            GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
-            GultingAb: $('#edit-threshold #GultingAb').val(),
-            SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
-            MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
-            MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
-            MinimaSommer: $('#edit-threshold #MinimaSommer').val(),
-            MaximaSommer: $('#edit-threshold #MaximaSommer').val(),
-            MinimaWinter: $('#edit-threshold #MinimaWinter').val(),
-            MaximaWinter: $('#edit-threshold #MaximaWinter').val()
-        };
-    }
-    function setChangedValues(newModelValues) {
-        //if (oldModel.GrenzwertBezeichner == newModelValues.GrenzwertBezeichner) {
-        //    newModel.GrenzwertBezeichner = -1;
-        //}
-        //if (oldModel.SaisonalitatAnwenden == newModelValues.SaisonalitatAnwenden) {
-        //    newModel.SaisonalitatAnwenden = -1;
-        //}
-
-        if (oldModel.GultingAb == newModelValues.GultingAb) {
-            newModel.GultingAb = -1;
         }
 
-        if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
+        function getFormValues() {
+            return {
+                Id: $('#edit-threshold #Id').val(),
+                GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
+                GultingAb: $('#edit-threshold #GultingAb').val(),
+                SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
+                MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
+                MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
+                MinimaSommer: $('#edit-threshold #MinimaSommer').val(),
+                MaximaSommer: $('#edit-threshold #MaximaSommer').val(),
+                MinimaWinter: $('#edit-threshold #MinimaWinter').val(),
+                MaximaWinter: $('#edit-threshold #MaximaWinter').val()
+            };
+        }
+        function setChangedValues(newModelValues) {
+            if (oldModel.GultingAb == newModelValues.GultingAb) {
+                newModel.GultingAb = -1;
+            }
 
-            if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
-            newModelValues.MaximaWinter == "0") {
-                alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+            if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
+
+                if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
+                newModelValues.MaximaWinter == "0") {
+                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+                    return false;
+                }
+
+                if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
+                    newModel.MinimaSommer = -1;
+                }
+                if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
+                    newModel.MaximaSommer = -1;
+                }
+                if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
+                    newModel.MinimaWinter = -1;
+                }
+                if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
+                    newModel.MaximaWinter = -1;
+                }
+            }
+            else {
+
+                if (newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
+                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
+                    return false;
+                }
+
+                if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
+                    newModel.MinimaGlobal = -1;
+                }
+                if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
+                    newModel.MaximaGlobal = -1;
+                }
+            }
+            return true;
+        }
+
+        $(document).ready(function () {
+            var thresholdTable = $('#ThresholdTable').dataTable({
+                "bInfo": false,
+                "bFilter": false,
+                "bSort": false,
+                "bLengthChange": false,
+            });
+            $('#ThresholdTable_paginate').hide();
+            $('#addMeteringCodeThreshold').click(function (e) {
+                var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
+                var url = "/MeteringCodeThreshold/Edit/" + data + "?stamp=" + new Date().getTime(); // the url to the controller
+                $.get(url, function (data) {
+                    $('#form-content').html(data);
+                    $('#edit-threshold').modal('show');
+
+                    oldModel = getFormValues();
+                });
+            });
+
+
+            $('#ThresholdTable tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                } else {
+                    thresholdTable.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                }
+            });
+
+            function getReportFormValues() {
+                var thesholdId = '@tId';
+                var optionSelected = $('#reportDdl').val();
+                var empfaenger1 = $('#Empfaenger1').val();
+                var empfaenger2 = $('#Empfaenger2').val();
+                var empfaenger3 = $('#Empfaenger3').val();
+
+                if (optionSelected !== '0') {
+                    return {
+                        id: thesholdId,
+                        option: optionSelected,
+                        Empfaenger1: empfaenger1,
+                        Empfaenger2: empfaenger2,
+                        Empfaenger3: empfaenger3
+                    };
+                }
                 return false;
-            }
 
-            if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
-                newModel.MinimaSommer = -1;
             }
-            if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
-                newModel.MaximaSommer = -1;
-            }
-            if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
-                newModel.MinimaWinter = -1;
-            }
-            if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
-                newModel.MaximaWinter = -1;
-            }
-        }
-        else {
+            $('#saveReport').click(function (e) {
+                var newModel = getReportFormValues();
+                if (newModel) {
+                    var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/SaveReport";
+                    $.ajax({
+                        type: "POST",
+                        datatype: "json",
+                        url: postUrl,
+                        data: newModel,
+                        success: function (data) {
+                            // Set values
+                            alert('Changes saved successfully.');
+                        },
+                        error: callError
+                    });
+                }
 
-            if (newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
-                alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
-                return false;
-            }
-
-            if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
-                newModel.MinimaGlobal = -1;
-            }
-            if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
-                newModel.MaximaGlobal = -1;
-            }
-        }
-        return true;
-    }
-
-    $(document).ready(function () {
-        var thresholdTable = $('#ThresholdTable').dataTable({
-            "bInfo": false,
-            "bFilter": false,
-            "bSort": false,
-            "bLengthChange": false,
-        });
-        $('#ThresholdTable_paginate').hide();
-        $('#addMeteringCodeThreshold').click(function (e) {
-            var data = thresholdTable.fnGetData($(this).parent().parent()[0])[0];
-            var url = "/MeteringCodeThreshold/Edit/" + data + "?stamp=" + new Date().getTime(); // the url to the controller
-            $.get(url, function (data) {
-                $('#form-content').html(data);
-                $('#edit-threshold').modal('show');
-
-                oldModel = getFormValues();
+            });
+            $('#ThresholdTable').on('click', '.edit', function (e) {
+                e.preventDefault();
+                var nRow = $(this).parents('tr')[0];
+                var aData = thresholdTable.fnGetData(nRow);
+                window.location.href = "/MeteringCode/Edit/" + aData.Id;
             });
         });
-
-
-        $('#ThresholdTable tbody').on('click', 'tr', function () {
-            if ($(this).hasClass('selected')) {
-                $(this).removeClass('selected');
-            } else {
-                thresholdTable.$('tr.selected').removeClass('selected');
-                $(this).addClass('selected');
-            }
-        });
-
-        function getReportFormValues() {
-            var thesholdId = '@tId';
-            var optionSelected = $('#reportDdl').val();
-            var empfaenger1 = $('#Empfaenger1').val();
-            var empfaenger2 = $('#Empfaenger2').val();
-            var empfaenger3 = $('#Empfaenger3').val();
-
-            if (optionSelected !== '0') {
-                return {
-                    id: thesholdId,
-                    option: optionSelected,
-                    Empfaenger1: empfaenger1,
-                    Empfaenger2: empfaenger2,
-                    Empfaenger3: empfaenger3
-                };
-            }
-            return false;
-
-        }
-        $('#saveReport').click(function (e) {
-            var newModel = getReportFormValues();
-            if (newModel) {
-                var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/SaveReport";
-                $.ajax({
-                    type: "POST",
-                    datatype: "json",
-                    url: postUrl,
-                    data: newModel,
-                    success: function (data) {
-                        // Set values
-                        alert('Changes saved successfully.');
-                    },
-                    error: callError
-                });
-            }
-
-        });
-        $('#ThresholdTable').on('click', '.edit', function (e) {
-            e.preventDefault();
-            var nRow = $(this).parents('tr')[0];
-            var aData = thresholdTable.fnGetData(nRow);
-            window.location.href = "/MeteringCode/Edit/" + aData.Id;
-        });
-    });
     </script>
 }

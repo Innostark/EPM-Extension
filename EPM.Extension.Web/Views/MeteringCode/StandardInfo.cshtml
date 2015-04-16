@@ -19,7 +19,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @id = "Code", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -27,7 +27,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Zählpunktbezeichner, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Zählpunktbezeichner, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Zählpunktbezeichner, new { htmlAttributes = new { @id = "Zählpunktbezeichner", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Zählpunktbezeichner, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -35,7 +35,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Kurzbezeichnung, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Kurzbezeichnung, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Kurzbezeichnung, new { htmlAttributes = new { @id = "Kurzbezeichnung", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Kurzbezeichnung, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -43,7 +43,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Strasse, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Strasse, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Strasse, new { htmlAttributes = new { @id = "Strasse", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Strasse, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -51,7 +51,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.PLZ, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PLZ, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.PLZ, new { htmlAttributes = new { @id = "PLZ", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.PLZ, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Ort, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Ort, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Ort, new { htmlAttributes = new { @id = "Ort", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Ort, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -67,7 +67,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DatenversandAktiv, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.DatenversandAktiv, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.DatenversandAktiv, new { htmlAttributes = new { @id = "DatenversandAktiv", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.DatenversandAktiv, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -75,7 +75,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.CrmAccountName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.CrmAccountName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.CrmAccountName, new { htmlAttributes = new { @id = "CrmAccountName", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.CrmAccountName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -83,7 +83,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.BetreiberName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.BetreiberName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.BetreiberName, new { htmlAttributes = new { @id = "BetreiberName", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.BetreiberName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -91,7 +91,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.VNBName, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.VNBName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.VNBName, new { htmlAttributes = new { @id = "VNBName", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.VNBName, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -99,7 +99,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ZählverfahrenValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ZählverfahrenValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.ZählverfahrenValue, new { htmlAttributes = new { @id = "ZählverfahrenValue", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ZählverfahrenValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -107,7 +107,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UMessungValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UMessungValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.UMessungValue, new { htmlAttributes = new { @id = "UMessungValue", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UMessungValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -115,7 +115,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UEntnahmeValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.UEntnahmeValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.UEntnahmeValue, new { htmlAttributes = new { @id = "UEntnahmeValue", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UEntnahmeValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -123,7 +123,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Kundenrückmeldung, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @class = "form-control", @cols = 200, @rows = 4 })
+            @Html.TextAreaFor(model => model.Kundenrückmeldung, new { @id = "Kundenrückmeldung", @class = "form-control", @cols = 200, @rows = 4 })
             @Html.ValidationMessageFor(model => model.Kundenrückmeldung, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -135,7 +135,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, new { htmlAttributes = new { @id = "KlimatisierungAktivValue", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -143,7 +143,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Gesamtflache, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.Gesamtflache, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.Gesamtflache, new { htmlAttributes = new { @id = "Gesamtflache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Gesamtflache, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -151,7 +151,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Nebenflache, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.Nebenflache, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.Nebenflache, new { htmlAttributes = new { @id = "Nebenflache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Nebenflache, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -161,7 +161,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.BeheizteFlache, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.BeheizteFlache, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.BeheizteFlache, new { htmlAttributes = new { @id = "BeheizteFlache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.BeheizteFlache, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -169,7 +169,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.UnbeheizteFlache, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.UnbeheizteFlache, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.UnbeheizteFlache, new { htmlAttributes = new { @id = "UnbeheizteFlache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.UnbeheizteFlache, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -177,7 +177,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.SonstigeFlachen, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KundenspezifikationZp.SonstigeFlachen, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.KundenspezifikationZp.SonstigeFlachen, new { htmlAttributes = new { @id = "SonstigeFlachen", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.SonstigeFlachen, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -189,7 +189,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @class = "form-control width100", @cols = 200, @rows = 4 })
+            @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @id = "Notizfeld", @class = "form-control width100", @cols = 200, @rows = 4 })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Notizfeld, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -201,7 +201,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, new { htmlAttributes = new { @id = "Empfaenger1", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -209,7 +209,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, new { htmlAttributes = new { @id = "Empfaenger2", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -217,7 +217,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, new { htmlAttributes = new { @id = "Empfaenger3", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -304,7 +304,9 @@
             <a href="@Request.UrlReferrer">Back</a>
         }
     }
-
+    <div class="col-md-1">
+        <button id="saveInfo" class="btn btn-primary">Save</button>
+    </div>
 </p>
 
 @section scripts
@@ -419,6 +421,50 @@
                 }
             }
             return true;
+        }
+        $('#saveInfo').click(function (e) {
+            var newStandardInfoModel = getStandardInfoFormValues();
+
+            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCode/StandardInfo";
+                $.ajax({
+                    type: "POST",
+                    datatype: "json",
+                    url: postUrl,
+                    data: newStandardInfoModel,
+                    success: function (data) {
+                        // Set values
+                        alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
+                    },
+                    error: callError
+                });
+        });
+        function getStandardInfoFormValues() {
+            return {
+                Code: $('#Code').val(),
+                Zählpunktbezeichner: $('#Zählpunktbezeichner').val(),
+                Strasse: $('#Strasse').val(),
+                PLZ: $('#PLZ').val(),
+                Ort: $('#Ort').val(),
+                DatenversandAktiv: $('#DatenversandAktiv').val(),
+                CrmAccountName: $('#CrmAccountName').val(),
+                BetreiberName: $('#BetreiberName').val(),
+                VNBName: $('#VNBName').val(),
+                ZählverfahrenValue: $('#ZählverfahrenValue').val(),
+
+                UMessungValue: $('#UMessungValue').val(),
+                UEntnahmeValue: $('#UEntnahmeValue').val(),
+                Kundenrückmeldung: $('#Kundenrückmeldung').val(),
+                KlimatisierungAktivValue: $('#KlimatisierungAktivValue').val(),
+                Gesamtflache: $('#Gesamtflache').val(),
+                Nebenflache: $('#Nebenflache').val(),
+                BeheizteFlache: $('#BeheizteFlache').val(),
+                UnbeheizteFlache: $('#UnbeheizteFlache').val(),
+                SonstigeFlachen: $('#SonstigeFlachen').val(),
+                Notizfeld: $('#Notizfeld').val(),
+                Empfaenger1: $('#Empfaenger1').val(),
+                Empfaenger2: $('#Empfaenger2').val(),
+                Empfaenger3: $('#Empfaenger3').val()
+            };
         }
         $(document).ready(function () {
 
