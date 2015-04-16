@@ -48,8 +48,11 @@ namespace EPM.Extension.Model
         public int UEntnahmeCode { get; set; }
         #endregion OptionSets
 
+        [StringLength(100, ErrorMessage = "Kann 100 Zeichen nicht überschreiten.")]
         public string Empfaenger1 { get; set; } //length 100 chars
+        [StringLength(100, ErrorMessage = "Kann 100 Zeichen nicht überschreiten.")]
         public string Empfaenger2 { get; set; } //length 100 chars
+        [StringLength(100, ErrorMessage = "Kann 100 Zeichen nicht überschreiten.")]
         public string Empfaenger3 { get; set; } //length 100 chars
 
         public IEnumerable<MeteringPointThreshold> MeteringCodeThresholds { get; set; }

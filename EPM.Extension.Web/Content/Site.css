@@ -53,3 +53,6 @@ textarea {
  textarea {
      max-width: 100% !important;
  }
+ input {
+     max-width: 60% !important;
+ }

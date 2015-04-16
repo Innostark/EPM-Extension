@@ -135,6 +135,9 @@
   <data name="Number" xml:space="preserve">
     <value>Kundenummer</value>
   </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>Kann 100 Zeichen nicht überschreiten.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Zählpunkte</value>
   </data>

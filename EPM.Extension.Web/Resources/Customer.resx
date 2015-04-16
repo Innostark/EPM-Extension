@@ -135,6 +135,9 @@
   <data name="Number" xml:space="preserve">
     <value>Number</value>
   </data>
+  <data name="StringLength" xml:space="preserve">
+    <value>Cannot exceed 100 characters.</value>
+  </data>
   <data name="SubTitle" xml:space="preserve">
     <value>Metering Codes</value>
   </data>

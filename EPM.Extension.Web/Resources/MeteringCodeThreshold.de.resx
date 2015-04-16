@@ -178,7 +178,7 @@
     <value>Grenzwerte</value>
   </data>
   <data name="ValueGreaterThanZero" xml:space="preserve">
-    <value>Alle Werte müssen größer sein als null</value>
+    <value>Alle Werte mussen groBer sein als null</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
