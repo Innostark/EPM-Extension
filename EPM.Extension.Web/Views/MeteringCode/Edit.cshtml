@@ -152,7 +152,7 @@
     <div class="row-fluid">
         <h2>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Title</h2>
         <div class="span12">
-            <table id="ThresholdTable" class="table display table-responsive">
+            <table id="ThresholdTable" class="pretty table display table-responsive">
                 <thead>
                     <tr>
                         <th style="display: none;"></th>
@@ -186,11 +186,11 @@
                             <td>@item.GrenzwertType</td>
                             <td>@item.GultingAb.ToString("dd-MM-yyyy") </td>
                             <td>
-                            
+
                                 @{
                         W‌rite(item.SaisonalitatAnwenden ? "Ja" : "Nein");
-                            }
-                        </td>
+                                }
+                            </td>
                             <td> <span class="float-right">@item.MinimaGlobalInt</span></td>
                             <td><span class="float-right">@item.MaximaGlobalInt</span> </td>
                             <td><span class="float-right">@item.MinimaSommerInt</span></td>
