@@ -281,7 +281,7 @@ namespace EPM.Extension.Services.DynamicsCRM
         private MeteringPoint GetMeteringPointById(OrganizationServiceContext serviceContext, Guid crmAccountId)
         {
             var accounts = serviceContext.CreateQuery(EntityNames.D_Zählpunkt).Where(e => ((Guid?)e[MetadataDZählpunkt.METERING_POINT_ID]) == crmAccountId);
-            var result = GetMeteringPointsFromEntityCollection(serviceContext, accounts);
+            var result = this.GetMeteringPointsFromEntityCollection(serviceContext, accounts);
             return result.FirstOrDefault();
 
         }
@@ -551,7 +551,7 @@ namespace EPM.Extension.Services.DynamicsCRM
                         if (grenzwert.Contains(MetadataGrenzwert.GrenzwertWinterMinSystem))
                         {
                             meteringPointThreshlodSystem.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinSystem);
-                        }                        
+                        }
                         #endregion "System Threshold Values"
 
                         #region "User Threshold Values"
@@ -604,6 +604,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                             meteringPointThreshlodUser.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser);
                             meteringPointThreshlodUser.IsActive = true;
                             meteringPointThreshlodSystem.IsActive = false;
+                        }
+                        if (grenzwert.Contains(MetadataGrenzwert.Seasonal))
+                        {
+                            meteringPointThreshlodUser.SaisonalitatAnwenden = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.Seasonal).Value == 100000000 ? true : false;
                         }
                         #endregion "User Threshold Values"
 
@@ -744,6 +748,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                             {
                                 meteringPointThreshlodUser.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinUser);
                             }
+                            if (grenzwert.Contains(MetadataGrenzwert.Seasonal))
+                            {
+                                meteringPointThreshlodUser.SaisonalitatAnwenden = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.Seasonal).Value == 100000000? true: false;
+                            }
 
                             return meteringPointThreshlodUser;
                         }
@@ -765,7 +773,8 @@ namespace EPM.Extension.Services.DynamicsCRM
                     {
                         Entity crmThreshold = new Entity(EntityNames.Grenzwert);
                         crmThreshold.Id = threshold.Id;
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Seasonal, threshold.SaisonalitatAnwenden));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GültigAb, threshold.GultingAb));                        
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Seasonal, new OptionSetValue(threshold.SaisonalitatAnwenden? 100000000: 100000001)));                        
                         if (threshold.MaximaGlobal > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMaxUser, (Object)threshold.MaximaGlobal));
                         if (threshold.MinimaGlobal > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMinUser, (Object)threshold.MinimaGlobal));
                         if (threshold.MaximaSommer > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMaxUser, (Object)threshold.MaximaSommer));
