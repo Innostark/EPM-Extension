@@ -166,10 +166,10 @@
     <value>Nein</value>
   </data>
   <data name="ProblemSavingChanges" xml:space="preserve">
-    <value>Problem beim Speichern der Änderungen.</value>
+    <value>Problem beim Speichern der Anderungen.</value>
   </data>
   <data name="SuccessfullySavedChanges" xml:space="preserve">
-    <value>Änderungen erfolgreich gespeichert.</value>
+    <value>Anderungen erfolgreich gespeichert.</value>
   </data>
   <data name="Threshold" xml:space="preserve">
     <value>Grenzwerttyp</value>
