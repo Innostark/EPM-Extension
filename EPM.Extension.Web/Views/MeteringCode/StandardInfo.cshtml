@@ -419,7 +419,7 @@
         $('#saveInfo').click(function (e) {
             var newStandardInfoModel = getStandardInfoFormValues();
 
-            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "StandortInfoV1";
+            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCode/StandardInfoPost";
                 $.ajax({
                     type: "POST",
                     datatype: "json",

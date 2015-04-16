@@ -56,7 +56,7 @@ namespace EPM.Extension.Web.Controllers
 
 
         [HttpPost]
-        public bool StandardInfo(MeteringPoint meteringPoint)
+        public bool StandardInfoPost(MeteringPoint meteringPoint)
         {
             
             return true;
