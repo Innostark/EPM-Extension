@@ -365,7 +365,7 @@
                 Id: $('#edit-threshold #Id').val(),
                 GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
                 GultingAb: $('#edit-threshold #GultingAb').val(),
-                SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').val(),
+                SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').is(":checked"),
                 MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
                 MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
                 MinimaSommer: $('#edit-threshold #MinimaSommer').val(),
@@ -375,10 +375,6 @@
             };
         }
         function setChangedValues(newModelValues) {
-            if (oldModel.GultingAb == newModelValues.GultingAb) {
-                newModel.GultingAb = -1;
-            }
-
             if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
 
                 if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||

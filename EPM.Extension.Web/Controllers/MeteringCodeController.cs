@@ -56,7 +56,7 @@ namespace EPM.Extension.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult StandardInfo(MeteringPoint model)
+        public ActionResult StandardInfo(MeteringPoint meteringPoint)
         {
 
             return Content("");

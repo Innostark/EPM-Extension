@@ -240,10 +240,6 @@
             };
         }
         function setChangedValues(newModelValues) {
-            if (oldModel.GultingAb == newModelValues.GultingAb) {
-                newModel.GultingAb = -1;
-            }
-
             if ($("#edit-threshold #SaisonalitatAnwenden").is(":checked")) {
 
                 if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
