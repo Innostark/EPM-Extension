@@ -3,6 +3,18 @@
 @{
     ViewBag.Title = EPM.Extension.Web.Resources.Customer.EditTitle;
 }
+<style>
+    table.pretty thead th {
+        text-align: left;
+        background: #6D92FF;
+        color: white;
+        padding-left: 10px !important;
+    }
+
+    html * {
+        font-size: 10px !important;
+    }
+</style>
 
     <div class="form-horizontal">
         <br />
@@ -53,7 +65,7 @@
         </div>
         <div>
             <h2>@EPM.Extension.Web.Resources.Customer.BetriebeTitle</h2>
-            <table id="BetriebeList" class="table display table-responsive" style="width: 1535px;">
+            <table id="BetriebeList" class="pretty table display table-responsive" style="width: 1535px;">
                 <thead>
                     <tr>
                         <th></th>
@@ -73,7 +85,7 @@
         <div>
             <h2>@EPM.Extension.Web.Resources.Customer.SubTitle</h2>
 
-            <table id="MeteringCodeList" class="table display table-responsive">
+            <table id="MeteringCodeList" class="pretty table display table-responsive">
                 <thead>
                     <tr>
                         <th></th>
