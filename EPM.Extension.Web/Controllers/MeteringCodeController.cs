@@ -56,10 +56,10 @@ namespace EPM.Extension.Web.Controllers
 
 
         [HttpPost]
-        public bool StandardInfoPost(MeteringPoint meteringPoint)
+        public ActionResult StandardInfoPost(MeteringPoint meteringPoint)
         {
-            
-            return true;
+
+            return Content("true");
         }
 
         [AllowAnonymous]
