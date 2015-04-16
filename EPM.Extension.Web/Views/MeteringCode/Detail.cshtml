@@ -242,8 +242,8 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if (newModelValues.MinimaSommer == "0" || newModelValues.MaximaSommer == "0" || newModelValues.MinimaWinter == "0" ||
-        newModelValues.MaximaWinter == "0" || newModelValues.MinimaGlobal == "0" || newModelValues.MaximaGlobal == "0") {
+        if (parseInt(newModelValues.MinimaSommer) > 0 || parseInt(newModelValues.MaximaSommer) > 0 || parseInt(newModelValues.MinimaWinter) > 0 ||
+              parseInt(newModelValues.MaximaWinter) > 0 || parseInt(newModelValues.MinimaGlobal) > 0 || parseInt(newModelValues.MaximaGlobal) > 0) {
             alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
             return false;
         }
