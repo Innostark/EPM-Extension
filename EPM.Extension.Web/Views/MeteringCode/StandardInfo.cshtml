@@ -324,7 +324,7 @@
     var changedModel;
     function saveClicked() {
         newModel = getFormValues();
-        changedModel = newModel;
+        changedModel = getFormValues();
         //set -1 for the unchanged value
         if (setChangedValues(changedModel)) {
             var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
@@ -332,7 +332,7 @@
                 type: "POST",
                 datatype: "json",
                 url: postUrl,
-                data: newModel,
+                data: changedModel,
                 success: function (data) {
                     // Set values
                     alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
@@ -501,5 +501,5 @@
             window.location.href = "/MeteringCode/Edit/" + aData.Id;
         });
     });
-    </script>
+</script>
 }
