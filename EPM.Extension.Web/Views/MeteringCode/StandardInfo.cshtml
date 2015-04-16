@@ -19,7 +19,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @id = "Code", @class = "form-control" } })
+            @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @id = "Code", @class = "form-control", @readonly="readonly" } })
             @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -223,6 +223,12 @@
     </div>
 </div>
 
+<div class="form-group">
+    <div class="col-md-10">
+        <button id="saveInfo" class="btn btn-primary">Save</button>
+    </div>
+</div>
+
 <div class="modal fade" id="edit-threshold" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div id="edit-threshold-container" class="modal-dialog">
         <div id="form-content" class="modal-content">
@@ -304,9 +310,7 @@
             <a href="@Request.UrlReferrer">Back</a>
         }
     }
-    <div class="col-md-1">
-        <button id="saveInfo" class="btn btn-primary">Save</button>
-    </div>
+    
 </p>
 
 @section scripts
