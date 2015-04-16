@@ -233,19 +233,21 @@
         <script type="text/javascript">
     var oldModel;
     var newModel;
+    var changedModel;
     function saveClicked() {
         newModel = getFormValues();
+        changedModel = newModel;
         //set -1 for the unchanged value
-        if (setChangedValues(newModel)) {
+        if (setChangedValues(changedModel)) {
             var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
-                $.ajax({
-                    type: "POST",
-                    datatype: "json",
-                    url: postUrl,
-                    data: newModel,
-                    success: function (data) {
-                        // Set values
-                        alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
+            $.ajax({
+                type: "POST",
+                datatype: "json",
+                url: postUrl,
+                data: newModel,
+                success: function (data) {
+                    // Set values
+                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
                         var t = $('#type_User')[0];
                         var array = [
                             newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
@@ -254,8 +256,8 @@
                         if (newModel.MaximaGlobal !== null || newModel.MinimaGlobal !== null
                             || newModel.MaximaWinter !== null || newModel.MinimaWinter !== null
                             || newModel.MaximaSommer !== null || newModel.MinimaSommer !== null) {
-                            $('#System_isActive')[0].innerText = "No";
-                            $('#User_isActive')[0].innerText = "Yes";
+                            $('#System_isActive')[0].innerText = '@EPM.Extension.Web.Resources.MeteringCodeThreshold.No';
+                            $('#User_isActive')[0].innerText = '@EPM.Extension.Web.Resources.MeteringCodeThreshold.Yes';
                         }
                         $('#type_User td:eq(3)')[0].innerText = newModel.GultingAb;
                         $('#type_User td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
@@ -303,16 +305,16 @@
             }
 
             if (oldModel.MinimaSommer == newModelValues.MinimaSommer) {
-                newModel.MinimaSommer = -1;
+                newModelValues.MinimaSommer = -1;
             }
             if (oldModel.MaximaSommer == newModelValues.MaximaSommer) {
-                newModel.MaximaSommer = -1;
+                newModelValues.MaximaSommer = -1;
             }
             if (oldModel.MinimaWinter == newModelValues.MinimaWinter) {
-                newModel.MinimaWinter = -1;
+                newModelValues.MinimaWinter = -1;
             }
             if (oldModel.MaximaWinter == newModelValues.MaximaWinter) {
-                newModel.MaximaWinter = -1;
+                newModelValues.MaximaWinter = -1;
             }
         }
         else {
@@ -323,10 +325,10 @@
             }
 
             if (oldModel.MinimaGlobal == newModelValues.MinimaGlobal) {
-                newModel.MinimaGlobal = -1;
+                newModelValues.MinimaGlobal = -1;
             }
             if (oldModel.MaximaGlobal == newModelValues.MaximaGlobal) {
-                newModel.MaximaGlobal = -1;
+                newModelValues.MaximaGlobal = -1;
             }
         }
         return true;
