@@ -12,7 +12,7 @@
     }
 </style>
 <h2>@EPM.Extension.Web.Resources.MeteringCode.Details</h2>
-
+@Html.HiddenFor(model => model.Id)
 <div>
     <label class="headingLabel">@EPM.Extension.Web.Resources.Customer.SubTitle</label>
     
@@ -429,6 +429,7 @@
     });
     function getStandardInfoFormValues() {
         return {
+            Id: $('#Id').val(),
             Code: $('#Code').val(),
             Zählpunktbezeichner: $('#Zählpunktbezeichner').val(),
             Strasse: $('#Strasse').val(),
