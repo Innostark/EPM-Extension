@@ -106,7 +106,9 @@
    
     (function thename() {
 
-        $("#GultingAb").datepicker();
+        $("#GultingAb").datepicker(
+            { dateFormat: 'dd-mm-yy' }
+            );
         $('#SaisonalitatAnwenden').click(function () {
             if(this.checked)
             showAdvanceFields();
