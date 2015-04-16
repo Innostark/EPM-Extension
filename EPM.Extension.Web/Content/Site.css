@@ -50,6 +50,6 @@ textarea {
      margin-bottom: 10px;
  }
 
- .width100 {
-     width: 100% !important;
+ textarea {
+     max-width: 100% !important;
  }
