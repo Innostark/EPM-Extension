@@ -440,10 +440,19 @@
             BetreiberName: $('#BetreiberName').val(),
             VNBName: $('#VNBName').val(),
             ZählverfahrenValue: $('#ZählverfahrenValue').val(),
-
             UMessungValue: $('#UMessungValue').val(),
             UEntnahmeValue: $('#UEntnahmeValue').val(),
             Kundenrückmeldung: $('#Kundenrückmeldung').val(),
+            
+            Empfaenger1: $('#Empfaenger1').val(),
+            Empfaenger2: $('#Empfaenger2').val(),
+            Empfaenger3: $('#Empfaenger3').val(),
+
+            KundenspezifikationZp: kundenspezifikationZp()
+        };
+    }
+    function kundenspezifikationZp() {
+        return {
             KlimatisierungAktivValue: $('#KlimatisierungAktivValue').val(),
             Gesamtflache: $('#Gesamtflache').val(),
             Nebenflache: $('#Nebenflache').val(),
@@ -451,9 +460,6 @@
             UnbeheizteFlache: $('#UnbeheizteFlache').val(),
             SonstigeFlachen: $('#SonstigeFlachen').val(),
             Notizfeld: $('#Notizfeld').val(),
-            Empfaenger1: $('#Empfaenger1').val(),
-            Empfaenger2: $('#Empfaenger2').val(),
-            Empfaenger3: $('#Empfaenger3').val()
         };
     }
     $(document).ready(function () {

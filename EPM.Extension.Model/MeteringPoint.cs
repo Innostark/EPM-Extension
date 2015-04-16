@@ -48,6 +48,10 @@ namespace EPM.Extension.Model
         public int UEntnahmeCode { get; set; }
         #endregion OptionSets
 
+        public string Empfaenger1 { get; set; } //length 100 chars
+        public string Empfaenger2 { get; set; } //length 100 chars
+        public string Empfaenger3 { get; set; } //length 100 chars
+
         public IEnumerable<MeteringPointThreshold> MeteringCodeThresholds { get; set; }
 
         #region site specifications (Standortspezifkationen)
