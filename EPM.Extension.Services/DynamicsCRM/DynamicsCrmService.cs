@@ -684,6 +684,12 @@ namespace EPM.Extension.Services.DynamicsCRM
                     break;
             }
         }
+
+        public void UpdateMeteringPointSpecificationsAndThreashold(Guid meteringPointId)
+        {
+
+        }
+
         #endregion "MeteringPoint"
 
         #region "Threshold"
@@ -749,7 +755,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             return null;
         }
 
-        internal void UpdateMeteringPointThreshold(MeteringPointThreshold threshold)
+        public void UpdateMeteringPointThreshold(MeteringPointThreshold threshold)
         {
             if (threshold.Id != null && threshold.Id != Guid.Empty)
             {
@@ -759,12 +765,13 @@ namespace EPM.Extension.Services.DynamicsCRM
                     {
                         Entity crmThreshold = new Entity(EntityNames.Grenzwert);
                         crmThreshold.Id = threshold.Id;
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMaxUser, (Object)threshold.MaximaGlobal));
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMinUser, (Object)threshold.MinimaGlobal));
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMaxUser, (Object)threshold.MaximaSommer));
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMinUser, (Object)threshold.MinimaSommer));
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMaxUser, (Object)threshold.MaximaWinter));
-                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMinUser, (Object)threshold.MinimaWinter));
+                        crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Seasonal, threshold.SaisonalitatAnwenden));
+                        if (threshold.MaximaGlobal > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMaxUser, (Object)threshold.MaximaGlobal));
+                        if (threshold.MinimaGlobal > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertMinUser, (Object)threshold.MinimaGlobal));
+                        if (threshold.MaximaSommer > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMaxUser, (Object)threshold.MaximaSommer));
+                        if (threshold.MinimaSommer > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertSommerMinUser, (Object)threshold.MinimaSommer));
+                        if (threshold.MaximaWinter > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMaxUser, (Object)threshold.MaximaWinter));
+                        if (threshold.MinimaWinter > 0) crmThreshold.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.GrenzwertWinterMinUser, (Object)threshold.MinimaWinter));
                         if (!serviceContext.IsAttached(crmThreshold))
                         {
                             serviceContext.Attach(crmThreshold);
@@ -776,7 +783,7 @@ namespace EPM.Extension.Services.DynamicsCRM
             }
         }
 
-        internal void SetThresholdReport(Guid thresholdId, MetadataGrenzwert.OpSetReport report, string Empfaenger1, string Empfaenger2, string Empfaenger3)
+        public void SetThresholdReport(Guid thresholdId, MetadataGrenzwert.OpSetReport report, string Empfaenger1, string Empfaenger2, string Empfaenger3)
         {
             if (thresholdId != null && thresholdId != Guid.Empty)
             {

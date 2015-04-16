@@ -45,6 +45,7 @@ namespace EPM.Extension.Web.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public ActionResult StandardInfo(string id)
         {
             Guid guidOutput;
