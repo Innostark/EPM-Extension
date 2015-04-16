@@ -199,7 +199,7 @@
     <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.EmpfängerFürBerichte</label>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfaenger1, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, new { htmlAttributes = new { @id = "Empfaenger1", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger1, "", new { @class = "text-danger" })
@@ -207,7 +207,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfanger2, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, new { htmlAttributes = new { @id = "Empfaenger2", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger2, "", new { @class = "text-danger" })
@@ -215,7 +215,7 @@
     </div>
     
     <div class="form-group">
-        @Html.LabelFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.MeteringCodeThreshold.Empfänger3, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, new { htmlAttributes = new { @id = "Empfaenger3", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.MeteringCodeThresholds.FirstOrDefault().Empfaenger3, "", new { @class = "text-danger" })
