@@ -126,4 +126,7 @@
   <data name="Save" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="Search" xml:space="preserve">
+    <value>Suche</value>
+  </data>
 </root>

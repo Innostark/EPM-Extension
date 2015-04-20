@@ -22,10 +22,10 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <img src="~/Content/Images/logo.png" alt="logo" style="float: left;margin: 5px;"/>
+    <div class="navbar navbar-inverse navbar-fixed-top headerCustom">
+        @*<img src="~/Content/Images/logo.png" alt="logo" style="float: left;margin: 5px;"/>*@
         <div class="container">
-            
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -36,10 +36,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 @*<ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>*@
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>*@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>

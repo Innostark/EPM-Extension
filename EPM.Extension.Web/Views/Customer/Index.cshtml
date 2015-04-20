@@ -76,121 +76,121 @@
         var isAsc = '@Model.SearchRequest.IsAsc' == "True" || '@Model.SearchRequest.IsAsc' == "true";
         var sortBy = ['@Model.SearchRequest.SortBy', isAsc ? 'asc' : 'desc'];
 
-            var oTable = $("#CustomerList").dataTable({
-                "iDisplayLength": 10,
-                "displayStart": start || 0,
-                "bFilter": true,
-                "bLengthChange": false,
-                "aaSorting": [sortBy],
-                "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [0] },
-                    {
-                        "targets": [0],
-                        "visible": false,
-                        "searchable": false
-                    }
-                ],
-                //"tableTools": {
-                //    "sRowSelect": "multi",
-                //    "sSelectedClass": "row_selected"
-                //},
-                "columns": [
-                            { "data": "Id" },
-                            { "data": "Kunde" },
-                            { "data": "Kundennummer" },
-                            { "data": "Strasse" },
-                            { "data": "Plz" },
-                            { "data": "Ort" },
-                            {
-                                "orderable": false,
-                                "data": null,
-                                "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
-                                "class": "textAlignRight"
-                            }
-                ],
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    url: "/Customer/Index",
-                    type: "POST",
-                    dataType: "json",
-                    data: function (params) {
-                        $("#CustomerList_filter input").val($('#SearchCustomerString').val());
-                        params.PageNo = Math.ceil(params.start / params.length) + 1;
-                        if (params.PageNo === 0) {
-                            params.PageNo = 1;
-                        }
-                        params.PageSize = params.length;
-                        params.SortBy = params.order[0].column;
-                        if (params.SortBy === 0) {
-                            params.SortBy = 1;
-                        }
-                        params.IsAsc = params.order[0].dir === "asc";
-                        params.Param = $('#SearchCustomerString').val();
-                        //params.Name = $('#txtName').val();
-                        //params.PerformedDate = $('#txtDate').val();
-                    },
-                    complete: fnActivityComplete
+        var oTable = $("#CustomerList").dataTable({
+            "iDisplayLength": 10,
+            "displayStart": start || 0,
+            "bFilter": true,
+            "bLengthChange": false,
+            "aaSorting": [sortBy],
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [0] },
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
                 }
+            ],
+            //"tableTools": {
+            //    "sRowSelect": "multi",
+            //    "sSelectedClass": "row_selected"
+            //},
+            "columns": [
+                        { "data": "Id" },
+                        { "data": "Kunde" },
+                        { "data": "Kundennummer" },
+                        { "data": "Strasse" },
+                        { "data": "Plz" },
+                        { "data": "Ort" },
+                        {
+                            "orderable": false,
+                            "data": null,
+                            "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
+                            "class": "textAlignRight"
+                        }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/Customer/Index",
+                type: "POST",
+                dataType: "json",
+                data: function (params) {
+                    $("#CustomerList_filter input").val($('#SearchCustomerString').val());
+                    params.PageNo = Math.ceil(params.start / params.length) + 1;
+                    if (params.PageNo === 0) {
+                        params.PageNo = 1;
+                    }
+                    params.PageSize = params.length;
+                    params.SortBy = params.order[0].column;
+                    if (params.SortBy === 0) {
+                        params.SortBy = 1;
+                    }
+                    params.IsAsc = params.order[0].dir === "asc";
+                    params.Param = $('#SearchCustomerString').val();
+                    //params.Name = $('#txtName').val();
+                    //params.PerformedDate = $('#txtDate').val();
+                },
+                complete: fnActivityComplete
+            }
 
-            });
-            
-        $('#CustomerList_filter input').after($('<button id="searchCrmAccount" class="btn btn-primary btn-sm">Search</button>'));
-        $('#searchCrmAccount').click(function() {
+        });
+
+        $('#CustomerList_filter input').after($('<button id="searchCrmAccount" class="btn btn-primary btn-sm">@EPM.Extension.Web.Resources.General.Search</button>'));
+        $('#searchCrmAccount').click(function () {
             oTable.fnDraw();
         });
-            function fnActivityComplete(data, e) {
-                $("#MeteringCodeList_filter input").val('');
-                $("#SearchMeteringCodeString").val('');
-                $("#BetriebeList_filter input").val('');
-                $("#SearchBetriebeString").val('');
+        function fnActivityComplete(data, e) {
+            $("#MeteringCodeList_filter input").val('');
+            $("#SearchMeteringCodeString").val('');
+            $("#BetriebeList_filter input").val('');
+            $("#SearchBetriebeString").val('');
 
-                if (oTable.fnSettings().fnRecordsDisplay() > 0) {
-                    //select first row
-                    var nTop = $('#CustomerList tbody tr')[0];
-                    $(nTop).addClass('selected');
-                    mTable.fnDraw();
-                }
+            if (oTable.fnSettings().fnRecordsDisplay() > 0) {
+                //select first row
+                var nTop = $('#CustomerList tbody tr')[0];
+                $(nTop).addClass('selected');
+                mTable.fnDraw();
             }
+        }
 
         $("#CustomerList_filter input").unbind()
             .bind("input", function (e) {
                 // Bind our desired behavior
                 $("#SearchCustomerString").val(this.value);
-                if (e.keyCode == 13 || this.value == "") { 
+                if (e.keyCode == 13 || this.value == "") {
                     oTable.fnDraw();
-                } 
+                }
                 return;
             });
-            $('#CustomerList').on('click', '.edit', function (e) {
-                e.preventDefault();
-                var nRow = $(this).parents('tr')[0];
-                var aData = oTable.fnGetData(nRow);
-                window.location.href = "/Customer/Edit/" + aData.Id;
-            });
+        $('#CustomerList').on('click', '.edit', function (e) {
+            e.preventDefault();
+            var nRow = $(this).parents('tr')[0];
+            var aData = oTable.fnGetData(nRow);
+            window.location.href = "/Customer/Edit/" + aData.Id;
+        });
 
 
-            $('#MeteringCodeList').on('click', '.edit', function (e) {
-                e.preventDefault();
-                var nRow = $(this).parents('tr')[0];
-                var aData = mTable.fnGetData(nRow);
-                window.location.href = "/MeteringCode/Edit/" + aData.Zählpunktbezeichner;
-            });
+        $('#MeteringCodeList').on('click', '.edit', function (e) {
+            e.preventDefault();
+            var nRow = $(this).parents('tr')[0];
+            var aData = mTable.fnGetData(nRow);
+            window.location.href = "/MeteringCode/Edit/" + aData.Zählpunktbezeichner;
+        });
 
 
-            $('#CustomerList tbody').on('click', 'tr', function () {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                }
-                else {
-                    oTable.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    mTable.fnDraw();
-                }
-            });
+        $('#CustomerList tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                oTable.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                mTable.fnDraw();
+            }
+        });
         //****************************************Betriebe Child Table*************+
-            var startBetriebe = ('@Model.BetriebeSearchRequest.PageNo' - 1) * '@Model.BetriebeSearchRequest.PageSize';
-            var isAscBetriebe = '@Model.BetriebeSearchRequest.IsAsc' == "True" || '@Model.BetriebeSearchRequest.IsAsc' == "true";
+        var startBetriebe = ('@Model.BetriebeSearchRequest.PageNo' - 1) * '@Model.BetriebeSearchRequest.PageSize';
+        var isAscBetriebe = '@Model.BetriebeSearchRequest.IsAsc' == "True" || '@Model.BetriebeSearchRequest.IsAsc' == "true";
         var sortByBetriebe = ['@Model.BetriebeSearchRequest.SortBy', isAscBetriebe ? 'asc' : 'desc'];
 
         var bTable = $("#BetriebeList").dataTable({
@@ -245,7 +245,7 @@
                     }
                     params.IsAsc = params.order[0].dir === "asc";
                     params.Param = $('#SearchBetriebeString').val();
-                   // params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
+                    // params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
                     $("#BetriebeList_filter input").val($('#SearchBetriebeString').val());
                 },
                 complete: fnBetriebeComplete
@@ -264,7 +264,7 @@
                 mTable.fnDraw();
             }
         }
-        $('#BetriebeList_filter input').after($('<button id="searchBetriebeAccount" class="btn btn-primary btn-sm">Search</button>'));
+        $('#BetriebeList_filter input').after($('<button id="searchBetriebeAccount" class="btn btn-primary btn-sm">@EPM.Extension.Web.Resources.General.Search</button>'));
         $('#searchBetriebeAccount').click(function () {
             bTable.fnDraw();
         });
@@ -288,79 +288,79 @@
             }
         });
 
-            //*************************Metering Code Child Table*************************************
+        //*************************Metering Code Child Table*************************************
 
-            var startMeteringCode = ('@Model.MeteringCodeSearchRequest.PageNo' - 1) * '@Model.MeteringCodeSearchRequest.PageSize';
-            var isAscMeteringCode = '@Model.MeteringCodeSearchRequest.IsAsc' == "True" || '@Model.MeteringCodeSearchRequest.IsAsc' == "true";
-            var sortByMeteringCode = ['@Model.MeteringCodeSearchRequest.SortBy', isAscMeteringCode ? 'asc' : 'desc'];
+        var startMeteringCode = ('@Model.MeteringCodeSearchRequest.PageNo' - 1) * '@Model.MeteringCodeSearchRequest.PageSize';
+        var isAscMeteringCode = '@Model.MeteringCodeSearchRequest.IsAsc' == "True" || '@Model.MeteringCodeSearchRequest.IsAsc' == "true";
+        var sortByMeteringCode = ['@Model.MeteringCodeSearchRequest.SortBy', isAscMeteringCode ? 'asc' : 'desc'];
 
-            var mTable = $("#MeteringCodeList").dataTable({
-                "iDisplayLength": 10,
-                "iDeferLoading": true,
-                "displayStart": startMeteringCode || 0,
-                "bFilter": true,
-                "bLengthChange": false,
-                "aaSorting": [sortByMeteringCode],
-                "aoColumnDefs": [
-                    { 'bSortable': false, 'aTargets': [0] },
-                    {
-                        "targets": [0],
-                        "visible": false,
-                        "searchable": false
-                    }
-                ],
-                "columns": [
-                            { "data": "Id" },
-                            { "data": "Zählpunktbezeichner" },
-                            { "data": "Kurzbezeichnung" },
-                            { "data": "Anlagentyp" },
-                            { "data": "Strasse" },
-                            { "data": "PLZ" },
-                            { "data": "Ort" },
-                            { "data": "DatenversandAktiv" },
-                            { "data": "ZählverfahrenValue" },
-                            { "data": "UMessungValue" },
-                            { "data": "UEntnahmeValue" },
-                            { "data": "Kundenrückmeldung" },
-                            {
-                                "orderable": false,
-                                "data": null,
-                                "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
-                                "class": "textAlignRight"
-                            }
-                ],
-                "processing": true,
-                "serverSide": true,
-                "ajax": {
-                    url: "/MeteringCode/Index",
-                    type: "POST",
-                    dataType: "json",
-                    data: function (params) {
-                        params.PageNo = Math.ceil(params.start / params.length) + 1;
-                        if (params.PageNo === 0) {
-                            params.PageNo = 1;
-                        }
-                        params.PageSize = params.length;
-                        params.SortBy = params.order[0].column;
-                        if (params.SortBy === 0) {
-                            params.SortBy = 1;
-                        }
-                        params.IsAsc = params.order[0].dir === "asc";
-                        params.BetrieberId = bTable.fnGetData($('#BetriebeList .selected')).Id;
-                        params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
-                        $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
-
-                        params.Param = $('#SearchMeteringCodeString').val();
-                        //params.PerformedDate = $('#txtDate').val();
-                    }
+        var mTable = $("#MeteringCodeList").dataTable({
+            "iDisplayLength": 10,
+            "iDeferLoading": true,
+            "displayStart": startMeteringCode || 0,
+            "bFilter": true,
+            "bLengthChange": false,
+            "aaSorting": [sortByMeteringCode],
+            "aoColumnDefs": [
+                { 'bSortable': false, 'aTargets': [0] },
+                {
+                    "targets": [0],
+                    "visible": false,
+                    "searchable": false
                 }
+            ],
+            "columns": [
+                        { "data": "Id" },
+                        { "data": "Zählpunktbezeichner" },
+                        { "data": "Kurzbezeichnung" },
+                        { "data": "Anlagentyp" },
+                        { "data": "Strasse" },
+                        { "data": "PLZ" },
+                        { "data": "Ort" },
+                        { "data": "DatenversandAktiv" },
+                        { "data": "ZählverfahrenValue" },
+                        { "data": "UMessungValue" },
+                        { "data": "UEntnahmeValue" },
+                        { "data": "Kundenrückmeldung" },
+                        {
+                            "orderable": false,
+                            "data": null,
+                            "defaultContent": "<a class='edit'  href='javascript:;'>Detail</a>",
+                            "class": "textAlignRight"
+                        }
+            ],
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                url: "/MeteringCode/Index",
+                type: "POST",
+                dataType: "json",
+                data: function (params) {
+                    params.PageNo = Math.ceil(params.start / params.length) + 1;
+                    if (params.PageNo === 0) {
+                        params.PageNo = 1;
+                    }
+                    params.PageSize = params.length;
+                    params.SortBy = params.order[0].column;
+                    if (params.SortBy === 0) {
+                        params.SortBy = 1;
+                    }
+                    params.IsAsc = params.order[0].dir === "asc";
+                    params.BetrieberId = bTable.fnGetData($('#BetriebeList .selected')).Id;
+                    params.CustomerId = oTable.fnGetData($('#CustomerList .selected')).Id;
+                    $("#MeteringCodeList_filter input").val($('#SearchMeteringCodeString').val());
 
-            });
-            $('#MeteringCodeList_filter input').after($('<button id="searchMeteringCode" class="btn btn-primary btn-sm">Search</button>'));
-            $('#searchMeteringCode').click(function () {
-                //$("#SearchCustomerString").val(this.value);
-                mTable.fnDraw();
-            });
+                    params.Param = $('#SearchMeteringCodeString').val();
+                    //params.PerformedDate = $('#txtDate').val();
+                }
+            }
+
+        });
+        $('#MeteringCodeList_filter input').after($('<button id="searchMeteringCode" class="btn btn-primary btn-sm">@EPM.Extension.Web.Resources.General.Search</button>'));
+        $('#searchMeteringCode').click(function () {
+            //$("#SearchCustomerString").val(this.value);
+            mTable.fnDraw();
+        });
 
         $("#MeteringCodeList_filter input").unbind()
                 .bind("input", function (e) {
@@ -371,7 +371,7 @@
                     }
                     return;
                 });
-        });
+    });
 </script>
 
 
