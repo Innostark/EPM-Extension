@@ -86,12 +86,12 @@
                     <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
                     <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                     <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                    <th style="width:7%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                    <th style="width:7%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
                     <th style="width:5%;border-right: 0px solid white;"></th>
                 </tr>
@@ -126,7 +126,7 @@
                             @{
                     if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
                     {
-                        tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                        tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>" + @EPM.Extension.Web.Resources.General.Edit + "</a>";
                     }
                             }
                             @Html.Raw(tag)
@@ -147,7 +147,7 @@
                 @Html.DropDownList("Reports", ViewBag.List as SelectList, new { @class = "form-control", id = "reportDdl", })
             </div>
             <div class="col-md-1">
-                <button id="saveReport" class="btn btn-primary">Save</button>
+                <button id="saveReport" class="btn btn-primary">@EPM.Extension.Web.Resources.General.Save</button>
             </div>
         </div>
     </div>
@@ -242,8 +242,8 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if (parseInt(newModelValues.MinimaSommer) > 0 || parseInt(newModelValues.MaximaSommer) > 0 || parseInt(newModelValues.MinimaWinter) > 0 ||
-              parseInt(newModelValues.MaximaWinter) > 0 || parseInt(newModelValues.MinimaGlobal) > 0 || parseInt(newModelValues.MaximaGlobal) > 0) {
+        if (parseInt(newModelValues.MinimaSommer) < 0 || parseInt(newModelValues.MaximaSommer) < 0 || parseInt(newModelValues.MinimaWinter) < 0 ||
+            parseInt(newModelValues.MaximaWinter) < 0 || parseInt(newModelValues.MinimaGlobal) < 0 || parseInt(newModelValues.MaximaGlobal) < 0) {
             alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
             return false;
         }

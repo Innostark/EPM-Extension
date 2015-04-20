@@ -56,3 +56,8 @@ textarea {
  input {
      max-width: 60% !important;
  }
+
+ .TextRightAlign{
+     text-align: right !important;
+     padding-right: 9px !important;
+ }

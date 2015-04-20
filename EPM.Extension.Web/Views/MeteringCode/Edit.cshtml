@@ -177,12 +177,12 @@
                         <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
                         <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                         <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                        <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                        <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
                         <th style="width:5%"></th>
                 </thead>
@@ -219,7 +219,7 @@
                                 @{
                         if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
                         {
-                            tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                            tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>" + @EPM.Extension.Web.Resources.General.Edit + "</a>";
                         }
                                 }
                                 @Html.Raw(tag)
@@ -236,7 +236,7 @@
         @{
             if (Request.UrlReferrer != null && !string.IsNullOrEmpty(Request.UrlReferrer.Host))
             {
-                <a href="@Request.UrlReferrer">Back</a>
+                <a href="@Request.UrlReferrer">@EPM.Extension.Web.Resources.General.Back</a>
             }
         }
        
@@ -309,8 +309,8 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if (parseInt(newModelValues.MinimaSommer) > 0 || parseInt(newModelValues.MaximaSommer) > 0 || parseInt(newModelValues.MinimaWinter) > 0 ||
-             parseInt(newModelValues.MaximaWinter) > 0 || parseInt(newModelValues.MinimaGlobal) > 0 || parseInt(newModelValues.MaximaGlobal) > 0) {
+        if (parseInt(newModelValues.MinimaSommer) < 0 || parseInt(newModelValues.MaximaSommer) < 0 || parseInt(newModelValues.MinimaWinter) < 0 ||
+            parseInt(newModelValues.MaximaWinter) < 0 || parseInt(newModelValues.MinimaGlobal) < 0 || parseInt(newModelValues.MaximaGlobal) < 0) {
             alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
             return false;
         }

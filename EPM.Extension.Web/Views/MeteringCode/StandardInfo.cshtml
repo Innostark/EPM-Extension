@@ -161,7 +161,7 @@
     <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.Standortspezifkationen</label>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.KlimatisierungAktivValue, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, new { htmlAttributes = new { @id = "KlimatisierungAktivValue", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.KlimatisierungAktivValue, "", new { @class = "text-danger" })
@@ -169,7 +169,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.Gesamtflache, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.Gesamtfläche, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.Gesamtflache, new { htmlAttributes = new { @id = "Gesamtflache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Gesamtflache, "", new { @class = "text-danger" })
@@ -177,7 +177,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.Nebenflache, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.Nebenfläche, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.Nebenflache, new { htmlAttributes = new { @id = "Nebenflache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Nebenflache, "", new { @class = "text-danger" })
@@ -187,7 +187,7 @@
 
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.BeheizteFlache, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.BeheizteFläche, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.BeheizteFlache, new { htmlAttributes = new { @id = "BeheizteFlache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.BeheizteFlache, "", new { @class = "text-danger" })
@@ -195,7 +195,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.UnbeheizteFlache, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.UnbeheizteFläche, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.UnbeheizteFlache, new { htmlAttributes = new { @id = "UnbeheizteFlache", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.UnbeheizteFlache, "", new { @class = "text-danger" })
@@ -203,7 +203,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.SonstigeFlachen, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.SonstigeFlächen, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.KundenspezifikationZp.SonstigeFlachen, new { htmlAttributes = new { @id = "SonstigeFlachen", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.SonstigeFlachen, "", new { @class = "text-danger" })
@@ -215,7 +215,7 @@
     <label class="headingLabel">@EPM.Extension.Web.Resources.SiteSpecifications.Notiz</label>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.KundenspezifikationZp.Notizfeld, htmlAttributes: new { @class = "control-label col-md-2" })
+       @Html.Label(@EPM.Extension.Web.Resources.SiteSpecifications.Notiz, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.TextAreaFor(model => model.KundenspezifikationZp.Notizfeld, new { @id = "Notizfeld", @class = "form-control width100", @rows = 4 })
             @Html.ValidationMessageFor(model => model.KundenspezifikationZp.Notizfeld, "", new { @class = "text-danger" })
@@ -256,7 +256,7 @@
         <div class="col-md-11">
         </div>
         <div class="col-md-1 float-right">
-            <button id="saveInfo" class="btn btn-primary">Save</button>
+            <button id="saveInfo" class="btn btn-primary">@EPM.Extension.Web.Resources.General.Save</button>
         </div>
     </div>
 </div>
@@ -281,12 +281,12 @@
                     <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
                     <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
                     <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
                     <th style="width:5%"></th>
             </thead>
@@ -323,7 +323,7 @@
                             @{
                     if (item.Type == EPM.Extension.Model.MeteringPointThresholdType.User)
                     {
-                        tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>Edit</a>";
+                        tag = "<a id='addMeteringCodeThreshold' class='cursorHand' data-toggle='modal' data-target='#myModal'>"+@EPM.Extension.Web.Resources.General.Edit+"</a>";
                     }
                             }
                             @Html.Raw(tag)
@@ -414,8 +414,8 @@
         };
     }
     function setChangedValues(newModelValues) {
-        if (parseInt(newModelValues.MinimaSommer) > 0 || parseInt(newModelValues.MaximaSommer) >0 || parseInt(newModelValues.MinimaWinter) >0 ||
-            parseInt(newModelValues.MaximaWinter) > 0 || parseInt(newModelValues.MinimaGlobal) >0 || parseInt(newModelValues.MaximaGlobal)>0) {
+        if (parseInt(newModelValues.MinimaSommer) < 0 || parseInt(newModelValues.MaximaSommer) < 0 || parseInt(newModelValues.MinimaWinter) < 0 ||
+            parseInt(newModelValues.MaximaWinter) < 0 || parseInt(newModelValues.MinimaGlobal) < 0 || parseInt(newModelValues.MaximaGlobal) < 0) {
                 alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.ValueGreaterThanZero');
                 return false;
             }
