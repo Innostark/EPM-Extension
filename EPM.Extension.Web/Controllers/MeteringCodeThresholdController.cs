@@ -38,6 +38,11 @@ namespace EPM.Extension.Web.Controllers
         [HttpPost]
         public ActionResult Edit(MeteringPointThreshold model)
         {
+            if (!string.IsNullOrEmpty(model.GultingAbCopy))
+            {
+                var str = model.GultingAbCopy.Split('-');
+                model.GultingAb = new DateTime(Convert.ToInt32(str[2]), Convert.ToInt32(str[1]), Convert.ToInt32(str[0]));
+            }
             if (ModelState.IsValid)
             {
                 _meteringPointThresholdService.UpdateMeteringThreshold(model);

@@ -16,7 +16,16 @@ namespace EPM.Extension.Model
         [Display(ResourceType = typeof (CustomerResource), Name = "GultingAb")]
         public DateTime GultingAb { get; set; }
         [Display(ResourceType = typeof(CustomerResource), Name = "GultingAb")]
-        public string GultingAbString { get { return GultingAb.ToString("dd-MM-yyyy"); } }
+        public string GultingAbString
+        {
+            get { return GultingAb.ToString("dd-MM-yyyy"); }
+             
+        }
+        public string GultingAbCopy
+        {
+            get;
+            set;
+        }
         [Display(ResourceType = typeof (CustomerResource), Name = "MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden")]
         public bool SaisonalitatAnwenden { get; set; }
         [Display(ResourceType = typeof (CustomerResource), Name = "MeteringPointThreshold_MinimaGlobal_Minima_Global")]

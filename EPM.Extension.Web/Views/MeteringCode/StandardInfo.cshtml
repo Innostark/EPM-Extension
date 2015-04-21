@@ -379,7 +379,7 @@
                         $('#System_isActive')[0].innerText = '@EPM.Extension.Web.Resources.MeteringCodeThreshold.No';
                         $('#User_isActive')[0].innerText = '@EPM.Extension.Web.Resources.MeteringCodeThreshold.Yes';
                     }
-                    $('#type_User td:eq(3)')[0].innerText = newModel.GultingAb;
+                    $('#type_User td:eq(3)')[0].innerText = newModel.GultingAbCopy;
                     $('#type_User td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
                     $('#type_System td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
                     $('#type_User td:eq(5)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaGlobal + "</span>";
@@ -406,7 +406,7 @@
         return {
             Id: $('#edit-threshold #Id').val(),
             GrenzwertBezeichner: $('#edit-threshold #GrenzwertBezeichner').val(),
-            GultingAb: $('#edit-threshold #GultingAb').val(),
+            GultingAbCopy: $('#edit-threshold #GultingAb').val(),
             SaisonalitatAnwenden: $('#edit-threshold #SaisonalitatAnwenden').is(":checked"),
             MinimaGlobal: $('#edit-threshold #MinimaGlobal').val(),
             MaximaGlobal: $('#edit-threshold #MaximaGlobal').val(),
