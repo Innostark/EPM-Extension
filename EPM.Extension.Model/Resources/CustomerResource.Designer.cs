@@ -169,14 +169,14 @@ namespace EPM.Extension.Model.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Saisonalitat Anwenden.
+        ///   Looks up a localized string similar to Saisonalität Anwenden.
         /// </summary>
         public static string MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden {
             get {
                 return ResourceManager.GetString("MeteringPointThreshold_SaisonalitatAnwenden_Saisonalitat_Anwenden", resourceCulture);
             }
         }
-      
+        
         /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>

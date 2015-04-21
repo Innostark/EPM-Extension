@@ -165,6 +165,9 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>- Please Select -</value>
+  </data>
   <data name="ProblemSavingChanges" xml:space="preserve">
     <value>Problem in Saving Changes.</value>
   </data>

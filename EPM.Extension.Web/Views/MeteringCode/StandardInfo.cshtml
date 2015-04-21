@@ -40,7 +40,8 @@
     }
 </style>
 <h2>@EPM.Extension.Web.Resources.MeteringCode.Details</h2>
-@Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.KundenspezifikationZp.Id, new { @id = "KundenspezifikationZpId" })
 <div>
     <label class="headingLabel">@EPM.Extension.Web.Resources.Customer.SubTitle</label>
     
@@ -443,7 +444,6 @@
     }
     $('#saveInfo').click(function (e) {
         var newStandardInfoModel = getStandardInfoFormValues();
-
         var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCode/StandardInfo";
         $.ajax({
             type: "POST",
@@ -457,7 +457,15 @@
             error: callError
         });
     });
-    function getStandardInfoFormValues() {
+        function getStandardInfoFormValues() {
+            var array = [];
+            array.push({
+                Empfaenger1: $('#Empfaenger1').val(),
+                Empfaenger2: $('#Empfaenger2').val(),
+                Empfaenger3: $('#Empfaenger3').val(),
+                Id: $('#type_User td:eq(0)')[0].innerText,
+                Type: 2
+            });
         return {
             Id: $('#Id').val(),
             Code: $('#Code').val(),
@@ -473,7 +481,9 @@
             UMessungValue: $('#UMessungValue').val(),
             UEntnahmeValue: $('#UEntnahmeValue').val(),
             Kundenrückmeldung: $('#Kundenrückmeldung').val(),
-            
+            Kurzbezeichnung: $('#Kurzbezeichnung').val(),
+            Name: undefined,
+            MeteringCodeThresholds: array,
             Empfaenger1: $('#Empfaenger1').val(),
             Empfaenger2: $('#Empfaenger2').val(),
             Empfaenger3: $('#Empfaenger3').val(),
@@ -483,6 +493,7 @@
     }
     function kundenspezifikationZp() {
         return {
+            Id: $('#KundenspezifikationZpId').val(),
             KlimatisierungAktivValue: $('#KlimatisierungAktivValue').val(),
             Gesamtflache: $('#Gesamtflache').val(),
             Nebenflache: $('#Nebenflache').val(),

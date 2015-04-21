@@ -124,7 +124,7 @@
     <value>Grenzwert Bezeichner</value>
   </data>
   <data name="Col2" xml:space="preserve">
-    <value>Saisonalitat Anwenden</value>
+    <value>Saisonalität Anwenden</value>
   </data>
   <data name="Col3" xml:space="preserve">
     <value>Minima Global</value>
@@ -164,6 +164,9 @@
   </data>
   <data name="No" xml:space="preserve">
     <value>Nein</value>
+  </data>
+  <data name="PleaseSelect" xml:space="preserve">
+    <value>- Bitte Auswählen -</value>
   </data>
   <data name="ProblemSavingChanges" xml:space="preserve">
     <value>Problem beim Speichern der Anderungen.</value>

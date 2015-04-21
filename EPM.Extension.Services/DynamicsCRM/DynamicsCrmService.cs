@@ -689,9 +689,46 @@ namespace EPM.Extension.Services.DynamicsCRM
             }
         }
 
-        public void UpdateMeteringPointSpecificationsAndThreashold(Guid meteringPointId)
+        public void UpdateMeteringPointSpecificationsAndThreashold(MeteringPoint meteringPoint)
         {
+            if (meteringPoint != null)
+            {
+                using (OrganizationServiceProxy serviceProxy = DynamicsCrmService.GetProxyService())
+                {                    
+                    if (meteringPoint.MeteringCodeThresholds != null && meteringPoint.MeteringCodeThresholds.Count() > 0)
+                    {
+                        MeteringPointThreshold userThreshold = meteringPoint.MeteringCodeThresholds.FirstOrDefault(t => t.Type == MeteringPointThresholdType.User);
+                        if (userThreshold != null)
+                        {
+                            Entity thresholdToUpdate = new Entity(EntityNames.Grenzwert);
+                            thresholdToUpdate.Id = userThreshold.Id;
 
+                            thresholdToUpdate.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger1, userThreshold.Empfaenger1));
+                            thresholdToUpdate.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger2, userThreshold.Empfaenger2));
+                            thresholdToUpdate.Attributes.Add(new KeyValuePair<string, object>(MetadataGrenzwert.Empfaenger3, userThreshold.Empfaenger3));
+
+                            serviceProxy.Update(thresholdToUpdate);
+                        }
+
+                        KundenspezifikationZp specification = meteringPoint.KundenspezifikationZp;
+                        if (specification != null)
+                        {
+                            Entity specificationToTupdate = new Entity(EntityNames.Kundenspezifikation_ZP);
+                            specificationToTupdate.Id = specification.Id;
+
+                            if (specification.Gesamtflache > 0) specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Gesamtflache_Flaechentyp1, specification.Gesamtflache));
+                            if (specification.Nebenflache > 0) specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Nebenflache_Flaechentyp2, specification.Nebenflache));
+                            if (specification.BeheizteFlache> 0) specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Beheizte_Flache_Flaechentyp3, specification.BeheizteFlache));
+                            if (specification.UnbeheizteFlache > 0) specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Unbeheizte_Flache_Flaechentyp4, specification.UnbeheizteFlache));
+                            if (specification.SonstigeFlachen > 0) specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Sonstige_Flachen_Flaechentyp5, specification.SonstigeFlachen));
+
+                            specificationToTupdate.Attributes.Add(new KeyValuePair<string, object>(MetadataKundenspezifikation_ZP.Notizfeld_Freitextfeld1, specification.Notizfeld));
+
+                            serviceProxy.Update(specificationToTupdate);
+                        }
+                    }
+                }
+            }
         }
 
         #endregion "MeteringPoint"

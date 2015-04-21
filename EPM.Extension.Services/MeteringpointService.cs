@@ -102,5 +102,19 @@ namespace EPM.Extension.Services
             }
             return selectedValue;
         }
+
+
+        public void UpdateMeteringPointSpecificationsAndThreashold(MeteringPoint meteringPoint)
+        {
+            try
+            {
+                crmService.UpdateMeteringPointSpecificationsAndThreashold(meteringPoint);
+            }
+            catch (Exception ex)
+            {
+                Trace.LogError(ex);
+                throw;
+            }
+        }
     }
 }

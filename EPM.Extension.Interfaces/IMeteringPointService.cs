@@ -16,5 +16,6 @@ namespace EPM.Extension.Interfaces
         MeteringPoint GetMeteringPointsById(Guid id);
         MeteringPoint GetMeteringPointsByCode(string id);
         string GetReportSelectedValue(MeteringPoint mp, string defaultId,  string aktivId, string inAktivId);
+        void UpdateMeteringPointSpecificationsAndThreashold(MeteringPoint meteringPoint);
     }
 }

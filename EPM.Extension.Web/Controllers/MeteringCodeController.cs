@@ -46,20 +46,22 @@ namespace EPM.Extension.Web.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult StandardInfo(string id)
+        public ActionResult StandardInfo(string codeOrId)
         {
             Guid guidOutput;
-            bool isGuid = Guid.TryParse(id, out guidOutput);
-            MeteringPoint meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(id);
+            bool isGuid = Guid.TryParse(codeOrId, out guidOutput);
+            MeteringPoint meteringCode = isGuid ? this._meteringCodeService.GetMeteringPointsById(guidOutput) : this._meteringCodeService.GetMeteringPointsByCode(codeOrId);
             return View(meteringCode);
         }
 
 
         [HttpPost]
-        public ActionResult StandardInfo(MeteringPoint meteringPoint)
-        {
+    [AllowAnonymous]
+        public ActionResult StandardInfo(MeteringPoint model)
+        {   
+                _meteringCodeService.UpdateMeteringPointSpecificationsAndThreashold(model);
+                return Content("");
 
-            return Content("");
         }
 
         [AllowAnonymous]
@@ -75,7 +77,7 @@ namespace EPM.Extension.Web.Controllers
 
             var list = new SelectList(new[]
                                       {
-                                          new{ID=defaultReport, Name="- Please Select -"},
+                                          new{ID=defaultReport, Name= Resources.MeteringCodeThreshold.PleaseSelect},
                                           new{ID= aktivId, Name= Resources.MeteringCodeThreshold.Active},
                                           new{ID= inAktivId, Name= Resources.MeteringCodeThreshold.InActive},
                                       }, "ID", "Name", selectedValue);

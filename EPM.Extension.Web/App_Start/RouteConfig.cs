@@ -15,7 +15,7 @@ namespace EPM.Extension.Web
             );
             routes.MapRoute(
                 name: "Default_MeteringPointStandardInfo",
-                url: "StandortInfoV1/{id}",
+                url: "StandortInfoV1/{codeOrId}",
                 defaults: new { controller = "MeteringCode", action = "StandardInfo" }
             );
             routes.MapRoute(
