@@ -552,6 +552,10 @@ namespace EPM.Extension.Services.DynamicsCRM
                         {
                             meteringPointThreshlodSystem.MinimaWinter = grenzwert.GetAttributeValue<decimal>(MetadataGrenzwert.GrenzwertWinterMinSystem);
                         }
+                        if (grenzwert.Contains(MetadataGrenzwert.Seasonal))
+                        {
+                            meteringPointThreshlodSystem.SaisonalitatAnwenden = grenzwert.GetAttributeValue<OptionSetValue>(MetadataGrenzwert.Seasonal).Value == 100000000 ? true : false;
+                        }
                         #endregion "System Threshold Values"
 
                         #region "User Threshold Values"

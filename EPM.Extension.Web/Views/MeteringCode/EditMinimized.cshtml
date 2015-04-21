@@ -62,10 +62,10 @@
 @section scripts
 {
     <script type="text/javascript">
-        function saveClicked() {
-            var newModel = getFormValues();
-           
-            var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
+    function saveClicked() {
+        var newModel = getFormValues();
+
+        var postUrl = "@ConfigurationManager.AppSettings["SiteUrl"]" + "MeteringCodeThreshold/Edit";
             $.ajax({
                 type: "POST",
                 datatype: "json",
@@ -73,7 +73,7 @@
                 data: newModel,
                 success: function (data) {
                     // Set values
-                    alert('Changes saved successfully.');
+                    alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
                     var t = $('#type_User')[0];
                     var array = [
                         newModel.Id, newModel.GrenzwertBezeichner, newModel.GultingAb, newModel.SaisonalitatAnwenden, newModel.MinimaGlobal,
@@ -88,14 +88,14 @@
                     $('#type_User td:eq(5)')[0].innerHTML = newModel.MaximaSommer;
                     $('#type_User td:eq(6)')[0].innerHTML = newModel.MinimaWinter;
                     $('#type_User td:eq(7)')[0].innerHTML = newModel.MaximaWinter;
-                   
-                    
+
+
                     $('#edit-threshold').modal('hide');
                 },
                 error: callError
             });
-           
-           
+
+
         }
         function callError() {
             alert("Problem in Saving Changes.");

@@ -105,10 +105,9 @@
 
    
     (function thename() {
-        var today = new Date();
-        var tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+        var today = new Date();        
         $("#GultingAb").datepicker(
-            { dateFormat: 'dd-mm-yy' , minDate: tomorrow }
+            { dateFormat: 'dd-mm-yy' , minDate: today }
             );
         $('#SaisonalitatAnwenden').click(function () {
             if(this.checked)

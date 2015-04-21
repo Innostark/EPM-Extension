@@ -83,17 +83,17 @@
                 <tr>
                     <th style="display: none;"></th>
                     <th style="width:5%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Active</th>
-                    <th style="width:7%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
-                    <th style="width:6%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
-                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
-                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
-                    <th style="width:7%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
-                    <th style="width:7%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
-                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
-                    <th style="width:6%" class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
+                    <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Threshold</th>
+                    <th style="width:10%">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col9</th>
+                    <th>@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col2</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col3</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col4</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col5</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col6</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col7</th>
+                    <th class="TextRightAlign">@EPM.Extension.Web.Resources.MeteringCodeThreshold.Col8</th>
 
-                    <th style="width:5%;border-right: 0px solid white;"></th>
+                    <th style="width:5%"></th>
                 </tr>
             </thead>
             <tbody>
@@ -205,6 +205,7 @@
                     }
                     $('#type_User td:eq(3)')[0].innerText = newModel.GultingAb;
                     $('#type_User td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
+                    $('#type_System td:eq(4)')[0].innerHTML = newModel.SaisonalitatAnwenden === "true" ? "Ja" : "Nein";
                     $('#type_User td:eq(5)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaGlobal + "</span>";
                     $('#type_User td:eq(6)')[0].innerHTML = "<span class='float-right'>" + newModel.MaximaGlobal + "</span>";
                     $('#type_User td:eq(7)')[0].innerHTML = "<span class='float-right'>" + newModel.MinimaSommer + "</span>";
@@ -329,7 +330,7 @@
                     data: newModel,
                     success: function (data) {
                         // Set values
-                        alert('Changes saved successfully.');
+                        alert('@EPM.Extension.Web.Resources.MeteringCodeThreshold.SuccessfullySavedChanges');
                     },
                     error: callError
                 });
